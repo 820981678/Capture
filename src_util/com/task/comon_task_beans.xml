@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-lazy-init="true">
+
+	<!-- taskHandle -->
+	<bean id="comon_task_taskHandle" class="com.task.TaskHandle" abstract="true" singleton="true" init-method="init"></bean>
+
+	<!-- 默认通用定时任务(可并发执行) -->
+	<bean id="comon_task_absJob" class="com.task.AbsJob" abstract="true" singleton="true" init-method="init">
+		<property name="group" value="default" />
+		<property name="priority" value="5" />
+		<property name="cron" value="0 0/10 * * * ?" />
+		<property name="delay" value="-1" />
+		<property name="auto" value="true" />
+	</bean>
+
+	<!-- 默认通用定时任务(可并发执行) -->
+	<bean id="comon_task_comonJob" class="com.task.ComonJob" parent="comon_task_absJob" abstract="true">
+		<property name="name" value="comonJob" />
+	</bean>
+
+	<!-- 有状态定时任务(不能并发执行) -->
+	<bean id="comon_task_statefulJob" class="com.task.StatefulJob" parent="comon_task_absJob" abstract="true">
+		<property name="name" value="statefulJob" />
+	</bean>
+
+</beans>
