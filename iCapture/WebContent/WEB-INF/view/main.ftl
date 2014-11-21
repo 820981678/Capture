@@ -21,8 +21,17 @@
             <!-- selected -->  
             <div title="任务管理" selected="true">  
 	            <ul class="easyui-tree" id="iconlist" >
-	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_loginInfo','任务分类','${webRoot}classify/index');">任务分类</a></li>  
-	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_privilege','查看关键字','${webRoot}tblkey/index');">查看关键字</a></li>  
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_loginInfo','任务','${webRoot}classify/index');">分类</a></li>  
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_privilege','关键字','${webRoot}tblkey/index');">关键字</a></li>
+	                
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_label','标签','${webRoot}classify/index');">标签</a></li>  
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_group','分组','${webRoot}tblkey/index');">分组</a></li>  
+	            </ul>
+            </div>
+            <div title="标签分组管理" selected="true">  
+	            <ul class="easyui-tree" id="iconlist" >
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_label','标签管理','${webRoot}label/index');">标签管理</a></li>  
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_group','分组管理','${webRoot}tblkey/index');">分组管理</a></li>  
 	            </ul>
             </div>  
         </div>

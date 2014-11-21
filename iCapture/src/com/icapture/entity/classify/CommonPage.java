@@ -29,6 +29,20 @@ public class CommonPage {
 	private String item2;
 	
 	private String item3;
+	
+	/**
+	 * 到topic_lists查询得到的url
+	 * 只用于页面显示
+	 */
+	private String url;
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public Integer getId() {
 		return id;
