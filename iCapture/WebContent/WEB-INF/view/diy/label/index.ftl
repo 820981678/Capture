@@ -3,54 +3,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>标签管理</title>
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/default/easyui.css"/>    
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/icon.css"/>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery-1.8.0.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery.easyui.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/locale/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.4.1/themes/default/easyui.css"/>    
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.4.1/themes/icon.css"/>    
+	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/jquery.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
+	<link rel="stylesheet" type="text/css" href="${webRoot}static/crud.css"/>
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
+	
+	<script type="text/javascript"> var webRoot = ${webRoot}; </script>
+	
 </head>
-<body style="padding:0;margin:0;">
+<body class="easyui-layout" style="font">
 
-    <table id="dg"></table>
-    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">添加</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+    <div region="west" style="width:420px;padding1:1px;overflow:hidden;border:none;">
+            <table id="dg"></table>
+		    <div id="toolbar">
+		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加标签</a>
+		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLabel()">修改标签</a>
+		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="deleteLabel()">删除标签</a>
+		    </div>
+    </div>  
+    <!-- 正中间panel -->  
+    <div region="center" >
+        <div class="easyui-tabs" id="centerTab" fit="true" border="false">  
+            
+        </div>  
     </div>
     
-	<script type="text/javascript">
-		//加载数据表格
-        $('#dg').datagrid({
-		    url:'${webRoot}common/query?groupid=${groupid}',
-		    
-		    //title: '所有文章',
-		    //fitColumns: true, //设置自适应宽度
-		    fit: true, //设置自适应高度
-		    sortName: 'id',
-		    sortOrder: 'desc',
-		    pagination: true, //设置分页
-		    rownumbers: true, //显示行号
-		    singleSelect: true,//设置为单选行
-		    
-		    toolbar:"#toolbar",
-		    
-		    columns:[[
-		        {field:'item0',title:'标题'},
-		        {field:'url',title:'原文链接'},
-		        {field:'item2',title:'发布时间'},
-		        {
-		        	field:'a',
-		        	title:'操作',
-					formatter: function(val,rec){
-						return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
-					}		        	
-		        }
-		    ]],
-		    
-		});
-			
-	</script>
+    <!-- 弹出窗口 -->
+    <div id="addLabel" class="easyui-dialog" style="width:400px;height:190px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">添加标签</div>
+        <form id="addfm" class="fm" method="post" novalidate>
+            <div class="fitem">
+                <label>标签名称:</label>
+                <input name="name" class="easyui-textbox" required="true">
+            </div>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveLabel()" style="width:90px">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addLabel').dialog('close')" style="width:90px">取消</a>
+    </div>
+    
 </body>
+    <script type="text/javascript" src="${webRoot}static/diy/label/label_index.js"></script>
 </html>

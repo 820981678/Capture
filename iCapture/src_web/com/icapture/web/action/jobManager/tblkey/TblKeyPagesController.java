@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
-import com.icapture.entity.classify.CommonPage;
 import com.icapture.entity.tblkey.TblKeyPages;
 import com.icapture.service.jobManager.tblkey.TblKeyPagesService;
 import com.icapture.web.action.BaseController;
@@ -59,17 +58,16 @@ public class TblKeyPagesController extends BaseController {
 			rows = 20;
 		}
 		Page<TblKeyPages> p = new Page<TblKeyPages>(page, rows, sort, order);
-		
+		Map<String, Object> result = null;
 		try {
 			Page<TblKeyPages> data = tblKeyPagesServiceImpl.queryByPage(p, id);
-			return pageToEasyUi(data);
+			result = pageToEasyUi(data,0);
 		} catch (DBException e) {
-			// TODO 完成异常处理
-			throw e;
+			result = pageToEasyUi(1);
 		} finally {
 			DBHandle.release();
 		}
-		
+		return result;
 	}
 	
 }

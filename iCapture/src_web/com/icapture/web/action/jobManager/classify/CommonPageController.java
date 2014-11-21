@@ -59,17 +59,16 @@ public class CommonPageController extends BaseController {
 			rows = 20;
 		}
 		Page<CommonPage> p = new Page<CommonPage>(page, rows, sort, order);
-		
+		Map<String, Object> result = null;
 		try {
 			Page<CommonPage> data = commonPageService.queryByPage(p, groupid);
-			return pageToEasyUi(data);
+			result = pageToEasyUi(data,0);
 		} catch (DBException e) {
-			// TODO 完成异常处理
-			throw e;
+			result = pageToEasyUi(1);
 		} finally {
 			DBHandle.release();
 		}
-		
+		return result;
 	}
 	
 }

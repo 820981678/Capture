@@ -27,10 +27,24 @@ public class BaseController {
 	 * @param map
 	 * @return
 	 */
-	protected Map<String, Object> pageToEasyUi(Page<?> page){
+	protected Map<String, Object> pageToEasyUi(Page<?> page,int code){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", page.getTotal());
 		map.put("rows", page.getRows());
+		map.put("code", code);
+		return map;
+	}
+	
+	/**
+	 * 将系统中分页map转换为easyui所需要的格式map
+	 * 异常时返回code码
+	 * 
+	 * @param map
+	 * @return
+	 */
+	protected Map<String, Object> pageToEasyUi(int code){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
 		return map;
 	}
 	
