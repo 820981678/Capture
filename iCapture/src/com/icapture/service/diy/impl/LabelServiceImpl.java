@@ -33,6 +33,7 @@ public class LabelServiceImpl implements LabelService {
 	public List<Label> queryAll() throws DBException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT * FROM ").append(Label.DB_NAME);
+		sql.append(" ORDER BY ID DESC");
 		
 		return DBHandle.query(sql.toString(), new Object[0], Label.class);
 	}
@@ -53,7 +54,56 @@ public class LabelServiceImpl implements LabelService {
 
 	@Override
 	public boolean update(Label label) throws DBException {
-		return false;
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE ").append(Label.DB_NAME).append(" SET");
+		sql.append(" NAME=?");
+		sql.append(" WHERE 1=1 ");
+		sql.append(" AND ID=?");
+		
+		Object[] params = {
+			label.getName(),label.getId()
+		};
+		
+		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
 	
+	@Override
+	public boolean delete(Label label) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("DELETE FROM ").append(Label.DB_NAME).append(" WHERE 1=1");
+		sql.append(" AND ID=?");
+		Object[] params = {label.getId()};
+		
+		StringBuffer sql_delete = new StringBuffer();
+		sql_delete.append("DELETE FROM ").append(Label.TO).append(" WHERE 1=1");
+		sql_delete.append(" AND LABEL_ID=?");
+		Object[] params_delete = {label.getId()};
+		
+		try {
+			DBHandle.beginTransation();
+			
+			DBHandle.exceute(sql_delete.toString(), params_delete);
+			DBHandle.exceute(sql.toString(), params);
+			
+			DBHandle.commit();
+		} catch (DBException e) {
+			DBHandle.rollback();
+			throw e;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public List<Label> qyeryLabelByCommon(Integer common_id) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(Label.DB_NAME);
+		sql.append(" WHERE 1=1 ").append(" AND ID IN (");
+		sql.append("SELECT LABEL_ID FROM ").append(Label.TO).append(" WHERE COMMON_ID = ?)");
+		
+		Object[] params = {common_id};
+		
+		return DBHandle.query(sql.toString(), params, Label.class);
+	}
+
 }

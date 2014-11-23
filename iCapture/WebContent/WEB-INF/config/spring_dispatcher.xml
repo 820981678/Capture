@@ -74,6 +74,8 @@
 	    <property name="freemarkerVariables">
 			<map>
 				<entry key="webRoot" value="/iCapture/"></entry>
+				<entry key="easyui" value="jquery-easyui-1.4.1"></entry>
+				<entry key="themes" value="default"></entry>
 			</map>
 		</property>
 	</bean>

@@ -1,5 +1,8 @@
 package com.icapture.web.action.jobManager.classify;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -51,7 +54,7 @@ public class CommonPageController extends BaseController {
 	 * 
 	 * @return 返回json用于页面easyui绘制
 	 */
-	@RequestMapping("query")
+	@RequestMapping("/query")
 	@ResponseBody
 	public Map<String, Object> queryByPage(Integer groupid,Integer page,Integer rows,String sort,String order) throws DBException {
 		if(page == null || rows == null){
@@ -69,6 +72,44 @@ public class CommonPageController extends BaseController {
 			DBHandle.release();
 		}
 		return result;
+	}
+	
+	/**
+	 * 打标签
+	 * 
+	 * @param id	文章id
+	 * @param labels	所有标签id的集合
+	 * @return
+	 */
+	@RequestMapping("/playLabel")
+	@ResponseBody
+	public Map<String, Object> playLabel(Integer id,String labels){
+		Map<String, Object> map = new HashMap<String, Object>();
+		String[] s = labels.split(",");
+		List<Integer> list = new ArrayList<Integer>();
+		for (String string : s) {
+			list.add(Integer.valueOf(string));
+		}
+		
+		try {
+			commonPageService.playLabel(id, list);
+			map.put("code", 0);
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		}
+		return map;
+	}
+	
+	/**
+	 * 查询文章对应的标签
+	 * 
+	 * @param common_id 文章id
+	 * @return
+	 */
+	public Map<String, Object> queryLabel(Integer common_id){
+		
+		return null;
 	}
 	
 }

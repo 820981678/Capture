@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>标签管理</title>
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.4.1/themes/default/easyui.css"/>    
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.4.1/themes/icon.css"/>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/jquery.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/${themes}/easyui.css"/>    
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/icon.css"/>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.easyui.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/locale/easyui-lang-zh_CN.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/crud.css"/>
@@ -23,7 +23,7 @@
 		    <div id="toolbar">
 		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加标签</a>
 		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLabel()">修改标签</a>
-		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="deleteLabel()">删除标签</a>
+		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteLabel()">删除标签</a>
 		    </div>
     </div>  
     <!-- 正中间panel -->  

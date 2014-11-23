@@ -41,12 +41,29 @@ public interface LabelService {
 	boolean add(Label label) throws DBException;
 	
 	/**
-	 * 删除
+	 * 修改
 	 * 
 	 * @param label
 	 * @return
 	 * @throws DBException
 	 */
 	boolean update(Label label) throws DBException;
+	
+	/**
+	 * 删除标签
+	 * 级联删除common——label中的相关数据
+	 * 
+	 * @param label
+	 * @return
+	 */
+	boolean delete(Label label) throws DBException;
+	
+	/**
+	 * 根据commonPage的id查询出对应的标签集合
+	 * 
+	 * @param common_id
+	 * @return
+	 */
+	List<Label> qyeryLabelByCommon(Integer common_id) throws DBException;
 	
 }

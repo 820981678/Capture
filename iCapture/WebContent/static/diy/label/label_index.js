@@ -28,6 +28,14 @@ $('#dg').datagrid({
         }
     ]],
     
+    loadFilter: function(data){
+    	if(data.code != 0){
+    		$.messager.alert("提示信息","服务器忙，请稍后再试!");
+    	} else {
+    		return data;
+    	}
+    }
+    
 });
 
 //以下为弹出窗口操作//

@@ -2,56 +2,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Capture</title>
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/default/easyui.css"/>    
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/icon.css"/>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery-1.8.0.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery.easyui.min.js"></script>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/locale/easyui-lang-zh_CN.js"></script>
+<title>CommonPage</title>
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/${themes}/easyui.css"/>    
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/icon.css"/>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.easyui.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/${easyui}/locale/easyui-lang-zh_CN.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
+	
+	<script type="text/javascript"> 
+		var webRoot = ${webRoot}; 
+		var groupid = ${groupid};
+	</script>
+	
 </head>
 <body style="padding:0;margin:0;">
 
     <table id="dg"></table>
-    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Add</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove</a>
-    </div>
     
-	<script type="text/javascript">
-		//加载数据表格
-        $('#dg').datagrid({
-		    url:'${webRoot}common/query?groupid=${groupid}',
-		    
-		    //title: '所有文章',
-		    //fitColumns: true, //设置自适应宽度
-		    fit: true, //设置自适应高度
-		    sortName: 'id',
-		    sortOrder: 'desc',
-		    pagination: true, //设置分页
-		    rownumbers: true, //显示行号
-		    singleSelect: true,//设置为单选行
-		    
-		    toolbar:"#toolbar",
-		    
-		    columns:[[
-		        {field:'item0',title:'标题'},
-		        {field:'item1',title:'原文链接'},
-		        {field:'item2',title:'这是什么'},
-		        {
-		        	field:'a',
-		        	title:'操作',
-					formatter: function(val,rec){
-						return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
-					}		        	
-		        }
-		    ]],
-		    
-		});
-			
-	</script>
+    <!-- 右键菜单 -->
+	<div id="mm" class="easyui-menu" style="width:120px;">
+		<div iconCls="icon-add" onclick="addLabel()">添加标签</div>
+		<div iconCls="icon-add" onclick="addGroup()">添加分组</div>
+	    <div>退出</div>
+	</div>
+	
+	<!-- 打标签弹出窗口 -->
+	<div id="playLabel" class="easyui-dialog" style="width:410px;height:300px;" closed="true" buttons="#dlg-buttons" data-options="modal:true">
+	    <table id="labelTab"></table>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePlayLabel()" style="width:90px">保存</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#playLabel').dialog('close')" style="width:90px">取消</a>
+	</div>
+    
 </body>
+	<script type="text/javascript" src="${webRoot}static/jobManager/commonPage/commonPage.js"></script>
 </html>

@@ -1,5 +1,7 @@
 package com.icapture.service.jobManager.classify;
 
+import java.util.List;
+
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.classify.CommonPage;
@@ -19,5 +21,15 @@ public interface CommonPageService {
 	 * @throws DBException
 	 */
 	Page<CommonPage> queryByPage(Page<CommonPage> page,Integer grounpid) throws DBException;
+	
+	/**
+	 * 打标签
+	 * 
+	 * @param common_id	文章id
+	 * @param labels	标签id集合
+	 * @return
+	 * @throws DBException
+	 */
+	boolean playLabel(Integer common_id, List<Integer> labels) throws DBException;
 	
 }

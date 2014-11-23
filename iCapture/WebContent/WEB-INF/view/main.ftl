@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Capture</title>
-	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/default/easyui.css"/>    
+	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/${themes}/easyui.css"/>    
 	<link rel="stylesheet" type="text/css" href="${webRoot}plug/jquery-easyui-1.3.2/themes/icon.css"/>    
-	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery-1.8.0.min.js"></script>    
+	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery.min.js"></script>    
 	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/jquery.easyui.min.js"></script>    
 	<script type="text/javascript" src="${webRoot}plug/jquery-easyui-1.3.2/locale/easyui-lang-zh_CN.js"></script>
 	
@@ -14,7 +14,7 @@
 </head>
 <body class="easyui-layout" style="font">
     <!-- 正上方panel -->  
-    <div region="north" style="height:50px; border:none; background-color:#E6EEF8;" href="${webRoot}main/top"></div>
+    <div region="north" style="height:50px; border:none; background-color:#E0ECFF;" href="${webRoot}main/top"></div>
     <!-- 正左边panel -->  
     <div region="west" title="菜单栏" split="true" style="width:280px;padding1:1px;overflow:hidden;">  
         <div class="easyui-accordion" fit="true" border="false">

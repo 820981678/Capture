@@ -1,6 +1,7 @@
 package com.icapture.web.action.diy.label;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -72,6 +73,30 @@ public class LabelController extends BaseController {
 	}
 	
 	/**
+	 * 查询全部标签
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/queryAll")
+	@ResponseBody
+	public Map<String, Object> queryAll(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			List<Label> result = labelService.queryAll();
+			map.put("code", 0);
+			map.put("total", result.size());
+			map.put("rows", result);
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		return map;
+	}
+	
+	/**
 	 * 添加标签
 	 * 
 	 * @param label
@@ -89,6 +114,8 @@ public class LabelController extends BaseController {
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
 		}
 		return map;
 	}
@@ -104,7 +131,16 @@ public class LabelController extends BaseController {
 	public Map<String, Object> update(Label label){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("code", 0);
+		try {
+			if(labelService.update(label)){
+				map.put("code", 0);
+			}
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
 		return map;
 	}
 	
@@ -119,7 +155,40 @@ public class LabelController extends BaseController {
 	public Map<String, Object> delete(Label label){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("code", 0);
+		try {
+			if(labelService.delete(label)){
+				map.put("code", 0);
+			}
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		return map;
+	}
+	
+	/**
+	 * 根据common_id 查询出对应的标签
+	 * 
+	 * @param common_id
+	 * @return
+	 */
+	@RequestMapping("/qyeryLabelByCommon")
+	@ResponseBody
+	public Map<String, Object> qyeryLabelByCommon(Integer common_id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			List<Label> list = labelService.qyeryLabelByCommon(common_id);
+			map.put("code", 0);
+			map.put("data", list);
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
 		return map;
 	}
 	
