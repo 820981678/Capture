@@ -87,4 +87,23 @@ public class CommonPageServiceImpl implements CommonPageService {
 		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
 	}
 	
+	/**
+	 * 保存分组
+	 * 
+	 * @param commId common_page文章id
+	 * @param groupId 分组id
+	 * @return
+	 */
+	public boolean playGroup(Integer commId,Integer groupId) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE ").append(CommonPage.DB_NAME).append(" SET");
+		sql.append(" GROUP_GROUPID=?").append(" WHERE ID=?");
+		Object[] params = {
+				groupId,commId
+		};
+		
+		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
+		
+	}
+	
 }

@@ -131,4 +131,30 @@ public class CommonPageController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 保存分组
+	 * 
+	 * @param commId common_page文章id
+	 * @param groupId 分组id
+	 * @return
+	 */
+	@RequestMapping("/playGroup")
+	@ResponseBody
+	public Map<String, Object> playGroup(Integer commId,Integer groupId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			if(commonPageService.playGroup(commId, groupId)){
+				map.put("code", 0);
+			}
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		
+		return map;
+	}
+	
 }

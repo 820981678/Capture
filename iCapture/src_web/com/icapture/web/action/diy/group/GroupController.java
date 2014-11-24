@@ -153,10 +153,19 @@ public class GroupController extends BaseController {
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public Map<String, Object> delete(Label label){
+	public Map<String, Object> delete(Group group){
 		Map<String, Object> map = new HashMap<String, Object>();
-		// TODO 未实现
-		map.put("code", 0);
+		try {
+			if(groupService.delete(group)){
+				map.put("code", 0);
+			}
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		
 		return map;
 	}
 	

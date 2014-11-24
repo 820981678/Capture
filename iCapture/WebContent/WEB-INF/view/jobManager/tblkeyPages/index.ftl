@@ -37,6 +37,15 @@
 	    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePlayLabel()" style="width:90px">保存</a>
 	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#playLabel').dialog('close')" style="width:90px">取消</a>
 	</div>
+	
+	<!-- 分组弹出窗口 -->
+	<div id="playGroup" class="easyui-dialog" style="width:410px;height:300px;" closed="true" buttons="#dlg-buttons" data-options="modal:true">
+	    <table id="groupTab"></table>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePlayGroup()" style="width:90px">保存</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#playGroup').dialog('close')" style="width:90px">取消</a>
+	</div>
     
 </body>
 	<script type="text/javascript" src="${webRoot}static/jobManager/tblkeyPages/tblkeyPages.js"></script>

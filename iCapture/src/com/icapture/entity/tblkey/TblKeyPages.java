@@ -57,6 +57,21 @@ public class TblKeyPages {
 	 * 记录该条信息对应commonPage表的id
 	 */
 	private Integer common_page_id;
+	
+	/**
+	 * 临时属性,主要用于页面数据展示
+	 * 记录该条信息对应commonPage表的分组id
+	 *
+	 */
+	private Integer group_groupid;
+
+	public Integer getGroup_groupid() {
+		return group_groupid;
+	}
+
+	public void setGroup_groupid(Integer group_groupid) {
+		this.group_groupid = group_groupid;
+	}
 
 	public String getUrl() {
 		return url;

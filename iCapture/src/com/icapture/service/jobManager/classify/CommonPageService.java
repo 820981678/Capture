@@ -40,4 +40,13 @@ public interface CommonPageService {
 	 */
 	Page<CommonPage> queryPageByLabel(Page<CommonPage> page,Integer labelid) throws DBException;
 	
+	/**
+	 * 保存分组
+	 * 
+	 * @param commId common_page文章id
+	 * @param groupId 分组id
+	 * @return
+	 */
+	boolean playGroup(Integer commId,Integer groupId) throws DBException;
+	
 }
