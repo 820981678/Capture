@@ -38,13 +38,15 @@ public class CommonPageController extends BaseController {
 	/**
 	 * 跳转到文章展示页面
 	 * 
+	 * @param url 用于加载页面datagrid数据的url,
+	 * 			    页面会需要各种不同的查询方式去加载datagrid
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public ModelAndView index(Integer groupid){
+	public ModelAndView index(String url){
 		ModelAndView model = new ModelAndView();
 		
-		model.addObject("groupid", groupid);
+		model.addObject("url", url);
 		model.setViewName("jobManager/commonPage/index");
 		return model;
 	}

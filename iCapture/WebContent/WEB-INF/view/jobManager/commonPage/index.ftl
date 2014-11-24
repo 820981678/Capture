@@ -14,7 +14,7 @@
 	
 	<script type="text/javascript"> 
 		var webRoot = ${webRoot}; 
-		var groupid = ${groupid};
+		var url = '${url}';
 	</script>
 	
 </head>

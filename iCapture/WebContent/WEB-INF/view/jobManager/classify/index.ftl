@@ -18,9 +18,14 @@
         <div class="easyui-accordion" fit="true" border="false">
 	            <ul class="easyui-tree" id="iconlist" >
 	            	<#list data as classify>
+	            		<!--
 	                	<li style="height:30px; line-height:30px;">
 	                		<span><a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?groupid=${classify.id}');">${classify.name}</a></span>
-	                	</li>  
+	                	</li>
+	                	-->
+	                	<li style="height:30px; line-height:30px;">
+	                		<span><a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?url=common/query?groupid=${classify.id}');">${classify.name}</a></span>
+	                	</li>
 	            	</#list>
 	            </ul>
         </div>

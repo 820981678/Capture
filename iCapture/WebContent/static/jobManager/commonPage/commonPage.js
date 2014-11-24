@@ -1,6 +1,7 @@
 //加载数据表格
 $('#dg').datagrid({
-    url: webRoot + 'common/query?groupid=' + groupid,
+    //url: webRoot + 'common/query?groupid=' + groupid,
+	url : webRoot + url,
     fit: true, //设置自适应高度
     sortName: 'id',
     sortOrder: 'desc',

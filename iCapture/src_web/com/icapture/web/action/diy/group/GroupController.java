@@ -15,7 +15,6 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Group;
-import com.icapture.entity.diy.Label;
 import com.icapture.service.diy.GroupService;
 import com.icapture.web.action.BaseController;
 
