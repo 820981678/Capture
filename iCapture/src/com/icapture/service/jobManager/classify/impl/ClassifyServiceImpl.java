@@ -12,6 +12,11 @@ import com.icapture.service.jobManager.classify.ClassifyService;
 @Component
 public class ClassifyServiceImpl implements ClassifyService {
 
+	/**
+	 * 查询全部任务分类
+	 * 
+	 * @return
+	 */
 	@Override
 	public List<Classify> queryAll() throws DBException {
 		String sql = "SELECT * FROM " + Classify.DB_NAME;

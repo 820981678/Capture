@@ -17,6 +17,14 @@ import com.util.StringUtil;
 @Component
 public class UserServiceImpl implements UserService {
 
+	/**
+	 * 根据用户名，密码获取用户
+	 * 
+	 * @param user
+	 * @return 于用户名，密码匹配的用户对象<br/>
+	 * 		       没有匹配则返回null
+	 * @throws DBException
+	 */
 	@Override
 	public User query_login(User user) throws DBException {
 		if(StringUtil.isEmpty(user.getName()) || StringUtil.isEmpty(user.getPassword())){

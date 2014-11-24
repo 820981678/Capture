@@ -18,6 +18,14 @@ import com.icapture.service.jobManager.tblkey.TblKeyPagesService;
 @Component("tblKeyPagesServiceImpl")
 public class TblKeyPagesServiceImpl implements TblKeyPagesService {
 
+	/**
+	 * 根据分页信息查询
+	 * 
+	 * @param page	分页信息
+	 * @param id	关键字id
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public Page<TblKeyPages> queryByPage(Page<TblKeyPages> page, Integer id)
 			throws DBException {

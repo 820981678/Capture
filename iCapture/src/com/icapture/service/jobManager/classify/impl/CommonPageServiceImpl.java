@@ -21,14 +21,30 @@ import com.icapture.service.jobManager.classify.CommonPageService;
 @Component
 public class CommonPageServiceImpl implements CommonPageService {
 
+	/**
+	 * 根据分页信息查询文章
+	 * 
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public Page<CommonPage> queryByPage(Page<CommonPage> page,Integer grounpid)
 			throws DBException {
-		String sql = "select p.* from (select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id order by id asc) as p order by p.id desc";
-		
-		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
+		String sql = "select p.* from (select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.groupid=? and t1.topicid=t2.id order by id asc) as p order by p.id desc";
+		Object[] params = {
+			grounpid	
+		};
+		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
 	}
 	
+	/**
+	 * 打标签
+	 * 
+	 * @param common_id	文章id
+	 * @param labels	标签id集合
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public boolean playLabel(Integer common_id, List<Integer> labels)
 			throws DBException {
@@ -56,6 +72,19 @@ public class CommonPageServiceImpl implements CommonPageService {
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * 分页查询babelid标签下 全部commonpage
+	 * 
+	 * @param babelid
+	 * @return
+	 */
+	@Override
+	public Page<CommonPage> queryPageByLabel(Page<CommonPage> page,Integer labelid) throws DBException {
+		String sql = "select p.* from ( select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id and t1.id in( select common_id from commontolabel where label_id=? ) order by id asc ) as p order by p.id desc";
+		Object[] params = {labelid};
+		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
 	}
 	
 }

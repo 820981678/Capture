@@ -18,6 +18,12 @@ import com.icapture.service.jobManager.tblkey.TblKeyService;
 @Component
 public class TblKeyServiceImpl implements TblKeyService {
 
+	/**
+	 * 查询全部关键字
+	 * 
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public List<TblKey> queryAll() throws DBException {
 		String sql = "SELECT * FROM " + TblKey.DB_NAME;

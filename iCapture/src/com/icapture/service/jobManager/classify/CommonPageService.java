@@ -32,4 +32,12 @@ public interface CommonPageService {
 	 */
 	boolean playLabel(Integer common_id, List<Integer> labels) throws DBException;
 	
+	/**
+	 * 分页查询babelid标签下 全部commonpage
+	 * 
+	 * @param babelid
+	 * @return
+	 */
+	Page<CommonPage> queryPageByLabel(Page<CommonPage> page,Integer labelid) throws DBException;
+	
 }

@@ -20,6 +20,13 @@ import com.icapture.service.diy.LabelService;
 @Component
 public class LabelServiceImpl implements LabelService {
 
+	/**
+	 * 分页查询
+	 * 
+	 * @param page
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public Page<Label> queryByPage(Page<Label> page) throws DBException {
 		StringBuffer sql = new StringBuffer();
@@ -29,6 +36,12 @@ public class LabelServiceImpl implements LabelService {
 		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
 	}
 	
+	/**
+	 * 查询全部
+	 * 
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public List<Label> queryAll() throws DBException {
 		StringBuffer sql = new StringBuffer();
@@ -38,6 +51,13 @@ public class LabelServiceImpl implements LabelService {
 		return DBHandle.query(sql.toString(), new Object[0], Label.class);
 	}
 
+	/**
+	 * 添加
+	 * 
+	 * @param label
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public boolean add(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
@@ -52,6 +72,13 @@ public class LabelServiceImpl implements LabelService {
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
 
+	/**
+	 * 修改
+	 * 
+	 * @param label
+	 * @return
+	 * @throws DBException
+	 */
 	@Override
 	public boolean update(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
@@ -67,6 +94,13 @@ public class LabelServiceImpl implements LabelService {
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
 	
+	/**
+	 * 删除标签
+	 * 级联删除common——label中的相关数据
+	 * 
+	 * @param label
+	 * @return
+	 */
 	@Override
 	public boolean delete(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
@@ -94,6 +128,12 @@ public class LabelServiceImpl implements LabelService {
 		return true;
 	}
 	
+	/**
+	 * 根据commonPage的id查询出对应的标签集合
+	 * 
+	 * @param common_id
+	 * @return
+	 */
 	@Override
 	public List<Label> qyeryLabelByCommon(Integer common_id) throws DBException {
 		StringBuffer sql = new StringBuffer();
