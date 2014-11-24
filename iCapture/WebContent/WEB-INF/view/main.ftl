@@ -33,7 +33,7 @@
             <div title="标签分组管理" selected="true">  
 	            <ul class="easyui-tree" id="iconlist" >
 	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_label','标签管理','${webRoot}label/index');">标签管理</a></li>  
-	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_group','分组管理','${webRoot}tblkey/index');">分组管理</a></li>  
+	                <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_group','分组管理','${webRoot}group/index');">分组管理</a></li>  
 	            </ul>
             </div>  
         </div>

@@ -45,6 +45,34 @@ public class TblKeyPages {
 	 * 记录该条信息对应的页面的标题
 	 */
 	private String title;
+	
+	/**
+	 * 临时属性,主要用于页面数据展示
+	 * 记录该条信息对应的页面的url
+	 */
+	private String url;
+	
+	/**
+	 * 临时属性,主要用于页面数据展示
+	 * 记录该条信息对应commonPage表的id
+	 */
+	private Integer common_page_id;
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public Integer getCommon_page_id() {
+		return common_page_id;
+	}
+
+	public void setCommon_page_id(Integer common_page_id) {
+		this.common_page_id = common_page_id;
+	}
 
 	public Integer getId() {
 		return id;

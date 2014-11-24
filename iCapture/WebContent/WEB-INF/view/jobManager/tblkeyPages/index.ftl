@@ -11,43 +11,33 @@
 	
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
+	
+	<script type="text/javascript"> 
+		var webRoot = ${webRoot}; 
+		var id = ${id};
+	</script>
+	
 </head>
 <body style="padding:0;margin:0;">
+
     <table id="tblkeyPage"></table>
     
-    <script type="text/javascript">
-    	//加载数据表格
-        $('#tblkeyPage').datagrid({
-		    url:'${webRoot}tblkeypage/query?id=${id}',
-		    
-		    //title: '所有文章',
-		    //fitColumns: true, //设置自适应宽度
-		    fit: true, //设置填充高度,自适应高度
-		    sortName: 'id',
-		    sortOrder: 'desc',
-		    pagination: true, //设置分页
-		    rownumbers: true, //显示行号
-		    singleSelect: true,//设置为单选行
-		    
-		    columns:[[
-		        {field:'title',title:'标题'},
-		        {field:'count1',title:'匹配次数'},
-		        {field:'pdate',title:'发布时间'},
-		        {
-		        	field:'a',
-		        	title:'操作',
-					formatter: function(val,rec){
-						return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
-					}		        	
-		        }
-		    ]],
-		    
-		    loadFilter: function(data){
-		    	return data;
-		    }
-		    
-		});
-    </script>
+    <!-- 右键菜单 -->
+	<div id="mm" class="easyui-menu" style="width:120px;">
+		<div iconCls="icon-add" onclick="addLabel()">添加标签</div>
+		<div iconCls="icon-add" onclick="addGroup()">添加分组</div>
+	    <div>退出</div>
+	</div>
+	
+	<!-- 打标签弹出窗口 -->
+	<div id="playLabel" class="easyui-dialog" style="width:410px;height:300px;" closed="true" buttons="#dlg-buttons" data-options="modal:true">
+	    <table id="labelTab"></table>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="savePlayLabel()" style="width:90px">保存</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#playLabel').dialog('close')" style="width:90px">取消</a>
+	</div>
     
 </body>
+	<script type="text/javascript" src="${webRoot}static/jobManager/tblkeyPages/tblkeyPages.js"></script>
 </html>
