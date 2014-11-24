@@ -49,4 +49,14 @@ public interface CommonPageService {
 	 */
 	boolean playGroup(Integer commId,Integer groupId) throws DBException;
 	
+	/**
+	 * 分页查询  根据分组id查询
+	 * 
+	 * @param page
+	 * @param group_groupId 分组id
+	 * @return
+	 * @throws DBException
+	 */
+	Page<CommonPage> queryPageByGroup(Page<CommonPage> page,Integer group_groupId) throws DBException;
+	
 }

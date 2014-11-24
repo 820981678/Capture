@@ -159,4 +159,34 @@ public class CommonPageController extends BaseController {
 		return map;
 	}
 	
+	/**
+	 * 分页查询  根据分组id查询
+	 * 
+	 * @param group_groupId 分组id
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping("/queryPageByGroup")
+	@ResponseBody
+	public Map<String, Object> queryPageByGroup(Integer group_groupId,Integer page,Integer rows,String sort,String order){
+		if(page == null || rows == null){
+			page = 1;
+			rows = 20;
+		}
+		Page<CommonPage> p = new Page<CommonPage>(page, rows, sort, order);
+		Map<String, Object> result = null;
+		try {
+			Page<CommonPage> data = commonPageService.queryPageByGroup(p, group_groupId);
+			result = pageToEasyUi(data,0);
+		} catch (DBException e) {
+			result = pageToEasyUi(1);
+		} finally {
+			DBHandle.release();
+		}
+		return result;
+	}
+	
 }

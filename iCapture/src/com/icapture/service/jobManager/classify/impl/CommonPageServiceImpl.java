@@ -103,7 +103,20 @@ public class CommonPageServiceImpl implements CommonPageService {
 		};
 		
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
-		
+	}
+	
+	/**
+	 * 分页查询  根据分组id查询
+	 * 
+	 * @param page
+	 * @param group_groupId 分组id
+	 * @return
+	 * @throws DBException
+	 */
+	public Page<CommonPage> queryPageByGroup(Page<CommonPage> page,Integer group_groupId) throws DBException {
+		String sql = "select p.* from ( select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id and t1.group_groupid=? order by id asc ) as p order by p.id desc";
+		Object[] params = { group_groupId};
+		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
 	}
 	
 }
