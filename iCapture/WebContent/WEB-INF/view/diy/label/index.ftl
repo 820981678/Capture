@@ -18,7 +18,7 @@
 </head>
 <body class="easyui-layout" style="font">
 
-    <div region="west" style="width:420px;padding1:1px;overflow:hidden;border:none;">
+    <div region="west" style="width:430px;padding1:1px;overflow:hidden;border:none;">
             <table id="dg"></table>
 		    <div id="toolbar">
 		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加标签</a>
@@ -49,5 +49,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/label/label_index.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/label/label.js"></script>
 </html>

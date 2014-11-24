@@ -102,14 +102,33 @@ public class CommonPageController extends BaseController {
 	}
 	
 	/**
-	 * 查询文章对应的标签
+	 * 分页查询babelid标签下 全部commonpage
 	 * 
-	 * @param common_id 文章id
+	 * @param labelid 标签id
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
 	 * @return
 	 */
-	public Map<String, Object> queryLabel(Integer common_id){
-		
-		return null;
+	@RequestMapping("/queryPageByLabel")
+	@ResponseBody
+	public Map<String, Object> queryPageByLabel(Integer labelid,Integer page,Integer rows,String sort,String order){
+		if(page == null || rows == null){
+			page = 1;
+			rows = 20;
+		}
+		Page<CommonPage> p = new Page<CommonPage>(page, rows, sort, order);
+		Map<String, Object> result = null;
+		try {
+			Page<CommonPage> data = commonPageService.queryPageByLabel(p, labelid);
+			result = pageToEasyUi(data,0);
+		} catch (DBException e) {
+			result = pageToEasyUi(1);
+		} finally {
+			DBHandle.release();
+		}
+		return result;
 	}
 	
 }

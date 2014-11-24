@@ -192,4 +192,19 @@ public class LabelController extends BaseController {
 		return map;
 	}
 	
+	/**
+	 * 跳转到查看标签下 文章列表页面
+	 * 
+	 * @param labelid
+	 * @return
+	 */
+	@RequestMapping("/toCommonPage")
+	public ModelAndView toCommonPage(Integer labelid){
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("labelid", labelid);
+		model.setViewName("/diy/label/toCommonPage");
+		return model;
+	}
+	
 }
