@@ -24,7 +24,7 @@ $('#dg').datagrid({
         	field:'a',title:'操作',
         	formatter: function(val,rec){
         		//return '<a href=' + webRoot + '"label/toCommonPage">查看文章</a>';
-        		return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'label/toCommonPage?labelid=' + rec.id + '");\'>' + rec.name + '</a>';
+        		return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'label/toCommonPage?labelid=' + rec.id + '");\'>' + '全部文章' + '</a>';
         	}
         }
     ]],

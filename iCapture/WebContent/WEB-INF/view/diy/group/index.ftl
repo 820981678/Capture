@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>标签管理</title>
+<title>分组管理</title>
 	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/${themes}/easyui.css"/>    
 	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/icon.css"/>    
 	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.min.js"></script>    
@@ -18,7 +18,7 @@
 </head>
 <body class="easyui-layout" style="font">
 
-    <div region="west" title="All Group" style="width:430px;padding1:1px;overflow:hidden;border:none;">
+    <div region="west" style="width:430px;padding1:1px;overflow:hidden;border:none;">
             <table id="dg"></table>
 		    <div id="toolbar">
 		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加分组</a>
@@ -35,10 +35,10 @@
     
     <!-- 弹出窗口 -->
     <div id="addLabel" class="easyui-dialog" style="width:400px;height:190px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
-        <div class="ftitle">添加标签</div>
+        <div class="ftitle">添加分组</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
-                <label>标签名称:</label>
+                <label>分组名称:</label>
                 <input name="name" class="easyui-textbox" required="true">
             </div>
         </form>
@@ -49,5 +49,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/label/group.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/group/group.js"></script>
 </html>

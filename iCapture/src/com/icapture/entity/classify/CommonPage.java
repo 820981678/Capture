@@ -30,11 +30,21 @@ public class CommonPage {
 	
 	private String item3;
 	
+	private Integer group_groupid;
+	
 	/**
 	 * 到topic_lists查询得到的url
 	 * 只用于页面显示
 	 */
 	private String url;
+
+	public Integer getGroup_groupid() {
+		return group_groupid;
+	}
+
+	public void setGroup_groupid(Integer group_groupid) {
+		this.group_groupid = group_groupid;
+	}
 
 	public String getUrl() {
 		return url;

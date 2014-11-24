@@ -13,3 +13,14 @@ CREATE TABLE `label`(
 	PRIMARY KEY (`ID`)
 ) COMMENT '用于保存用户自定义的标签';
 ALTER TABLE `label` ADD UNIQUE(`name`);
+
+## 创建分组表
+DROP TABLE IF EXISTS `group`;
+CREATE TABLE `group`(
+	`id` BIGINT NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(32) NOT NULL COMMENT '分组名称',
+	PRIMARY KEY (`ID`)
+) COMMENT '用于保存用户自定义的分组';
+
+## 为common_pages添加分组字段
+ALTER TABLE common_pages ADD COLUMN group_groupid BIGINT DEFAULT null COMMENT '保存分组表的id';
