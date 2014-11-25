@@ -27,8 +27,8 @@
 		    </div>
     </div>  
     <!-- 正中间panel -->  
-    <div region="center" >
-        <div class="easyui-tabs" id="centerTab" fit="true" border="false">  
+    <div data-options="region:'center'">
+        <div id="centerTab" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
             
         </div>  
     </div>

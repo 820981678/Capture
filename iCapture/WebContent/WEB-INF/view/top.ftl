@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
 </head>
 <body>
-	<font style="font-size:30px;">
+	<font style="font-size:30px; line-height:50px;">
 		Welcome to Capture
 	</font>
 </body>

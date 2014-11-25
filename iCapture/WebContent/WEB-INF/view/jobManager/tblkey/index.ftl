@@ -12,9 +12,9 @@
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
 </head>
-<body class="easyui-layout" style="font">
-    <!-- 正左边panel -->  
-    <div region="west" title="全部关键字" split="true" style="width:180px;padding1:1px;overflow:hidden;">
+<body class="easyui-layout">
+    <!-- 正左边panel -->
+    <div data-options="region:'west',split:true" title="全部关键字" style="width:180px;">  
         <div class="easyui-accordion" fit="true" border="false">
 	            <ul class="easyui-tree" id="iconlist" >
 	            	<#list data as tblkey>
@@ -26,8 +26,8 @@
         </div>
     </div>  
     <!-- 正中间panel -->  
-    <div region="center" >
-        <div class="easyui-tabs" id="centerTab" fit="true" border="false">  
+    <div data-options="region:'center'">
+        <div id="centerTab" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
             
         </div>  
     </div>  
