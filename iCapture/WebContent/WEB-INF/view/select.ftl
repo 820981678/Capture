@@ -35,48 +35,18 @@
 	<!-- 标签筛选 -->
 	<div id="p" class="easyui-panel" title="选取要筛选的标签,支持多选" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
         <ul>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />using</li>
-            <li><input type="checkbox" />complete</li>
-            <li><input type="checkbox" />save</li>
-            <li><input type="checkbox" />powerful</li>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />using</li>
-            <li><input type="checkbox" />complete</li>
-            <li><input type="checkbox" />save</li>
-            <li><input type="checkbox" />powerful</li>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />easyui</li>
-            <li><input type="checkbox" />using</li>
-            <li><input type="checkbox" />complete</li>
-            <li><input type="checkbox" />save</li>
-            <li><input type="checkbox" />powerful</li>
+        	<#list label as l>
+            <li><input type="checkbox" name="label" value="${l.id}" /><label style="vertical-align:middle;">${l.name}</label></li>
+            </#list>
         </ul>
     </div>
     <div style="width:100%; height:5px;"></div>
     <!-- 分组筛选 -->
     <div id="p" class="easyui-panel" title="选取要筛选的分组" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
         <ul>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />using</li>
-            <li><input type="radio" />complete</li>
-            <li><input type="radio" />save</li>
-            <li><input type="radio" />powerful</li>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />using</li>
-            <li><input type="radio" />complete</li>
-            <li><input type="radio" />save</li>
-            <li><input type="radio" />powerful</li>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />easyui</li>
-            <li><input type="radio" />using</li>
-            <li><input type="radio" />complete</li>
-            <li><input type="radio" />save</li>
-            <li><input type="radio" />powerful</li>
+        	<#list group as g>
+            <li><input type="radio" name="group" value="${g.id}" /><label style="vertical-align:middle;">${g.name}</label></li>
+            </#list>
         </ul>
     </div>
     

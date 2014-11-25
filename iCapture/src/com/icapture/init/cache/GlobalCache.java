@@ -60,6 +60,15 @@ public class GlobalCache implements InitializingBean {
         logger.info(LogsUtil.PREFIX3 + "globalCache is complete");
 	}
 	
+	/**
+	 * 获取缓存中的值
+	 * 
+	 * @param key 缓存key
+	 */
+	public static List<?> getCache(String key,Class<?> cl){
+		return (List<?>)global.get(key);
+	}
+	
 	public List<CacheService> getCacheList() {
 		return cacheList;
 	}

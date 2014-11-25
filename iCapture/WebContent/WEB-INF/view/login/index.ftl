@@ -10,7 +10,8 @@
 	<script type="text/javascript" src="${webRoot}plug/${easyui}/locale/easyui-lang-zh_CN.js"></script>
 </head>
 <body>
-	<div id="win" class="easyui-window" title="Login" style="width:300px;height:180px;">
+	
+	<div id="loginWin" class="easyui-dialog" style="width:300px;height:180px;" closable="false" data-options="modal:false">
 		<form id="login_form" style="padding:10px 20px 10px 40px;" action="${webRoot}login/doLogin" method="post">
 			<p>Name: <input type="text" name="name" value="admin"></p>
 			<p>Pass: <input type="password" name="password" value="admin"></p>
@@ -24,7 +25,11 @@
 	</div>
 </body>
 <script type="text/javascript">
+	
 	$(function(){
+	
+		$("#loginWin").dialog('open').dialog('setTitle','登陆');
+		
 		$("#login").click(function(){
 			$.ajax({
 				url: '${webRoot}login/doLogin',
@@ -42,6 +47,5 @@
 		});
 	});
 	
-	$('#win').window('open');
 </script>
 </html>

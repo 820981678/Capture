@@ -18,12 +18,11 @@ public class LabelCache extends CacheServiceBase {
 	@Override
 	public void init() throws DBException {
         
-        String sql = "SELECT * FROM " + Label.DB_NAME;
+        String sql = "SELECT * FROM " + Label.DB_NAME + " ORDER BY ID DESC";
         
 		List<Label> result = DBHandle.query(sql, new Object[0], Label.class);
 		
 		GlobalCache.global.put(GlobalCache._label, result);
-		
 	}
 
 }

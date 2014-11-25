@@ -18,12 +18,12 @@ public class GroupCache extends CacheServiceBase {
 	@Override
 	public void init() throws DBException {
         
-        String sql = "SELECT * FROM " + Group.DB_NAME;
+        String sql = "SELECT * FROM " + Group.DB_NAME + " ORDER BY ID DESC";
         
 		List<Group> result = DBHandle.query(sql, new Object[0], Group.class);
 		
 		GlobalCache.global.put(GlobalCache._group, result);
 		
 	}
-
+	
 }

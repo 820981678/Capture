@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.icapture.entity.diy.Group;
+import com.icapture.entity.diy.Label;
+import com.icapture.init.cache.GlobalCache;
+
 /**
  * 主页面控制器
  * 
@@ -40,12 +44,15 @@ public class MainController {
 	
 	/**
 	 * 进入到select页
+	 * 查询出所有的label group
 	 * 
 	 * @return
 	 */
 	@RequestMapping("/select")
 	public ModelAndView select(){
 		ModelAndView model = new ModelAndView();
+		model.addObject("label", GlobalCache.getCache(GlobalCache._label, Label.class));
+		model.addObject("group", GlobalCache.getCache(GlobalCache._group, Group.class));
 		model.setViewName("select");
 		return model;
 	}
