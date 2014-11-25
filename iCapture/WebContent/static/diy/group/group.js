@@ -10,6 +10,7 @@ $('#dg').datagrid({
     pagination: true, //设置分页
     rownumbers: true, //显示行号
     singleSelect: true,//设置为单选行
+    border: false, //设置没有边框
     
     toolbar:"#toolbar",
     

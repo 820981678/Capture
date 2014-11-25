@@ -18,7 +18,7 @@
 </head>
 <body class="easyui-layout" style="font">
 
-    <div region="west" style="width:430px;padding1:1px;overflow:hidden;border:none;">
+    <div region="west" title="分组管理" style="width:430px;padding1:1px;overflow:hidden;" border="false">
             <table id="dg"></table>
 		    <div id="toolbar">
 		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加分组</a>
@@ -27,7 +27,7 @@
 		    </div>
     </div>  
     <!-- 正中间panel -->  
-    <div data-options="region:'center'">
+    <div data-options="region:'center'" border="false" style="border-left: 1px solid #95B8E7;">
         <div id="centerTab" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
             
         </div>  

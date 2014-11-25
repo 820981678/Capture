@@ -13,6 +13,7 @@ $('#dg').datagrid({
     striped: true, //设置单行换色
     pageList: [10,20,30,40,50],
     pageSize: 10,
+    border: false, //设置没有边框
     
     
     columns:[[
