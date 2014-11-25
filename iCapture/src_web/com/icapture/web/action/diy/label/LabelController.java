@@ -15,6 +15,8 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
+import com.icapture.init.cache.GlobalCache;
+import com.icapture.init.cache.impl.LabelCache;
 import com.icapture.service.diy.LabelService;
 import com.icapture.web.action.BaseController;
 
@@ -111,6 +113,7 @@ public class LabelController extends BaseController {
 			if(labelService.add(label)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new LabelCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -135,6 +138,7 @@ public class LabelController extends BaseController {
 			if(labelService.update(label)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new LabelCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -159,6 +163,7 @@ public class LabelController extends BaseController {
 			if(labelService.delete(label)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new LabelCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");

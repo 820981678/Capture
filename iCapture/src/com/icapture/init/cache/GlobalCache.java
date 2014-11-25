@@ -27,7 +27,7 @@ public class GlobalCache implements InitializingBean {
 	/**
 	 * 缓存加载器集合
 	 */
-	private List<CacheService> cacheList;
+	private static List<CacheService> cacheList;
 	
 	/**
 	 * label标签缓存key
@@ -60,6 +60,18 @@ public class GlobalCache implements InitializingBean {
         logger.info(LogsUtil.PREFIX3 + "globalCache is complete");
 	}
 	
+	public static void init(CacheService s){
+		for (CacheService ca : cacheList) {
+			if(ca.getClass() == s.getClass() ){
+				try {
+					ca.init();
+				} catch (DBException e) {
+					
+				}
+			}
+		}
+	}
+	
 	/**
 	 * 获取缓存中的值
 	 * 
@@ -74,7 +86,7 @@ public class GlobalCache implements InitializingBean {
 	}
 
 	public void setCacheList(List<CacheService> cacheList) {
-		this.cacheList = cacheList;
+		GlobalCache.cacheList = cacheList;
 	}
 	
 }

@@ -15,6 +15,8 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Group;
+import com.icapture.init.cache.GlobalCache;
+import com.icapture.init.cache.impl.GroupCache;
 import com.icapture.service.diy.GroupService;
 import com.icapture.web.action.BaseController;
 
@@ -111,6 +113,7 @@ public class GroupController extends BaseController {
 			if(groupService.add(group)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new GroupCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -135,6 +138,7 @@ public class GroupController extends BaseController {
 			if(groupService.update(group)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new GroupCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -158,6 +162,7 @@ public class GroupController extends BaseController {
 			if(groupService.delete(group)){
 				map.put("code", 0);
 			}
+			GlobalCache.init(new GroupCache());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
