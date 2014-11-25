@@ -36,11 +36,7 @@
     <div data-options="region:'center'">
     	
         <div id="centerTab" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
-            <div title="欢迎页" style="padding:5px;">   
-                <div style="margin-top:0px;">  
-                    <h3>你好，欢迎来到Capture</h3>
-                </div>  
-            </div>
+            
         </div>
                 
     </div>
@@ -49,4 +45,9 @@
     <div data-options="region:'south',split:true" style="height:50px;"></div>
     -->       
 </body>
+	<script type="text/javascript">
+		$(function(){
+			addTab('tabId_selete','欢迎页','${webRoot}main/select');
+		});
+	</script>
 </html>

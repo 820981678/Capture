@@ -38,4 +38,16 @@ public class MainController {
 		return model;
 	}
 	
+	/**
+	 * 进入到select页
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/select")
+	public ModelAndView select(){
+		ModelAndView model = new ModelAndView();
+		model.setViewName("select");
+		return model;
+	}
+	
 }
