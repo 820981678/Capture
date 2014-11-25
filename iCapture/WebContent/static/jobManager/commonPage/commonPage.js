@@ -1,13 +1,19 @@
 //加载数据表格
 $('#dg').datagrid({
     //url: webRoot + 'common/query?groupid=' + groupid,
+	//为了适应多个地方对该页面的调用,这里加载datagrid的url采用调用者传递的url进行查询,调用者去实现对应的请求查询
 	url : webRoot + url,
     fit: true, //设置自适应高度
+    fitColumns: true, //设置自适应宽度
     sortName: 'id',
     sortOrder: 'desc',
     pagination: true, //设置分页
     rownumbers: true, //显示行号
     singleSelect: true,//设置为单选行
+    striped: true, //设置单行换色
+    pageList: [10,20,30,40,50],
+    pageSize: 10,
+    
     
     columns:[[
         {field:'item0',title:'标题'},

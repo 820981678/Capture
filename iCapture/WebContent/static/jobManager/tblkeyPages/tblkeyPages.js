@@ -2,8 +2,7 @@
 $('#tblkeyPage').datagrid({
     url: webRoot + 'tblkeypage/query?id=' + id,
     
-    //title: '所有文章',
-    //fitColumns: true, //设置自适应宽度
+    fitColumns: true, //设置自适应宽度
     fit: true, //设置填充高度,自适应高度
     sortName: 'id',
     sortOrder: 'desc',
