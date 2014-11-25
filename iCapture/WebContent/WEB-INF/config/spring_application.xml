@@ -11,4 +11,13 @@
 		<property name="propertiesSource" ref="propertiesConfigurer" />
 	</bean>
 	
+	<bean id="globalCache" class="com.icapture.init.cache.GlobalCache" lazy-init="false">
+		<property name="cacheList">
+			<list>
+				<bean class="com.icapture.init.cache.impl.GroupCache"></bean>
+				<bean class="com.icapture.init.cache.impl.LabelCache"></bean>
+			</list>
+		</property>
+	</bean>
+	
 </beans>
