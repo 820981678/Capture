@@ -59,4 +59,14 @@ public interface CommonPageService {
 	 */
 	Page<CommonPage> queryPageByGroup(Page<CommonPage> page,Integer group_groupId) throws DBException;
 	
+	/**
+	 * 分页查询 根据标签,分组查询
+	 * 
+	 * @param page
+	 * @param labelIds	标签的id数组
+	 * @param groupId	分组的id
+	 * @return
+	 */
+	Page<CommonPage> queryPageByAll(Page<CommonPage> page,List<Integer> labelIds,Integer groupId) throws DBException;
+	
 }

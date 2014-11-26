@@ -44,6 +44,7 @@
     <!-- 分组筛选 -->
     <div id="p" class="easyui-panel" title="选取要筛选的分组" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
         <ul>
+        	<li><input type="radio" name="group" value="" checked="true" /><label style="vertical-align:middle;">不分组</label></li>
         	<#list group as g>
             <li><input type="radio" name="group" value="${g.id}" /><label style="vertical-align:middle;">${g.name}</label></li>
             </#list>

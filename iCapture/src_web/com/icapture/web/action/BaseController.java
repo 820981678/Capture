@@ -45,6 +45,7 @@ public class BaseController {
 	protected Map<String, Object> pageToEasyUi(int code){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);
+		map.put("message", "服务器异常!");
 		return map;
 	}
 	

@@ -18,6 +18,7 @@ import com.connection.page.Page;
 import com.icapture.entity.classify.CommonPage;
 import com.icapture.service.jobManager.classify.CommonPageService;
 import com.icapture.web.action.BaseController;
+import com.util.StringUtil;
 
 /**
  * 分类下属文章控制器
@@ -45,7 +46,11 @@ public class CommonPageController extends BaseController {
 	@RequestMapping("/index")
 	public ModelAndView index(String url){
 		ModelAndView model = new ModelAndView();
-		
+		//这里对欢迎页面的url做处理
+		if(url.indexOf("-") != -1){
+			//替换掉url中的"-"为"&"
+			url = url.replaceAll("-", "&");
+		}
 		model.addObject("url", url);
 		model.setViewName("jobManager/commonPage/index");
 		return model;
@@ -180,6 +185,49 @@ public class CommonPageController extends BaseController {
 		Map<String, Object> result = null;
 		try {
 			Page<CommonPage> data = commonPageService.queryPageByGroup(p, group_groupId);
+			result = pageToEasyUi(data,0);
+		} catch (DBException e) {
+			result = pageToEasyUi(1);
+		} finally {
+			DBHandle.release();
+		}
+		return result;
+	}
+	
+	/**
+	 * 欢迎页的全局查询
+	 * 
+	 * @param label	要查询的标签id
+	 * @param group	要查询的分组id
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping("/queryPageByAll")
+	@ResponseBody
+	public Map<String, Object> queryPageByAll(String label,String group,Integer page,Integer rows,String sort,String order){
+		if(page == null || rows == null){
+			page = 1;
+			rows = 20;
+		}
+		//将label,group 处理为需要的参数
+		List<Integer> labelIds = new ArrayList<Integer>();
+		String[] ls = label.split(",");
+		for (String s : ls) {
+			if(!StringUtil.isBlank(s)){
+				labelIds.add(Integer.valueOf(s));
+			}
+		}
+		Integer groupId = null;
+		if(!StringUtil.isBlank(group)){
+			groupId = Integer.valueOf(group);
+		}
+		Page<CommonPage> p = new Page<CommonPage>(page, rows, sort, order);
+		Map<String, Object> result = null;
+		try {
+			Page<CommonPage> data = commonPageService.queryPageByAll(p, labelIds, groupId);
 			result = pageToEasyUi(data,0);
 		} catch (DBException e) {
 			result = pageToEasyUi(1);

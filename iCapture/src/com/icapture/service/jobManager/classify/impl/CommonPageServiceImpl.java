@@ -1,5 +1,6 @@
 package com.icapture.service.jobManager.classify.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -117,6 +118,41 @@ public class CommonPageServiceImpl implements CommonPageService {
 		String sql = "select p.* from ( select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id and t1.group_groupid=? order by id asc ) as p order by p.id desc";
 		Object[] params = { group_groupId};
 		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
+	}
+	
+	/**
+	 * 分页查询 根据标签,分组查询
+	 * 
+	 * @param page
+	 * @param labelIds	标签的id数组
+	 * @param groupId	分组的id
+	 * @return
+	 */
+	public Page<CommonPage> queryPageByAll(Page<CommonPage> page,List<Integer> labelIds,Integer groupId) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		List<Object> params = new ArrayList<Object>();
+		sql.append("SELECT T.*,T1.URL FROM (");
+			sql.append(" SELECT * FROM ").append(CommonPage.DB_NAME).append(" WHERE 1=1");
+			if(labelIds != null && labelIds.size() != 0){
+				sql.append(" AND ID IN (");
+					sql.append(" SELECT COMMON_ID FROM ").append(Label.TO);
+					sql.append(" WHERE LABEL_ID IN (");
+					for (int i : labelIds) {
+						sql.append("?,");
+						params.add(i);
+					}
+					sql.deleteCharAt(sql.length() - 1);
+					sql.append(")");
+					sql.append(" GROUP BY COMMON_ID HAVING COUNT(*) >= ").append(labelIds.size());
+				sql.append(" )");
+			}
+			if(groupId != null){
+				sql.append(" AND GROUP_GROUPID=?");
+				params.add(groupId);
+			}
+		sql.append(" ) AS T, TOPIC_LISTS AS T1 WHERE T.TOPICID=T1.ID");
+		
+		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
 	}
 	
 }
