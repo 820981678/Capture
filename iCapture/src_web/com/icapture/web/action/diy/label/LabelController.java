@@ -16,7 +16,6 @@ import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
 import com.icapture.init.cache.GlobalCache;
-import com.icapture.init.cache.impl.LabelCache;
 import com.icapture.service.diy.LabelService;
 import com.icapture.web.action.BaseController;
 
@@ -84,17 +83,18 @@ public class LabelController extends BaseController {
 	public Map<String, Object> queryAll(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		try {
-			List<Label> result = labelService.queryAll();
+//		try {
+//			List<Label> result = labelService.queryAll();
+			List<Label> result = GlobalCache.getCache(GlobalCache.getLabel(), Label.class);
 			map.put("code", 0);
 			map.put("total", result.size());
 			map.put("rows", result);
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
+//		} catch (DBException e) {
+//			map.put("code", 1);
+//			map.put("message", "服务器异常!");
+//		} finally {
+//			DBHandle.release();
+//		}
 		return map;
 	}
 	
@@ -113,7 +113,7 @@ public class LabelController extends BaseController {
 			if(labelService.add(label)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new LabelCache());
+			GlobalCache.init(GlobalCache.getLabel());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -138,7 +138,7 @@ public class LabelController extends BaseController {
 			if(labelService.update(label)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new LabelCache());
+			GlobalCache.init(GlobalCache.getLabel());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -163,7 +163,7 @@ public class LabelController extends BaseController {
 			if(labelService.delete(label)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new LabelCache());
+			GlobalCache.init(GlobalCache.getLabel());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");

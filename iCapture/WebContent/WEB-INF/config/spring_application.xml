@@ -12,12 +12,18 @@
 	</bean>
 	
 	<bean id="globalCache" class="com.icapture.init.cache.GlobalCache" lazy-init="false">
-		<property name="cacheList">
-			<list>
-				<bean class="com.icapture.init.cache.impl.GroupCache"></bean>
-				<bean class="com.icapture.init.cache.impl.LabelCache"></bean>
-			</list>
+		<property name="cacheMap">
+			<map>
+				<entry key="label">
+					<bean class="com.icapture.init.cache.impl.LabelCache"></bean>
+				</entry>
+				<entry key="group">
+					<bean class="com.icapture.init.cache.impl.GroupCache"></bean>
+				</entry>
+			</map>
 		</property>
+		<property name="label" value="label"></property>
+		<property name="group" value="group"></property>
 	</bean>
 	
 </beans>

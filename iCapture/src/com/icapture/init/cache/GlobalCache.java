@@ -1,5 +1,7 @@
 package com.icapture.init.cache;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,48 +29,44 @@ public class GlobalCache implements InitializingBean {
 	/**
 	 * 缓存加载器集合
 	 */
-	private static List<CacheService> cacheList;
+	private static Map<String,CacheService> cacheMap;
 	
 	/**
 	 * label标签缓存key
 	 */
-	public static final String _label = "label";
+	private static String label = "label";
 	
 	/**
 	 * group分组缓存key
 	 */
-	public static final String _group = "group";
+	private static String group = "group";
 	
 	/**
 	 * 日志记录器
 	 */
-	private Logger logger = GlobalLogger.init_global;
+	private static Logger logger = GlobalLogger.init_global;
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		logger.info(LogsUtil.LINE);
         logger.info(LogsUtil.PREFIX2 + "globalCache Load ...");
-        for (CacheService cache : cacheList) {
-        	logger.info(LogsUtil.PREFIX3 + cache.getCl() + " loading");
+        for (String cache : cacheMap.keySet()) {
+        	logger.info(LogsUtil.PREFIX3 + cache + " loading");
         	try {
-				cache.init();
-				logger.info(LogsUtil.PREFIX3 + cache.getCl() + " Loading is complete");
+        		cacheMap.get(cache).init();
+				logger.info(LogsUtil.PREFIX3 + cache + " Loading is complete");
 			} catch (DBException e) {
-				logger.error(LogsUtil.PREFIX3 + cache.getCl() + "load error",e);
+				logger.error(LogsUtil.PREFIX3 + cache + "load error",e);
 			}
 		}
         logger.info(LogsUtil.PREFIX3 + "globalCache is complete");
 	}
 	
-	public static void init(CacheService s){
-		for (CacheService ca : cacheList) {
-			if(ca.getClass() == s.getClass() ){
-				try {
-					ca.init();
-				} catch (DBException e) {
-					
-				}
-			}
+	public static void init(String key){
+		try {
+			cacheMap.get(key).init();
+		} catch (DBException e) {
+			logger.error(LogsUtil.PREFIX3 + key + "cache reload error",e);
 		}
 	}
 	
@@ -77,16 +75,35 @@ public class GlobalCache implements InitializingBean {
 	 * 
 	 * @param key 缓存key
 	 */
-	public static List<?> getCache(String key,Class<?> cl){
-		return (List<?>)global.get(key);
-	}
-	
-	public List<CacheService> getCacheList() {
-		return cacheList;
+	@SuppressWarnings("unchecked")
+	public static<T> List<T> getCache(String key,Class<T> cl){
+		List<T> array = new ArrayList<T>();
+		array.addAll((Collection<? extends T>) global.get(key));
+		return array;
 	}
 
-	public void setCacheList(List<CacheService> cacheList) {
-		GlobalCache.cacheList = cacheList;
+	public static Map<String, CacheService> getCacheMap() {
+		return cacheMap;
+	}
+
+	public static void setCacheMap(Map<String, CacheService> cacheMap) {
+		GlobalCache.cacheMap = cacheMap;
+	}
+
+	public static String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		GlobalCache.label = label;
+	}
+
+	public static String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		GlobalCache.group = group;
 	}
 	
 }

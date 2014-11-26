@@ -16,7 +16,6 @@ import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Group;
 import com.icapture.init.cache.GlobalCache;
-import com.icapture.init.cache.impl.GroupCache;
 import com.icapture.service.diy.GroupService;
 import com.icapture.web.action.BaseController;
 
@@ -84,17 +83,18 @@ public class GroupController extends BaseController {
 	public Map<String, Object> queryAll(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		try {
-			List<Group> result = groupService.queryAll();
+//		try {
+//			List<Group> result = groupService.queryAll();
+			List<Group> result = GlobalCache.getCache(GlobalCache.getGroup(), Group.class);
 			map.put("code", 0);
 			map.put("total", result.size());
 			map.put("rows", result);
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
+//		} catch (DBException e) {
+//			map.put("code", 1);
+//			map.put("message", "服务器异常!");
+//		} finally {
+//			DBHandle.release();
+//		}
 		return map;
 	}
 	
@@ -113,7 +113,7 @@ public class GroupController extends BaseController {
 			if(groupService.add(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new GroupCache());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -138,7 +138,7 @@ public class GroupController extends BaseController {
 			if(groupService.update(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new GroupCache());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -162,7 +162,7 @@ public class GroupController extends BaseController {
 			if(groupService.delete(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(new GroupCache());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");

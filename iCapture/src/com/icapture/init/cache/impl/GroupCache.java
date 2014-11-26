@@ -22,7 +22,7 @@ public class GroupCache extends CacheServiceBase {
         
 		List<Group> result = DBHandle.query(sql, new Object[0], Group.class);
 		
-		GlobalCache.global.put(GlobalCache._group, result);
+		GlobalCache.global.put(GlobalCache.getGroup(), result);
 		
 	}
 	

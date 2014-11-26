@@ -22,7 +22,7 @@ public class LabelCache extends CacheServiceBase {
         
 		List<Label> result = DBHandle.query(sql, new Object[0], Label.class);
 		
-		GlobalCache.global.put(GlobalCache._label, result);
+		GlobalCache.global.put(GlobalCache.getLabel(), result);
 	}
 
 }

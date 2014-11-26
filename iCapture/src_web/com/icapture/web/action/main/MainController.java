@@ -51,8 +51,8 @@ public class MainController {
 	@RequestMapping("/select")
 	public ModelAndView select(){
 		ModelAndView model = new ModelAndView();
-		model.addObject("label", GlobalCache.getCache(GlobalCache._label, Label.class));
-		model.addObject("group", GlobalCache.getCache(GlobalCache._group, Group.class));
+		model.addObject("label", GlobalCache.getCache(GlobalCache.getLabel(), Label.class));
+		model.addObject("group", GlobalCache.getCache(GlobalCache.getGroup(), Group.class));
 		model.setViewName("select");
 		return model;
 	}

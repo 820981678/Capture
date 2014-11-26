@@ -150,7 +150,7 @@ public class CommonPageServiceImpl implements CommonPageService {
 				sql.append(" AND GROUP_GROUPID=?");
 				params.add(groupId);
 			}
-		sql.append(" ) AS T, TOPIC_LISTS AS T1 WHERE T.TOPICID=T1.ID");
+		sql.append(" ORDER BY ID DESC ) AS T, TOPIC_LISTS AS T1 WHERE T.TOPICID=T1.ID");
 		
 		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
 	}
