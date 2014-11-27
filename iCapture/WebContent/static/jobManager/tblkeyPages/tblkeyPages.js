@@ -8,11 +8,12 @@ $('#tblkeyPage').datagrid({
     sortOrder: 'desc',
     pagination: true, //设置分页
     rownumbers: true, //显示行号
-    singleSelect: true,//设置为单选行
+    //singleSelect: true,//设置为单选行
     border: false, //设置没有边框
     
     columns:[[
-        {field:'title',title:'标题'},
+        {field:'ck',checkbox:true},
+        {field:'common_page_title',title:'标题'},
         {field:'count1',title:'匹配次数'},
         {field:'pdate',title:'发布时间'},
         {

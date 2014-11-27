@@ -60,10 +60,24 @@ public class TblKeyPages {
 	
 	/**
 	 * 临时属性,主要用于页面数据展示
+	 * 记录该条信息对应commonPage表的title
+	 */
+	private String common_page_title;
+	
+	/**
+	 * 临时属性,主要用于页面数据展示
 	 * 记录该条信息对应commonPage表的分组id
 	 *
 	 */
 	private Integer group_groupid;
+
+	public String getCommon_page_title() {
+		return common_page_title;
+	}
+
+	public void setCommon_page_title(String common_page_title) {
+		this.common_page_title = common_page_title;
+	}
 
 	public Integer getGroup_groupid() {
 		return group_groupid;

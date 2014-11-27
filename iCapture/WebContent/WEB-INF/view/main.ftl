@@ -20,7 +20,7 @@
         <div class="easyui-accordion" data-options="fit:true,border:false">
             <div title="任务管理" selected="true">  
                 <ul class="easyui-tree" id="iconlist" >
-                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_loginInfo','分类','${webRoot}classify/index');">分类</a></li>  
+                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_loginInfo','网站','${webRoot}classify/index');">网站</a></li>  
                     <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_privilege','关键字','${webRoot}tblkey/index');">关键字</a></li>
                 </ul>
             </div>

@@ -14,7 +14,7 @@
 </head>
 <body class="easyui-layout">
     <!-- 正左边panel --> 
-    <div data-options="region:'west',split:true" title="全部分类" style="width:180px;" border="false"> 
+    <div data-options="region:'west',split:true" title="全部网站" style="width:180px;" border="false"> 
         <div class="easyui-accordion" fit="true" border="false">
 	            <ul class="easyui-tree" id="iconlist" >
 	            	<#list data as classify>
