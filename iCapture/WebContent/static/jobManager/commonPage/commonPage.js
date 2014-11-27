@@ -9,7 +9,7 @@ $('#dg').datagrid({
     sortOrder: 'desc',
     pagination: true, //设置分页
     rownumbers: true, //显示行号
-    //singleSelect: true,//设置为单选行
+    singleSelect: true,//设置为单选行
     striped: true, //设置单行换色
     pageList: [10,20,30,40,50],
     pageSize: 10,
