@@ -1,11 +1,14 @@
 package com.icapture.web.action.jobManager.classify;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
@@ -30,26 +33,39 @@ public class ClassifyController {
 	private ClassifyService classifyService;
 
 	/**
-	 * 跳转到任务分类页面，查询出全部分类
+	 * 跳转到任务分类页面
 	 * 
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public ModelAndView query(){
+	public ModelAndView index(){
 		ModelAndView model = new ModelAndView();
-		
-		try {
-			List<Classify> data = classifyService.queryAll();
-			model.addObject("data", data);
-		} catch (DBException e) {
-			// TODO 完成异常处理
-			e.printStackTrace();
-		} finally {
-			DBHandle.release();
-		}
 		
 		model.setViewName("/jobManager/classify/index");
 		return model;
+	}
+	
+	/**
+	 * 加载全部classify
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/query")
+	@ResponseBody
+	public Map<String, Object> query(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<Classify> data = classifyService.queryAll();
+			map.put("code", 0);
+			map.put("rows", data);
+			map.put("total", data.size());
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常");
+		} finally {
+			DBHandle.release();
+		}
+		return map;
 	}
 	
 }

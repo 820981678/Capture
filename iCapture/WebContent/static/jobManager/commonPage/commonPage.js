@@ -30,6 +30,10 @@ $('#dg').datagrid({
         }
     ]],
     
+    loadFilter: function(data){
+    	return loadfilter(data);
+    },
+    
     //绑定右键菜单
     onRowContextMenu: function(e,index,row){
     	//阻止浏览器的右键菜单
@@ -68,11 +72,7 @@ function addLabel(){
 	    ]],
 	    
 	    loadFilter: function(data){
-	    	if(data.code != 0){
-	    		$.messager.alert("提示信息","服务器忙，请稍后再试!");
-	    	} else {
-	    		return data;
-	    	}
+	    	return loadfilter(data);
 	    },
 	    
 	    //初始化 选中行
@@ -161,13 +161,9 @@ function addGroup(){
   	        {field:'name',title:'分组名称',width:320},
   	    ]],
   	    
-  	    loadFilter: function(data){
-	    	if(data.code != 0){
-	    		$.messager.alert("提示信息","服务器忙，请稍后再试!");
-	    	} else {
-	    		return data;
-	    	}
-	    },
+		loadFilter: function(data){
+			return loadfilter(data);
+		},
 	    
 	    //初始化该文章所属的分组 ,data中group_groupid为所属的分组
 	    onLoadSuccess: function(data){

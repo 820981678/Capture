@@ -11,24 +11,28 @@
 	
 	<link rel="stylesheet" type="text/css" href="${webRoot}static/main.css"/>
 	<script type="text/javascript" src="${webRoot}static/main.js"></script>
+	
+	<script type="text/javascript"> var webRoot = ${webRoot}; </script>
 </head>
 <body class="easyui-layout">
     <!-- 正左边panel --> 
     <div data-options="region:'west',split:true" title="全部网站" style="width:180px;" border="false"> 
+        		<!--
         <div class="easyui-accordion" fit="true" border="false">
 	            <ul class="easyui-tree" id="iconlist" >
 	            	<#list data as classify>
-	            		<!--
 	                	<li style="height:30px; line-height:30px;">
-	                		<span><a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?groupid=${classify.id}');">${classify.name}</a></span>
-	                	</li>
-	                	-->
-	                	<li style="height:30px; line-height:30px;">
-	                		<span><a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?url=common/query?groupid=${classify.id}');">${classify.name}</a></span>
+	                		<span>
+	                			<a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?url=common/query?groupid=${classify.id}');">${classify.name}</a>
+	                			<span style="color:red; ">${classify.todayCount}</span>
+	                		</span>
 	                	</li>
 	            	</#list>
 	            </ul>
+			
         </div>
+	            -->
+        <table id="dg"></table>
     </div>  
     <!-- 正中间panel -->  
     <div data-options="region:'center'"  border="false">
@@ -37,4 +41,5 @@
         </div>  
     </div>  
 </body>
+	<script type="text/javascript" src="${webRoot}static/jobManager/classify/classify.js"></script>
 </html>

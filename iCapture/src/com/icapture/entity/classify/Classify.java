@@ -70,6 +70,20 @@ public class Classify {
 	private String update_interval;
 	
 	private String date_pos;
+	
+	/**
+	 * 到common_pages查询当天的新闻数量
+	 * 只用于页面显示
+	 */
+	private Integer todayCount;
+
+	public Integer getTodayCount() {
+		return todayCount;
+	}
+
+	public void setTodayCount(Integer todayCount) {
+		this.todayCount = todayCount;
+	}
 
 	public Integer getId() {
 		return id;

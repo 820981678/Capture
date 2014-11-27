@@ -30,6 +30,9 @@ public class CommonPage {
 	
 	private String item3;
 	
+	/**
+	 * 分组的id
+	 */
 	private Integer group_groupid;
 	
 	/**
@@ -37,7 +40,7 @@ public class CommonPage {
 	 * 只用于页面显示
 	 */
 	private String url;
-
+	
 	public Integer getGroup_groupid() {
 		return group_groupid;
 	}

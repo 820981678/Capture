@@ -52,3 +52,14 @@ function refreshTab(cfg){
 	    _refresh_ifram.contentWindow.location.href=refresh_url;
     }
 }
+
+/**
+ * datagrid数据过滤器
+ */
+function loadfilter(data){
+	if(data.code != 0){
+		$.messager.alert("提示信息",data.message);
+	} else {
+		return data;
+	}
+}
