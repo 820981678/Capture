@@ -1,10 +1,14 @@
 package com.icapture.web.action.jobManager.classify;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +70,25 @@ public class ClassifyController {
 			DBHandle.release();
 		}
 		return map;
+	}
+	
+	/**
+	 * 查询全部网站未查看的新闻条数
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/querySee")
+	public void querySee(HttpServletResponse response){
+		String s = "{\"see\":[{\"count\":7,\"id\":1},{\"count\":0,\"id\":3}]}";
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.print(s);
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 }
