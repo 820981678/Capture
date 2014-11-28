@@ -24,3 +24,6 @@ CREATE TABLE `group`(
 
 ## 为common_pages添加分组字段
 ALTER TABLE common_pages ADD COLUMN group_groupid BIGINT DEFAULT null COMMENT '保存分组表的id';
+
+## 为common_pages添加是否查看字段
+ALTER TABLE common_pages ADD COLUMN ISSEE SMALLINT DEFAULT 0 COMMENT '记录该条新闻是否已经查看,0未查看,1已查看';
