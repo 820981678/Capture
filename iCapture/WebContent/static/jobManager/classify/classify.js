@@ -32,7 +32,6 @@ $('#dg').datagrid({
     			for(var i = 0; i < see.length; i++){
     				$.each($("#dg").datagrid('getRows'),function(index,item){
         				if(see[i].id == item.id){
-        					alert(see[i].count + "," + item.id);
         					$("#dg").datagrid('updateRow',{
         						index: index,
         						row:{
