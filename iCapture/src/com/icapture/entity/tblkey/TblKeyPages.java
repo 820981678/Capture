@@ -70,6 +70,20 @@ public class TblKeyPages {
 	 *
 	 */
 	private Integer group_groupid;
+	
+	/**
+	 * 临时属性,主要用于页面数据展示
+	 * 记录该条信息对应commonPage表是否查看 *
+	 */
+	private Integer isSee;
+
+	public Integer getIsSee() {
+		return isSee;
+	}
+
+	public void setIsSee(Integer isSee) {
+		this.isSee = isSee;
+	}
 
 	public String getCommon_page_title() {
 		return common_page_title;

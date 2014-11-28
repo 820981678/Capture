@@ -13,6 +13,16 @@ $('#tblkeyPage').datagrid({
     
     columns:[[
         {field:'ck',checkbox:true},
+        {
+        	field:'isSee',title:'状态',align:'center',
+        	formatter: function(val,rec){
+        		if(val == 0){
+        			return '<span style="color:red;">新</span>';
+        		} else {
+        			return '';
+        		}
+        	}
+        },
         {field:'common_page_title',title:'标题'},
         {field:'count1',title:'匹配次数'},
         {field:'pdate',title:'发布时间'},
@@ -20,7 +30,11 @@ $('#tblkeyPage').datagrid({
         	field:'a',
         	title:'操作',
 			formatter: function(val,rec){
-				return '<a href="' + rec.url + '" target="_blank" >查看原文</a>';
+				if(rec.isSee == 0){
+					return '<a href="javascript:see(\'' + rec.common_pages_id + '\',\'' + rec.url + '\');" >查看原文</a>';
+				} else {
+					return '<a href="' + rec.url + '" target="_blank" >查看原文</a>';
+				}
 			}		        	
         }
     ]],
@@ -197,6 +211,38 @@ function savePlayGroup(){
 				 });
 			} else {
 				$.messager.alert('error',code.message);
+			}
+		}
+	});
+}
+
+/**
+ * 查看新闻
+ * 
+ * @param id
+ */
+function see(id,url){
+	//在新窗口查看链接
+	window.open(url);
+	//后台请求改变为已经查看
+	var row = $("#tblkeyPage").datagrid('getSelected');
+	var selectRowIndex = $("#tblkeyPage").datagrid('getRowIndex',row);
+	$.ajax({
+		url: webRoot + 'common/see',
+		type: 'post',
+		data: {'id':id},
+		dataType: 'json',
+		success: function(data){
+			if(data.code == 0){
+				//修改该行的状态值
+				$("#tblkeyPage").datagrid('updateRow',{
+					index: selectRowIndex,
+					row:{
+						isSee: '1'
+					}
+				});
+			} else {
+				$.messager.alert('error',data.message);
 			}
 		}
 	});

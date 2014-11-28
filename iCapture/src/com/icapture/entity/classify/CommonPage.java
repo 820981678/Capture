@@ -36,11 +36,24 @@ public class CommonPage {
 	private Integer group_groupid;
 	
 	/**
+	 * 记录该条新闻是否查看 0未查看 1以查看
+	 */
+	private Integer isSee;
+	
+	/**
 	 * 到topic_lists查询得到的url
 	 * 只用于页面显示
 	 */
 	private String url;
 	
+	public Integer getIsSee() {
+		return isSee;
+	}
+
+	public void setIsSee(Integer isSee) {
+		this.isSee = isSee;
+	}
+
 	public Integer getGroup_groupid() {
 		return group_groupid;
 	}

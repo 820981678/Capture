@@ -237,4 +237,27 @@ public class CommonPageController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 已查看
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/see")
+	@ResponseBody
+	public Map<String, Object> see(Integer id){
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 
+		 try {
+			if(commonPageService.see(id)){
+				map.put("code", 0);
+			}
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常");
+		}
+		 
+		return map;
+	}
+	
 }

@@ -18,14 +18,27 @@ $('#dg').datagrid({
     
     columns:[[
         {field:'ck',checkbox:true},
+        {field:'ISSEE',title:'状态',align:'center',
+        	formatter: function(val,rec){
+        		if(val == 0){
+        			return '<span style="color:red;">新</span>';
+        		} else {
+        			return '';
+        		}
+        	}
+        },
         {field:'item0',title:'标题'},
         {field:'item1',title:'原文链接'},
         {field:'item2',title:'时间'},
         {
         	field:'a',
         	title:'操作',
-			formatter: function(val,rec){
-				return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
+			formatter: function(val,rec){// target="_blank"
+				if(rec.ISSEE == 0){
+					return '<a href="javascript:see(\'' + rec.id + '\',\'' + rec.item1 + '\');" >查看原文</a>';
+				} else {
+					return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
+				}
 			}		        	
         }
     ]],
@@ -201,10 +214,40 @@ function savePlayGroup(){
                    msg: '操作成功!',
 				 });
 			} else {
-				$.messager.alert('error',code.message);
+				$.messager.alert('error',data.message);
 			}
 		}
 	});
 }
 
-
+/**
+ * 查看新闻
+ * 
+ * @param id
+ */
+function see(id,url){
+	//在新窗口查看链接
+	window.open(url);
+	//后台请求改变为已经查看
+	var row = $("#dg").datagrid('getSelected');
+	var selectRowIndex = $("#dg").datagrid('getRowIndex',row);
+	$.ajax({
+		url: webRoot + 'common/see',
+		type: 'post',
+		data: {'id':id},
+		dataType: 'json',
+		success: function(data){
+			if(data.code == 0){
+				//修改该行的状态值
+				$("#dg").datagrid('updateRow',{
+					index: selectRowIndex,
+					row:{
+						ISSEE: '1'
+					}
+				});
+			} else {
+				$.messager.alert('error',data.message);
+			}
+		}
+	});
+}

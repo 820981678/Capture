@@ -23,15 +23,16 @@ import com.icapture.service.jobManager.classify.CommonPageService;
 public class CommonPageServiceImpl implements CommonPageService {
 
 	/**
-	 * 根据分页信息查询文章
+	 * 根据groupid分页查询新闻
 	 * 
+	 * @param grounpid 网站id
 	 * @return
 	 * @throws DBException
 	 */
 	@Override
 	public Page<CommonPage> queryByPage(Page<CommonPage> page,Integer grounpid)
 			throws DBException {
-		String sql = "select p.* from (select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.groupid=? and t1.topicid=t2.id order by id asc) as p order by p.id desc";
+		String sql = "SELECT P.* FROM (SELECT T1.*,T2.URL AS url FROM COMMON_PAGES AS T1,TOPIC_LISTS AS T2 WHERE T1.GROUPID=? AND T1.TOPICID=T2.ID ORDER BY ID ASC) AS P ORDER BY P.isSee ASC, P.ID DESC";
 		Object[] params = {
 			grounpid	
 		};
@@ -153,6 +154,24 @@ public class CommonPageServiceImpl implements CommonPageService {
 		sql.append(" ORDER BY ID DESC ) AS T, TOPIC_LISTS AS T1 WHERE T.TOPICID=T1.ID");
 		
 		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
+	}
+	
+	/**
+	 * 将未查看的新闻 改为已查看
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean see(Integer id) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE ").append(CommonPage.DB_NAME);
+		sql.append(" SET ISSEE=?").append(" WHERE ID=?");
+		
+		Object[] params = {
+			1,id	
+		};
+		
+		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
 	
 }

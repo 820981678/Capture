@@ -69,4 +69,12 @@ public interface CommonPageService {
 	 */
 	Page<CommonPage> queryPageByAll(Page<CommonPage> page,List<Integer> labelIds,Integer groupId) throws DBException;
 	
+	/**
+	 * 将未查看的新闻 改为已查看
+	 * 
+	 * @param id
+	 * @return
+	 */
+	boolean see(Integer id) throws DBException;
+	
 }

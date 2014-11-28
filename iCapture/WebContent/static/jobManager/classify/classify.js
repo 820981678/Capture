@@ -9,7 +9,7 @@ $('#dg').datagrid({
     
     columns:[[
         {field:'name',title:'名称'},
-        {field:'todayCount',title:'今日更新',align:'center'}
+        {field:'todayCount',title:'今日',align:'center'}
     ]],
     
     loadFilter: function(data){
