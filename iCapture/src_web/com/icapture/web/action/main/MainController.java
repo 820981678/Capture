@@ -1,14 +1,17 @@
 package com.icapture.web.action.main;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.icapture.entity.diy.Group;
 import com.icapture.entity.diy.Label;
-import com.icapture.entity.menu.JurisdictionAbstract;
+import com.icapture.entity.user.User;
 import com.icapture.init.cache.GlobalCache;
 import com.icapture.init.configure.MenuConfig;
+import com.icapture.util.PublicKey;
 
 /**
  * 主页面控制器
@@ -26,15 +29,10 @@ public class MainController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-	public ModelAndView main(){
+	public ModelAndView main(HttpSession session){
 		ModelAndView model = new ModelAndView();
-		model.addObject("menus", MenuConfig.getMenu(new JurisdictionAbstract() {
-			@Override
-			public Integer getJur() {
-				return 0;
-			}
-		}));
-		
+		User user = (User) session.getAttribute(PublicKey.SESSION_USER_KEY);
+		model.addObject("menus", MenuConfig.getMenu(user));
 		model.setViewName("main");
 		return model;
 	}

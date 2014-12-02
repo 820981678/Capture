@@ -26,7 +26,7 @@
 		<property name="group" value="group"></property>
 	</bean>
 	
-	<bean id="Menu" class="com.icapture.init.configure.MenuConfig">
+	<bean id="menuConfig" class="com.icapture.init.configure.MenuConfig">
 		<property name="configPath">
 			<value>WEB-INF/config/menu.xml</value>
 		</property>

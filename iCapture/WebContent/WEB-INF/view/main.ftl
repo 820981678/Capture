@@ -18,24 +18,16 @@
 
     <div data-options="region:'west',split:true" title="菜单栏" style="width:200px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">
-            <div title="任务管理" selected="true">  
-                <ul class="easyui-tree" id="iconlist" >
-                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_loginInfo','网站','${webRoot}classify/index');">网站</a></li>  
-                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_privilege','关键字','${webRoot}tblkey/index');">关键字</a></li>
-                </ul>
-            </div>
-            <div title="配置中心">  
-                <ul class="easyui-tree" id="iconlist" >
-                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_label','标签','${webRoot}label/index');">标签</a></li>  
-                    <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_group','分组','${webRoot}group/index');">分组</a></li>  
-                </ul>
-            </div>
             
             <#list menus as m>
         	<div title="${m.name}">
         		<ul class="easyui-tree" id="iconlist" >
         		<#list m.menuList as menu>
-        			<li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_${menu.tabName}','${menu.name}','${webRoot}${menu.url}');">${menu.name}</a></li>
+        			<li style="height:30px; line-height:30px;">
+        				<a href="javascript:addTab('tabId_1_${menu.tabName}','${menu.name}','${webRoot}${menu.url}');">
+        					${menu.name}
+        				</a>
+        			</li>
         		</#list>
             	</ul>
         	</div>

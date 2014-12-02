@@ -15,6 +15,7 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.icapture.entity.user.User;
 import com.icapture.service.user.UserService;
+import com.icapture.util.PublicKey;
 
 /**
  * 用户登录控制器
@@ -57,7 +58,7 @@ public class LoginController {
 			User u = userService.query_login(user);
 			if(u != null){
 				//设置session
-				session.setAttribute("user", user);
+				session.setAttribute(PublicKey.SESSION_USER_KEY, user);
 				map.put("code", 0);
 			}
 		} catch (DBException e) {

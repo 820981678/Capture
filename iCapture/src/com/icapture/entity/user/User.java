@@ -1,12 +1,14 @@
 package com.icapture.entity.user;
 
+import com.icapture.entity.menu.Jurisdiction;
+
 /**
  * 用户实体类
  * 
  * @author huxiaohuan
  *
  */
-public class User {
+public class User implements Jurisdiction {
 	
 	/**
 	 * 对应的数据库表名
@@ -93,6 +95,11 @@ public class User {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	@Override
+	public Integer getJur() {
+		return 0;
 	}
 	
 }
