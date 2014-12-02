@@ -1,8 +1,5 @@
 package com.icapture.web.action.jobManager.classify;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +16,7 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.icapture.entity.classify.Classify;
 import com.icapture.service.jobManager.classify.ClassifyService;
+import com.icapture.web.action.BaseController;
 
 /**
  * 任务分类控制器
@@ -28,7 +26,7 @@ import com.icapture.service.jobManager.classify.ClassifyService;
  */
 @RequestMapping("classify")
 @Controller
-public class ClassifyController {
+public class ClassifyController extends BaseController {
 	
 	/**
 	 * 数据库服务
@@ -78,17 +76,19 @@ public class ClassifyController {
 	 * @return
 	 */
 	@RequestMapping("/querySee")
-	public void querySee(HttpServletResponse response){
-		String s = "{\"see\":[{\"count\":7,\"id\":1},{\"count\":0,\"id\":3}]}";
-		PrintWriter out;
+	@ResponseBody
+	public Map<String, Object> querySee(HttpServletResponse response){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Map<String, Object>> list;
 		try {
-			out = response.getWriter();
-			out.print(s);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			list = classifyService.queryUnread();
+			map.put("code", 0);
+			map.put("see", list);
+		} catch (DBException e) {
+			return mapError();
 		}
 		
+		return map;
 	}
 	
 }

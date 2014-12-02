@@ -49,4 +49,16 @@ public class BaseController {
 		return map;
 	}
 	
+	/**
+	 * json返回调用 返回错误
+	 * 
+	 * @return
+	 */
+	protected Map<String, Object> mapError(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", 1);
+		map.put("message", "服务器异常!");
+		return map;
+	}
+	
 }

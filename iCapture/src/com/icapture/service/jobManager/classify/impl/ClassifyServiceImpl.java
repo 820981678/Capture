@@ -1,6 +1,7 @@
 package com.icapture.service.jobManager.classify.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -30,6 +31,16 @@ public class ClassifyServiceImpl implements ClassifyService {
 		
 		List<Classify> result = DBHandle.query(sql.toString(), new Object[0], Classify.class);
 		return result;
+	}
+	
+	/**
+	 * 查询全部网站的未读新闻条数
+	 * 
+	 * @return 
+	 */
+	public List<Map<String, Object>> queryUnread() throws DBException {
+		String sql = "SELECT COUNT(B.GROUPID) AS count,A.id,A.name FROM ( select * from common_pages where ISSEE=0 ) AS B RIGHT JOIN topic_groups A ON B.GROUPID=A.ID GROUP BY A.ID;";
+		return DBHandle.query(sql, new Object[0]);
 	}
 
 }
