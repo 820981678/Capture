@@ -33,5 +33,11 @@
 			<url>group/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
+		<Menu>
+			<name>关键字</name>
+			<tabName>keyword</tabName>
+			<url>keyword/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
 	</MenuManager>
 </Root>

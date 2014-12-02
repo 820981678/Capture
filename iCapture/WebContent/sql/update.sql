@@ -27,3 +27,6 @@ ALTER TABLE common_pages ADD COLUMN group_groupid BIGINT DEFAULT null COMMENT '�
 
 ## 为common_pages添加是否查看字段
 ALTER TABLE common_pages ADD COLUMN ISSEE SMALLINT DEFAULT 0 COMMENT '记录该条新闻是否已经查看,0未查看,1已查看';
+
+## 为关键字添加 预定义分组字段
+ALTER TABLE tblkeyword ADD COLUMN GROUPID SMALLINT COMMENT '该关键字的默认分组';
