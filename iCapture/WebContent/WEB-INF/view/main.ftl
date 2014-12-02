@@ -30,6 +30,17 @@
                     <li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_2_group','分组','${webRoot}group/index');">分组</a></li>  
                 </ul>
             </div>
+            
+            <#list menus as m>
+        	<div title="${m.name}">
+        		<ul class="easyui-tree" id="iconlist" >
+        		<#list m.menuList as menu>
+        			<li style="height:30px; line-height:30px;"><a href="javascript:addTab('tabId_1_${menu.tabName}','${menu.name}','${webRoot}${menu.url}');">${menu.name}</a></li>
+        		</#list>
+            	</ul>
+        	</div>
+            </#list>
+            
             <!-- 用于占位 -->
             <div title="      ">  
             </div>

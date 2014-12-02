@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<MenuManager>
+		<name>任务管理</name>
+		<jurisdiction>0</jurisdiction>
+		<Menu>
+			<name>网站</name>
+			<tabName>platform</tabName>
+			<url>classify/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
+		<Menu>
+			<name>关键字</name>
+			<tabName>keyword</tabName>
+			<url>tblkey/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
+	</MenuManager>
+	
+	<MenuManager>
+		<name>配置中心</name>
+		<jurisdiction>0</jurisdiction>
+		<Menu>
+			<name>标签</name>
+			<tabName>label</tabName>
+			<url>label/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
+		<Menu>
+			<name>分组</name>
+			<tabName>group</tabName>
+			<url>group/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
+	</MenuManager>
+</Root>

@@ -6,7 +6,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.icapture.entity.diy.Group;
 import com.icapture.entity.diy.Label;
+import com.icapture.entity.menu.JurisdictionAbstract;
 import com.icapture.init.cache.GlobalCache;
+import com.icapture.init.configure.MenuConfig;
 
 /**
  * 主页面控制器
@@ -26,6 +28,13 @@ public class MainController {
 	@RequestMapping("/index")
 	public ModelAndView main(){
 		ModelAndView model = new ModelAndView();
+		model.addObject("menus", MenuConfig.getMenu(new JurisdictionAbstract() {
+			@Override
+			public Integer getJur() {
+				return 0;
+			}
+		}));
+		
 		model.setViewName("main");
 		return model;
 	}
