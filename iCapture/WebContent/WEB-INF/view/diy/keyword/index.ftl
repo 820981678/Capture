@@ -21,6 +21,7 @@
     <table id="dg"></table>
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addKeyword()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="reKeyword()">无效</a>
     </div>
     
     <!-- 弹出窗口 -->
@@ -28,16 +29,39 @@
         <div class="ftitle">添加关键字</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
-                <label>分组名称:</label>
+                <label>关键字:</label>
                 <input name="name" class="easyui-textbox" required="true">
-                <label>分组名称:</label>
-                <input name="name" class="easyui-textbox" required="true">
-                <label>分组名称:</label>
-                <input name="name" class="easyui-textbox" required="true">
-                <label>分组名称:</label>
-                <input name="name" class="easyui-textbox" required="true">
-                <label>分组名称:</label>
-                <input name="name" class="easyui-textbox" required="true">
+            </div>
+            <div class="fitem">
+                <label>正负面:</label>
+                <select class="easyui-combobox" name="wtype" style="width:165px;">
+			        <option value="0" selected>不定</option>
+                	<option value="1">正面</option>
+			        <option value="2">负面</option>
+                </select>
+            </div>
+            <div class="fitem">
+                <label>处理方式:</label>
+                <select class="easyui-combobox" name="stype" style="width:165px;">
+			        <option value="0" selected>全词匹配</option>
+                	<option value="1">分隔后全部匹配</option>
+			        <option value="2">分隔后匹配任何一个</option>
+                </select>
+            </div>
+            <div class="fitem">
+                <label>状态:</label>
+                <select class="easyui-combobox" name="status" style="width:165px;">
+			        <option value="0" selected>有效</option>
+                	<option value="1">无效</option>
+                </select>
+            </div>
+            <div class="fitem">
+                <label>默认分组:</label>
+                <select class="easyui-combobox" name="groupid" style="width:165px;">
+			        <option value="1" selected>分组一</option>
+                	<option value="2">分组二</option>
+                	<option value="1">分组三</option>
+                </select>
             </div>
         </form>
     </div>

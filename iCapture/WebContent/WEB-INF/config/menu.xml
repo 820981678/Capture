@@ -12,7 +12,7 @@
 		</Menu>
 		<Menu>
 			<name>关键字</name>
-			<tabName>keyword</tabName>
+			<tabName>keyword_1</tabName>
 			<url>tblkey/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
@@ -35,7 +35,7 @@
 		</Menu>
 		<Menu>
 			<name>关键字</name>
-			<tabName>keyword</tabName>
+			<tabName>keyword_2</tabName>
 			<url>keyword/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>

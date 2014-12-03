@@ -34,7 +34,6 @@ var url;
 //添加标签
 function addKeyword(){
 	$("#addKeyword").dialog('open').dialog('setTitle','添加关键字');
-	$("#addfm").form('clear');
 	url = webRoot + 'label/add';
 }
 
