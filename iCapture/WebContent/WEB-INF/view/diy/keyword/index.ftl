@@ -43,8 +43,8 @@
             <div class="fitem">
                 <label>处理方式:</label>
                 <select class="easyui-combobox" name="stype" style="width:165px;">
-			        <option value="0" selected>全词匹配</option>
-                	<option value="1">分隔后全部匹配</option>
+			        <option value="0" >全词匹配</option>
+                	<option value="1" selected>分隔后全部匹配</option>
 			        <option value="2">分隔后匹配任何一个</option>
                 </select>
             </div>
@@ -57,10 +57,7 @@
             </div>
             <div class="fitem">
                 <label>默认分组:</label>
-                <select class="easyui-combobox" name="groupid" style="width:165px;">
-			        <option value="1" selected>分组一</option>
-                	<option value="2">分组二</option>
-                	<option value="1">分组三</option>
+                <select id="groupid" class="easyui-combobox" name="groupid" required="true" style="width:165px;">
                 </select>
             </div>
         </form>

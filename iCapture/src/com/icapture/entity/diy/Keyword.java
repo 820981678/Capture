@@ -44,6 +44,20 @@ public class Keyword {
 	 * 该关键字的默认分组
 	 */
 	private Integer groupid;
+	
+	/**
+	 * 临时字段用于页面显示
+	 * 表示该关键字默认分组的名称
+	 */
+	private String groupName;
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
 
 	public Integer getId() {
 		return id;

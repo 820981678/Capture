@@ -70,4 +70,25 @@ public class KeywordController extends BaseController {
 		return result;
 	}
 	
+	/**
+	 * 添加关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	@RequestMapping("/add")
+	@ResponseBody
+	public Map<String, Object> add(Keyword keyword){
+		try {
+			if(keywordService.add(keyword)){
+				return mapSuccess();
+			}
+		} catch (DBException e) {
+			return mapError();
+		} finally {
+			DBHandle.release();
+		}
+		return mapError();
+	}
+	
 }

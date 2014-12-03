@@ -61,4 +61,15 @@ public class BaseController {
 		return map;
 	}
 	
+	/**
+	 * json返回调用 返回成功
+	 * 
+	 * @return
+	 */
+	protected Map<String, Object> mapSuccess(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", 0);
+		return map;
+	}
+	
 }

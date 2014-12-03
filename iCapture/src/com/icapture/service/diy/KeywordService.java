@@ -19,5 +19,13 @@ public interface KeywordService {
 	 * @throws DBException
 	 */
 	Page<Keyword> queryPageAll(Page<Keyword> page) throws DBException;
+
+	/**
+	 * 添加关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	boolean add(Keyword keyword) throws DBException;
 	
 }
