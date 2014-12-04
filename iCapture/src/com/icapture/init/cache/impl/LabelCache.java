@@ -20,7 +20,14 @@ public class LabelCache extends CacheServiceBase {
         
         String sql = "SELECT * FROM " + Label.DB_NAME + " ORDER BY ID DESC";
         
-		List<Label> result = DBHandle.query(sql, new Object[0], Label.class);
+		List<Label> result = null;
+		try {
+			result = DBHandle.query(sql, new Object[0], Label.class);
+		} catch (DBException e) {
+			throw e;
+		} finally {
+			DBHandle.release();
+		}
 		
 		GlobalCache.global.put(GlobalCache.getLabel(), result);
 	}

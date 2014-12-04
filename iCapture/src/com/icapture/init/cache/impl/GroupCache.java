@@ -20,7 +20,14 @@ public class GroupCache extends CacheServiceBase {
         
         String sql = "SELECT * FROM " + Group.DB_NAME + " ORDER BY ID DESC";
         
-		List<Group> result = DBHandle.query(sql, new Object[0], Group.class);
+		List<Group> result = null;
+		try {
+			result = DBHandle.query(sql, new Object[0], Group.class);
+		} catch (DBException e) {
+			throw e;
+		} finally {
+			DBHandle.release();
+		}
 		
 		GlobalCache.global.put(GlobalCache.getGroup(), result);
 		
