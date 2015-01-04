@@ -13,7 +13,7 @@ public class User implements Jurisdiction {
 	/**
 	 * 对应的数据库表名
 	 */
-	public static final String DB_NAME = "users";
+	public static final String DB_NAME = "tbl_user";
 	
 	/**
 	 * id

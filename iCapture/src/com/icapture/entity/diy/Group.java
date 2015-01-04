@@ -11,7 +11,7 @@ public class Group {
 	/**
 	 * 对应数据库
 	 */
-	public static final String DB_NAME = "`group`";
+	public static final String DB_NAME = "tbl_catalog";
 	
 	private Integer id;
 	

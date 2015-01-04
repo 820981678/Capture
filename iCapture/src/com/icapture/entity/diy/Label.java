@@ -11,7 +11,7 @@ public class Label {
 	/**
 	 * 实体对应数据库
 	 */
-	public static final String DB_NAME = "label";
+	public static final String DB_NAME = "tbl_tag";
 	
 	/**
 	 * 关联表对应数据库
