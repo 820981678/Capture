@@ -1,4 +1,4 @@
-package com.icapture.web.action.diy.label;
+package com.icapture.web.action.diy;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,29 +14,29 @@ import org.springframework.web.servlet.ModelAndView;
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
-import com.icapture.entity.diy.Label;
+import com.icapture.entity.diy.Group;
 import com.icapture.init.cache.GlobalCache;
-import com.icapture.service.diy.LabelService;
+import com.icapture.service.diy.GroupService;
 import com.icapture.web.action.BaseController;
 
 /**
- * 标签管理控制器
+ * 分组管理控制器
  * 
  * @author huxiaohuan
  *
  */
-@RequestMapping("label")
+@RequestMapping("group")
 @Controller
-public class LabelController extends BaseController {
+public class GroupController extends BaseController {
 	
 	/**
 	 * 数据库服务
 	 */
 	@Resource
-	private LabelService labelService;
+	private GroupService groupService;
 
 	/**
-	 * 跳转到标签管理页
+	 * 跳转到分组管理页面
 	 * 
 	 * @return
 	 */
@@ -44,12 +44,12 @@ public class LabelController extends BaseController {
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView();
 		
-		model.setViewName("/diy/label/index");
+		model.setViewName("/diy/group/index");
 		return model;
 	}
 	
 	/**
-	 * 分页查询全部标签
+	 * 分页查询全部分组
 	 * 
 	 * @return 返回json用于页面easyui绘制
 	 */
@@ -60,10 +60,10 @@ public class LabelController extends BaseController {
 			page = 1;
 			rows = 20;
 		}
-		Page<Label> p = new Page<Label>(page, rows, sort, order);
+		Page<Group> p = new Page<Group>(page, rows, sort, order);
 		Map<String, Object> result = null;
 		try {
-			Page<Label> data = labelService.queryByPage(p);
+			Page<Group> data = groupService.queryByPage(p);
 			result =  pageToEasyUi(data,0);
 		} catch (DBException e) {
 			result =  pageToEasyUi(1);
@@ -74,7 +74,7 @@ public class LabelController extends BaseController {
 	}
 	
 	/**
-	 * 查询全部标签
+	 * 查询全部分组
 	 * 
 	 * @return
 	 */
@@ -84,8 +84,8 @@ public class LabelController extends BaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 //		try {
-//			List<Label> result = labelService.queryAll();
-			List<Label> result = GlobalCache.getCache(GlobalCache.getLabel(), Label.class);
+//			List<Group> result = groupService.queryAll();
+			List<Group> result = GlobalCache.getCache(GlobalCache.getGroup(), Group.class);
 			map.put("code", 0);
 			map.put("total", result.size());
 			map.put("rows", result);
@@ -99,21 +99,21 @@ public class LabelController extends BaseController {
 	}
 	
 	/**
-	 * 添加标签
+	 * 添加分组
 	 * 
 	 * @param label
 	 * @return 成功返回code=0,其他code请见code码含义表
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public Map<String, Object> add(Label label){
+	public Map<String, Object> add(Group group){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
-			if(labelService.add(label)){
+			if(groupService.add(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(GlobalCache.getLabel());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -124,21 +124,21 @@ public class LabelController extends BaseController {
 	}
 	
 	/**
-	 * 修改标签
+	 * 修改分组
 	 * 
 	 * @param label
 	 * @return 成功返回code=0,其他code请见code码含义表
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public Map<String, Object> update(Label label){
+	public Map<String, Object> update(Group group){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
-			if(labelService.update(label)){
+			if(groupService.update(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(GlobalCache.getLabel());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
@@ -149,51 +149,27 @@ public class LabelController extends BaseController {
 	}
 	
 	/**
-	 * 删除标签
+	 * 删除分组
 	 * 
 	 * @param label
 	 * @return 成功返回code=0,其他code请见code码含义表
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public Map<String, Object> delete(Label label){
+	public Map<String, Object> delete(Group group){
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		try {
-			if(labelService.delete(label)){
+			if(groupService.delete(group)){
 				map.put("code", 0);
 			}
-			GlobalCache.init(GlobalCache.getLabel());
+			GlobalCache.init(GlobalCache.getGroup());
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
 		} finally {
 			DBHandle.release();
 		}
-		return map;
-	}
-	
-	/**
-	 * 根据common_id 查询出对应的标签
-	 * 
-	 * @param common_id
-	 * @return
-	 */
-	@RequestMapping("/qyeryLabelByCommon")
-	@ResponseBody
-	public Map<String, Object> qyeryLabelByCommon(Integer common_id){
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		try {
-			List<Label> list = labelService.qyeryLabelByCommon(common_id);
-			map.put("code", 0);
-			map.put("data", list);
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
 		return map;
 	}
 	

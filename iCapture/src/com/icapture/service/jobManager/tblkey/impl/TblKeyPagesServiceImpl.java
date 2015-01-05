@@ -29,7 +29,7 @@ public class TblKeyPagesServiceImpl implements TblKeyPagesService {
 	@Override
 	public Page<TblKeyPages> queryByPage(Page<TblKeyPages> page, Integer id)
 			throws DBException {
-		String sql = "SELECT TT.*,MM.ID AS common_pages_id,MM.ITEM0 AS common_page_title,MM.GROUP_GROUPID AS group_groupid,MM.ISSEE AS isSee FROM (SELECT P.* FROM ( SELECT T1.*,T2.topic_name,T3.title,T3.url FROM TBLKEYPAGES T1,TOPIC_GROUPS T2,TOPIC_LISTS T3 WHERE T1.KEYID=? AND T1.GROUPID=T2.ID AND T1.TOPICID=T3.ID AND T3.GROUPID = T2.ID ORDER BY ID ASC ) AS P ORDER BY P.ID DESC) AS TT,COMMON_PAGES AS MM WHERE TT.GROUPID=MM.GROUPID AND TT.TOPICID=MM.TOPICID ORDER BY ISSEE ASC";
+		String sql = "select tt.*,mm.id as common_pages_id,mm.item0 as common_page_title,mm.catalog_id as group_groupid,mm.had_read as issee from (select p.* from ( select t1.*,t2.topic_name,t3.title,t3.url from tblkeypages t1,topic_groups t2,topic_lists t3 where t1.keyid=? and t1.groupid=t2.id and t1.topicid=t3.id and t3.groupid = t2.id order by id asc ) as p order by p.id desc) as tt,common_pages as mm where tt.groupid=mm.groupid and tt.topicid=mm.topicid order by issee asc";
 		
 		Object[] params = {
 			id

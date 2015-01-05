@@ -39,5 +39,11 @@
 			<url>keyword/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
+		<Menu>
+			<name>舆情级别</name>
+			<tabName>warn_level</tabName>
+			<url>warnLevel/index</url>
+			<jurisdiction>0</jurisdiction>
+		</Menu>
 	</MenuManager>
 </Root>

@@ -18,9 +18,35 @@ public class TblKey {
 	
 	private Integer stype;
 	
+	/*
+	 * 分类id
+	 */
+	private Integer catalog_id;
+	
 	private String idate;
 	
 	private Integer status;
+	
+	/*
+	 * 关键词权重:10非常敏感,8很敏感,6一般关注,4一般,0其它
+	 */
+	private double site_rate;
+	
+	public Integer getCatalog_id() {
+		return catalog_id;
+	}
+
+	public void setCatalog_id(Integer catalog_id) {
+		this.catalog_id = catalog_id;
+	}
+
+	public double getSite_rate() {
+		return site_rate;
+	}
+
+	public void setSite_rate(double site_rate) {
+		this.site_rate = site_rate;
+	}
 
 	public Integer getId() {
 		return id;

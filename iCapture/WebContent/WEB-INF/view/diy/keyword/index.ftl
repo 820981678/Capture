@@ -25,7 +25,7 @@
     </div>
     
     <!-- 弹出窗口 -->
-    <div id="addKeyword" class="easyui-dialog" style="width:400px;height:290px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+    <div id="addKeyword" class="easyui-dialog" style="width:400px;height:320px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加关键字</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
@@ -57,8 +57,13 @@
             </div>
             <div class="fitem">
                 <label>默认分组:</label>
-                <select id="groupid" class="easyui-combobox" name="groupid" required="true" style="width:165px;">
+                <select id="groupid" class="easyui-combobox" name="catalog_id" required="true" style="width:165px;">
                 </select>
+            </div>
+            <div class="fitem">
+            	<label>权重:</label>
+            	<select id="site_rate" class="easyui-combobox" name="site_rate" required="true" style="width:165px;">
+            	</select>
             </div>
         </form>
     </div>

@@ -46,7 +46,8 @@ $('#dg').datagrid({
         		}
         	}
         },
-        {field:'groupName',title:'默认分组'}
+        {field:'groupName',title:'默认分组'},
+        {field:'site_rate', title:'权重'}
     ]],
     
     loadFilter: function(data){
@@ -65,6 +66,20 @@ $("#groupid").combobox({
 			return data.rows;
 		} else {
 			$.message.alert('error','加载分组异常');
+		}
+	}
+});
+
+//加载权重
+$("#site_rate").combobox({
+	url: webRoot + 'keyword/querySiteRate',
+	valueField: 'key',
+	textField: 'name',
+	loadFilter: function(data){
+		if(data.code == 0){
+			return data.data;
+		} else {
+			$.message.alert('error','加载权重异常');
 		}
 	}
 });

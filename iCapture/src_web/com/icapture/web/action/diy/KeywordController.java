@@ -1,5 +1,7 @@
-package com.icapture.web.action.diy.keyword;
+package com.icapture.web.action.diy;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +15,7 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Keyword;
+import com.icapture.entity.enu.SiteRate;
 import com.icapture.service.diy.KeywordService;
 import com.icapture.web.action.BaseController;
 
@@ -89,6 +92,22 @@ public class KeywordController extends BaseController {
 			DBHandle.release();
 		}
 		return mapError();
+	}
+	
+	/**
+	 * 查询全部权重枚举
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/querySiteRate")
+	@ResponseBody
+	public Map<String, Object> querySiteRate(){
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("code", 0);
+		List<Map<String, Object>> l = SiteRate.toMap();
+		result.put("data", l);
+		result.put("total", l.size());
+		return result;
 	}
 	
 }

@@ -43,13 +43,35 @@ public class Keyword {
 	/**
 	 * 该关键字的默认分组
 	 */
-	private Integer groupid;
+	private Integer catalog_id;
 	
+	/**
+	 * 关键词权重
+	 */
+	private Double site_rate;
+	
+
 	/**
 	 * 临时字段用于页面显示
 	 * 表示该关键字默认分组的名称
 	 */
 	private String groupName;
+	
+	public Integer getCatalog_id() {
+		return catalog_id;
+	}
+	
+	public void setCatalog_id(Integer catalog_id) {
+		this.catalog_id = catalog_id;
+	}
+	
+	public Double getSite_rate() {
+		return site_rate;
+	}
+	
+	public void setSite_rate(Double site_rate) {
+		this.site_rate = site_rate;
+	}
 
 	public String getGroupName() {
 		return groupName;
@@ -107,12 +129,4 @@ public class Keyword {
 		this.status = status;
 	}
 
-	public Integer getGroupid() {
-		return groupid;
-	}
-
-	public void setGroupid(Integer groupid) {
-		this.groupid = groupid;
-	}
-	
 }

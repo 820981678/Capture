@@ -29,10 +29,10 @@ public class KeywordServiceImpl implements KeywordService {
 	@Override
 	public Page<Keyword> queryPageAll(Page<Keyword> page) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT T.*,T1.NAME AS groupName FROM ").append(Keyword.DB_NAME).append(" T");
-		sql.append(" LEFT JOIN ").append(Group.DB_NAME).append(" T1");
-		sql.append(" ON T.GROUPID = T1.ID ");
-		sql.append(" ORDER BY T.ID DESC");
+		sql.append("select t.*,t1.name as groupname from ").append(Keyword.DB_NAME).append(" t");
+		sql.append(" left join ").append(Group.DB_NAME).append(" t1");
+		sql.append(" on t.catalog_id = t1.id ");
+		sql.append(" order by t.id desc");
 		return DBHandle.query(sql.toString(), new Object[0], Keyword.class, page, Base.Mysql);
 	}
 	
@@ -45,11 +45,11 @@ public class KeywordServiceImpl implements KeywordService {
 	@Override
 	public boolean add(Keyword keyword) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO ").append(Keyword.DB_NAME);
-		sql.append(" (NAME,WTYPE,STYPE,IDATE,STATUS,GROUPID) VALUES(?,?,?,?,?,?)");
+		sql.append("insert into ").append(Keyword.DB_NAME);
+		sql.append(" (name,wtype,stype,catalog_id,idate,status,site_rate) values(?,?,?,?,?,?,?)");
 		Object[] params = {
-			keyword.getName(),keyword.getWtype(),keyword.getStype(),
-			DateUtil.getDatetime(),keyword.getStatus(),keyword.getGroupid()
+			keyword.getName(),keyword.getWtype(),keyword.getStype(),keyword.getCatalog_id(),
+			DateUtil.getDatetime(),keyword.getStatus(),keyword.getSite_rate()
 		};
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
