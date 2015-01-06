@@ -49,5 +49,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/group/group.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/group.js"></script>
 </html>

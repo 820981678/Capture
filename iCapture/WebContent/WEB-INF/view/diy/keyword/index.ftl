@@ -73,5 +73,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/keyword/keyword.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/keyword.js"></script>
 </html>

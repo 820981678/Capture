@@ -22,25 +22,25 @@
 		<name>配置中心</name>
 		<jurisdiction>0</jurisdiction>
 		<Menu>
-			<name>标签</name>
+			<name>标签配置</name>
 			<tabName>label</tabName>
 			<url>label/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
 		<Menu>
-			<name>分组</name>
+			<name>分组配置</name>
 			<tabName>group</tabName>
 			<url>group/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
 		<Menu>
-			<name>关键字</name>
+			<name>关键字配置</name>
 			<tabName>keyword_2</tabName>
 			<url>keyword/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
 		<Menu>
-			<name>舆情级别</name>
+			<name>舆情级别配置</name>
 			<tabName>warn_level</tabName>
 			<url>warnLevel/index</url>
 			<jurisdiction>0</jurisdiction>

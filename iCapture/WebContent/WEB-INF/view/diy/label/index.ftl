@@ -49,5 +49,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/label/label.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/label.js"></script>
 </html>

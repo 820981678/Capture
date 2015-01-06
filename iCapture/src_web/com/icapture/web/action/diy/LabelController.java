@@ -55,7 +55,7 @@ public class LabelController extends BaseController {
 	 */
 	@RequestMapping("/query")
 	@ResponseBody
-	public Map<String, Object> query(Integer page,Integer rows,String sort,String order) throws DBException {
+	public Map<String, Object> query(Integer page,Integer rows,String sort,String order){
 		if(page == null || rows == null){
 			page = 1;
 			rows = 20;
