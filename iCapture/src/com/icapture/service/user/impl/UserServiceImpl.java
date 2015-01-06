@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(User.DB_NAME);
-		sql.append(" WHERE NAME=? AND PASSWORD=?");
+		sql.append("select * from ").append(User.DB_NAME);
+		sql.append(" where name=? and user_password=?");
 		
 		Object[] params = {
 			user.getName(),user.getPassword()

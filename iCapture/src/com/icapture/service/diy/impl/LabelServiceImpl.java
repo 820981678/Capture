@@ -12,7 +12,7 @@ import com.icapture.entity.diy.Label;
 import com.icapture.service.diy.LabelService;
 
 /**
- * label表数据库服务实现
+ * 标签表数据库服务实现
  * 
  * @author huxiaohuan
  *
@@ -30,8 +30,8 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public Page<Label> queryByPage(Page<Label> page) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(Label.DB_NAME).append(" WHERE 1=1 ");
-		sql.append("ORDER BY ID DESC");
+		sql.append("select * from ").append(Label.DB_NAME).append(" where 1=1 ");
+		sql.append("order by id desc");
 		
 		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
 	}
@@ -45,8 +45,8 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public List<Label> queryAll() throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(Label.DB_NAME);
-		sql.append(" ORDER BY ID DESC");
+		sql.append("select * from ").append(Label.DB_NAME);
+		sql.append(" order by id desc");
 		
 		return DBHandle.query(sql.toString(), new Object[0], Label.class);
 	}
@@ -61,9 +61,9 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public boolean add(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO ").append(Label.DB_NAME);
-		sql.append(" (NAME) ");
-		sql.append(" VALUES(?)");
+		sql.append("insert into ").append(Label.DB_NAME);
+		sql.append(" (name) ");
+		sql.append(" values(?)");
 		
 		Object[] params = {
 			label.getName()
@@ -82,10 +82,10 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public boolean update(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("UPDATE ").append(Label.DB_NAME).append(" SET");
-		sql.append(" NAME=?");
-		sql.append(" WHERE 1=1 ");
-		sql.append(" AND ID=?");
+		sql.append("update ").append(Label.DB_NAME).append(" set");
+		sql.append(" name=?");
+		sql.append(" where 1=1 ");
+		sql.append(" and id=?");
 		
 		Object[] params = {
 			label.getName(),label.getId()
@@ -104,13 +104,13 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public boolean delete(Label label) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("DELETE FROM ").append(Label.DB_NAME).append(" WHERE 1=1");
-		sql.append(" AND ID=?");
+		sql.append("delete from ").append(Label.DB_NAME).append(" where 1=1");
+		sql.append(" and id=?");
 		Object[] params = {label.getId()};
 		
 		StringBuffer sql_delete = new StringBuffer();
-		sql_delete.append("DELETE FROM ").append(Label.TO).append(" WHERE 1=1");
-		sql_delete.append(" AND LABEL_ID=?");
+		sql_delete.append("delete from ").append(Label.TO).append(" where 1=1");
+		sql_delete.append(" and label_id=?");
 		Object[] params_delete = {label.getId()};
 		
 		try {
@@ -137,9 +137,9 @@ public class LabelServiceImpl implements LabelService {
 	@Override
 	public List<Label> qyeryLabelByCommon(Integer common_id) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(Label.DB_NAME);
-		sql.append(" WHERE 1=1 ").append(" AND ID IN (");
-		sql.append("SELECT LABEL_ID FROM ").append(Label.TO).append(" WHERE COMMON_ID = ?)");
+		sql.append("select * from ").append(Label.DB_NAME);
+		sql.append(" where 1=1 ").append(" and id in (");
+		sql.append("select label_id from ").append(Label.TO).append(" where common_id = ?)");
 		
 		Object[] params = {common_id};
 		

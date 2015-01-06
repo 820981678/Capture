@@ -16,7 +16,7 @@ public class Label {
 	/**
 	 * 关联表对应数据库
 	 */
-	public static final String TO = "commontolabel";
+	public static final String TO = "tbl_pages_and_label";
 
 	private Integer id;
 	

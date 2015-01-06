@@ -17,21 +17,6 @@
 <body class="easyui-layout">
     <!-- 正左边panel --> 
     <div data-options="region:'west',split:true" title="全部网站" style="width:180px;" border="false"> 
-        		<!--
-        <div class="easyui-accordion" fit="true" border="false">
-	            <ul class="easyui-tree" id="iconlist" >
-	            	<#list data as classify>
-	                	<li style="height:30px; line-height:30px;">
-	                		<span>
-	                			<a href="javascript:addTab('tabId_${classify.name}','${classify.name}','${webRoot}common/index?url=common/query?groupid=${classify.id}');">${classify.name}</a>
-	                			<span style="color:red; ">${classify.todayCount}</span>
-	                		</span>
-	                	</li>
-	            	</#list>
-	            </ul>
-			
-        </div>
-	            -->
         <table id="dg"></table>
     </div>  
     <!-- 正中间panel -->  

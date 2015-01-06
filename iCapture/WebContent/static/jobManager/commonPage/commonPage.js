@@ -18,7 +18,7 @@ $('#dg').datagrid({
     
     columns:[[
         {field:'ck',checkbox:true},
-        {field:'ISSEE',title:'状态',align:'center',
+        {field:'has_read',title:'状态',align:'center',
         	formatter: function(val,rec){
         		if(val == 0){
         			return '<span style="color:red;">新</span>';
@@ -34,7 +34,7 @@ $('#dg').datagrid({
         	field:'a',
         	title:'操作',
 			formatter: function(val,rec){// target="_blank"
-				if(rec.ISSEE == 0){
+				if(rec.has_read == 0){
 					return '<a href="javascript:see(\'' + rec.id + '\',\'' + rec.item1 + '\');" >查看原文</a>';
 				} else {
 					return '<a href="' + rec.item1 + '" target="_blank" >查看原文</a>';
@@ -181,9 +181,9 @@ function addGroup(){
 	    //初始化该文章所属的分组 ,data中group_groupid为所属的分组
 	    onLoadSuccess: function(data){
 	    	var dataRow = $("#dg").datagrid('getSelected');
-	    	var group_groupid = dataRow.group_groupid;
+	    	var catalog_id = dataRow.catalog_id;
 	    	$.each($("#groupTab").datagrid('getRows'),function(index,item){
-	    		if(item.id == group_groupid){
+	    		if(item.id == catalog_id){
 	    			$("#groupTab").datagrid('selectRow',index);
 	    			return false;
 	    		}

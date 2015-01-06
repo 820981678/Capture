@@ -48,5 +48,5 @@
 	</div>
     
 </body>
-	<script type="text/javascript" src="${webRoot}static/jobManager/commonPage/commonPage.js"></script>
+	<script type="text/javascript" src="${webRoot}static/jobManager/commonPage/commonPage.js?id=1"></script>
 </html>
