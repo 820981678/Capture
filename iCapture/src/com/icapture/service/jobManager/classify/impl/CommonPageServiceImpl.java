@@ -88,7 +88,11 @@ public class CommonPageServiceImpl implements CommonPageService {
 	 */
 	@Override
 	public Page<CommonPage> queryPageByLabel(Page<CommonPage> page,Integer labelid) throws DBException {
-		String sql = "select p.* from ( select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id and t1.id in( select common_id from commontolabel where label_id=? ) order by id asc ) as p order by p.id desc";
+		//String sql = "select p.* from ( select t1.*,t2.url as url from common_pages as t1,topic_lists as t2 where t1.topicid=t2.id and t1.id in( select common_id from commontolabel where label_id=? ) order by id asc ) as p order by p.id desc";
+		StringBuffer sql = new StringBuffer();
+		sql.append("select p.* from ( select t1.*,t2.url as url from ").append(CommonPage.DB_NAME).append(" as t1,");
+		sql.append("topic_lists as t2 where t1.topicid=t2.id and t1.id in( select common_id from ");
+		sql.append(Label.TO).append(" where label_id=? ) order by id asc ) as p order by p.id desc");
 		Object[] params = {labelid};
 		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
 	}

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>舆情级别配置</title>
+<title>账户管理</title>
 	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/${themes}/easyui.css"/>    
 	<link rel="stylesheet" type="text/css" href="${webRoot}plug/${easyui}/themes/icon.css"/>    
 	<script type="text/javascript" src="${webRoot}plug/${easyui}/jquery.min.js"></script>    
@@ -26,42 +26,16 @@
     </div>
     
     <!-- 弹出窗口 -->
-    <div id="addWarn" class="easyui-dialog" style="width:400px;height:350px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+    <div id="addWarn" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
-                <label>舆情级别:</label>
+                <label>用户名称:</label>
                 <input name="name" class="easyui-textbox" required="true">
             </div>
             <div class="fitem">
-                <label>权重下线:</label>
+                <label>用户密码:</label>
                 <input name="min_rate" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>权重上线:</label>
-                <input name="max_rate" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>处理描述:</label>
-                <input name="description" class="easyui-textbox">
-            </div>
-            <div class="fitem">
-                <label>发送信息:</label>
-                <select class="easyui-combobox" name="send_msg" style="width:165px;">
-                	<option value="1" selected>发送</option>
-                	<option value="0">不发送</option>
-                </select>
-            </div>
-            <div class="fitem">
-                <label>人工处理:</label>
-                <select class="easyui-combobox" name="need_handle" style="width:165px;">
-                	<option value="1" selected>处理</option>
-                	<option value="0">不处理</option>
-                </select>
-            </div>
-            <div class="fitem">
-                <label>短信模板:</label>
-                <input name="msg_tpl" class="easyui-textbox" required="true">
             </div>
         </form>
     </div>
@@ -71,5 +45,5 @@
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/warnLevel.js"></script>
+    <script type="text/javascript" src="${webRoot}static/diy/warnUser.js"></script>
 </html>
