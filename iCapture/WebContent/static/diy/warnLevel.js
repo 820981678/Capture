@@ -12,7 +12,7 @@ $('#dg').datagrid({
     pagination: true, //设置分页
     rownumbers: true, //显示行号
     singleSelect: true,//设置为单选行
-    border: false, //设置没有边框
+    border: true, //设置有边框
     
     toolbar:"#toolbar",
     
@@ -92,7 +92,7 @@ function saveWarn(){
                     msg: '保存成功!',
                 });
 			} else {
-				$.messager.alert('error',code.message);
+				$.messager.alert('error',data.message);
 			}
 		}
 	});
@@ -118,7 +118,7 @@ function deleteWarn(){
 		                    msg: '删除成功!',
 		                });
 					} else {
-						$.messager.alert('error',code.message);
+						$.messager.alert('error',data.message);
 					}
 				}
 			);

@@ -25,10 +25,16 @@ public class User implements Jurisdiction {
 	 */
 	private String name;
 	
+	private String user_title;
+	
 	/**
 	 * 密码
 	 */
-	private String password;
+	private String user_password;
+	
+	private String phone;
+	
+	private String warn_phone;
 	
 	/**
 	 * 状态
@@ -71,22 +77,12 @@ public class User implements Jurisdiction {
 		this.name = name;
 	}
 
-	/**
-	 * 获取用户密码
-	 * 
-	 * @return
-	 */
-	public String getPassword() {
-		return password;
+	public String getUser_password() {
+		return user_password;
 	}
 
-	/**
-	 * 设置用户密码
-	 * 
-	 * @param password
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 
 	public Integer getStatus() {
@@ -95,6 +91,30 @@ public class User implements Jurisdiction {
 
 	public void setStatus(Integer status) {
 		this.status = status;
+	}
+
+	public String getUser_title() {
+		return user_title;
+	}
+
+	public void setUser_title(String user_title) {
+		this.user_title = user_title;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getWarn_phone() {
+		return warn_phone;
+	}
+
+	public void setWarn_phone(String warn_phone) {
+		this.warn_phone = warn_phone;
 	}
 
 	@Override

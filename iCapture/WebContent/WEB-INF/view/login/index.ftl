@@ -14,7 +14,7 @@
 	<div id="loginWin" class="easyui-dialog" style="width:300px;height:180px;" closable="false" data-options="modal:false">
 		<form id="login_form" style="padding:10px 20px 10px 40px;" action="${webRoot}login/doLogin" method="post">
 			<p>Name: <input type="text" name="name" value="admin"></p>
-			<p>Pass: <input type="password" name="password" value="admin"></p>
+			<p>Pass: <input type="password" name="user_password" value="admin"></p>
 			<!--
 			<p><input type="checkbox" name="isSave" value="true" />保存一周 </p>
 			-->

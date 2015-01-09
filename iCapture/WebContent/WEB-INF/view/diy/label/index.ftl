@@ -18,19 +18,29 @@
 </head>
 <body class="easyui-layout" style="font">
 
-    <div region="west" title="标签管理" style="width:430px;overflow:hidden;" border="false">
-            <table id="dg"></table>
-		    <div id="toolbar">
-		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加标签</a>
-		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLabel()">修改标签</a>
-		        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteLabel()">删除标签</a>
-		    </div>
-    </div>  
-    <!-- 正中间panel -->  
-    <div data-options="region:'center'" border="false" style="border-left: 1px solid #95B8E7;">
-        <div id="centerTab" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
-            
-        </div>  
+	<div data-options="region:'north'" style="height:110px; padding:10px; border:none;" >
+		<div id="p" class="easyui-panel" title="填写您的筛选条件" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
+	    	<form class="fm" method="post" novalidate>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>标签名称:</label>
+	                <input name="name" class="easyui-textbox">
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+		        	<a id="select" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+		        </div>
+	        </form>
+	       
+	    </div>
+	</div>
+	
+	<div data-options="region:'center',split:true" style="height:auto; border:none; padding:10px;">
+   		<table id="dg"></table>
+	</div>
+
+    <div id="toolbar">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addLabel()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editLabel()">修改</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteLabel()">删除</a>
     </div>
     
     <!-- 弹出窗口 -->

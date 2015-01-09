@@ -37,8 +37,11 @@ public class MenuConfig extends TestCase implements InitializingBean {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		System.out.println(FileUtil.BASE_PATH);
+		System.out.println(FileUtil.CLASS_PATH);
 		SAXReader saxReader = new SAXReader();
 		Document document = saxReader.read(new File(FileUtil.BASE_PATH + configPath));
+		
 		Element root = document.getRootElement();
 		
 		List<Element> menuM = root.elements("MenuManager");

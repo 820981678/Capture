@@ -14,7 +14,7 @@
 </head>
 <body class="easyui-layout">
 
-    <div data-options="region:'north'" style="height:50px" href="${webRoot}main/top"></div>
+    <div data-options="region:'north'" style="height:80px;background-color:#E0ECFF;border-top:none;" href="${webRoot}main/top"></div>
 
     <div data-options="region:'west',split:true" title="菜单栏" style="width:200px;">
         <div class="easyui-accordion" data-options="fit:true,border:false">

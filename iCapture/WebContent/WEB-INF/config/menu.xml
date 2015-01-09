@@ -24,7 +24,7 @@
 		<Menu>
 			<name>账户管理</name>
 			<tabName>userManager</tabName>
-			<url>user/index</url>
+			<url>admin/user/index</url>
 			<jurisdiction>0</jurisdiction>
 		</Menu>
 	</MenuManager>

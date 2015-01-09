@@ -18,32 +18,79 @@
 </head>
 <body class="easyui-layout" >
 
-    <table id="dg"></table>
+	<div data-options="region:'north'" style="height:150px; padding:10px; border:none;" >
+		<div id="p" class="easyui-panel" title="填写您的筛选条件" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
+			<form class="fm" method="post" novalidate>
+				<div class="fitem" style="width:300px; float:left;">
+	                <label>账户名称:</label>
+	                <input name="name" class="easyui-textbox">
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>账户职务:</label>
+	                <input name="user_title" class="easyui-textbox">
+	            </div>
+	             <div class="fitem" style="width:300px; float:left;">
+	                <label>账户状态:</label>
+	                <select class="easyui-combobox" name="status" style="width:165px;">
+	                	<option value="1" selected>启用</option>
+	                	<option value="0">禁用</option>
+	                </select>
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <a id="select" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+	            </div>
+	        </form>
+		</div>
+	</div>
+	
+	<div data-options="region:'center',split:true" style="height:auto; border:none; padding:10px;">
+   		<table id="dg"></table>
+	</div>
+
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addWarn()">添加</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editWarn()">修改</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteWarn()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addUser()">添加</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">修改</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteUser()">删除</a>
     </div>
     
     <!-- 弹出窗口 -->
-    <div id="addWarn" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+    <div id="addUser" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
-                <label>用户名称:</label>
+                <label>账户名称:</label>
                 <input name="name" class="easyui-textbox" required="true">
             </div>
             <div class="fitem">
-                <label>用户密码:</label>
-                <input name="min_rate" class="easyui-textbox" required="true">
+                <label>账户职务:</label>
+                <input name="user_title" class="easyui-textbox" required="true">
+            </div>
+            <div class="fitem">
+                <label>账户密码:</label>
+                <input id="password" name="user_password" class="easyui-textbox" required="true">
+            </div>
+            <div class="fitem">
+                <label>联系电话:</label>
+                <input name="phone" class="easyui-textbox" required="true">
+            </div>
+            <div class="fitem">
+                <label>报警电话:</label>
+                <input name="warn_phone" class="easyui-textbox" required="true">
+            </div>
+            <div class="fitem">
+                <label>账户状态:</label>
+                <select class="easyui-combobox" name="status" style="width:165px;">
+                	<option value="1" selected>启用</option>
+                	<option value="0">禁用</option>
+                </select>
             </div>
         </form>
     </div>
     <div id="dlg-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveWarn()" style="width:90px">保存</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addWarn').dialog('close')" style="width:90px">取消</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addUser').dialog('close')" style="width:90px">取消</a>
     </div>
     
 </body>
-    <script type="text/javascript" src="${webRoot}static/diy/warnUser.js"></script>
+    <script type="text/javascript" src="${webRoot}static/user/userManager.js"></script>
 </html>

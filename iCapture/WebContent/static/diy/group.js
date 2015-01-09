@@ -3,27 +3,27 @@ $('#dg').datagrid({
     url: webRoot + 'group/query',
     
     //title: '所有文章',
-    //fitColumns: true, //设置自适应宽度
+    fitColumns: true, //设置自适应宽度
     fit: true, //设置自适应高度
     sortName: 'id',
     sortOrder: 'desc',
     pagination: true, //设置分页
     rownumbers: true, //显示行号
     singleSelect: true,//设置为单选行
-    border: false, //设置没有边框
+    border: true, //设置有边框
     
     toolbar:"#toolbar",
     
     columns:[[
     	{field:'id',title:'ID',hidden: true},
-        {field:'name',title:'分组名称',width:320},
-        {
-        	field:'a',title:'操作',
-        	formatter: function(val,rec){
-        		//return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'label/toCommonPage?labelid=' + rec.id + '");\'>' + '全部文章' + '</a>';
-        		return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'common/index?url=common/queryPageByGroup?group_groupId=' + rec.id + '");\'>' + '全部文章' + '</a>';
-        	}
-        }
+        {field:'name',title:'分组名称',width:320}
+//        {
+//        	field:'a',title:'操作',
+//        	formatter: function(val,rec){
+//        		//return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'label/toCommonPage?labelid=' + rec.id + '");\'>' + '全部文章' + '</a>';
+//        		return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'common/index?url=common/queryPageByGroup?group_groupId=' + rec.id + '");\'>' + '全部文章' + '</a>';
+//        	}
+//        }
     ]],
     
     loadFilter: function(data){
@@ -75,7 +75,7 @@ function saveLabel(){
                     msg: '保存成功!',
                 });
 			} else {
-				$.messager.alert('error',code.message);
+				$.messager.alert('error',data.message);
 			}
 		}
 	});
@@ -101,7 +101,7 @@ function deleteLabel(){
 		                    msg: '删除成功!',
 		                });
 					} else {
-						$.messager.alert('error',code.message);
+						$.messager.alert('error',data.message);
 					}
 				}
 			);

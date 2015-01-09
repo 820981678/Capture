@@ -1,13 +1,11 @@
 /**
- * 标签管理页面js
+ * 账户页面js
  */
 
 //加载数据表格
 $('#dg').datagrid({
-    url: webRoot + 'label/query',
+    url: webRoot + 'admin/user/query',
     
-    //title: '所有文章',
-    fitColumns: true, //设置自适应宽度
     fit: true, //设置自适应高度
     sortName: 'id',
     sortOrder: 'desc',
@@ -20,14 +18,19 @@ $('#dg').datagrid({
     
     columns:[[
     	{field:'id',title:'ID',hidden: true},
-        {field:'name',title:'标签名称',width:320}
-//        {
-//        	field:'a',title:'操作',
-//        	formatter: function(val,rec){
-//        		//return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'label/toCommonPage?labelid=' + rec.id + '");\'>' + '全部文章' + '</a>';
-//        		return '<a href=\'javascript:addTab("' + rec.name + '","' + rec.name + '","' + webRoot + 'common/index?url=common/queryPageByLabel?labelid=' + rec.id + '");\'>' + '全部文章' + '</a>';
-//        	}
-//        }
+    	{field:'name',title:'账户名称'},
+        {field:'user_title',title:'职务'},
+        {field:'phone',title:'联系电话'},
+        {field:'warn_phone',title:'报警电话'},
+        {field:'status',title:'账户状态',align:'center',
+        	formatter: function(val){
+        		if(val == 1){
+        			return "<span style='color:blue'>启用</span>";
+        		} else {
+        			return "<span style='color:red'>禁用</span>";
+        		}
+        	}
+        }
     ]],
     
     loadFilter: function(data){
@@ -40,27 +43,28 @@ $('#dg').datagrid({
 
 var url;
 
-//添加标签
-function addLabel(){
-	$("#addLabel").dialog('open').dialog('setTitle','添加标签');
+//添加账户
+function addUser(){
+	$("#addUser").dialog('open').dialog('setTitle','添加舆情级别');
 	$("#addfm").form('clear');
-	url = webRoot + 'label/add';
+	url = webRoot + 'admin/user/add';
 }
 
-//修改标签
-function editLabel(){
+//修改账户
+function editUser(){
 	var row = $("#dg").datagrid('getSelected');
 	if(row){
-		$("#addLabel").dialog('open').dialog('setTitle','修改标签');
+		$("#addUser").dialog('open').dialog('setTitle','修改舆情级别');
+		$("#password").textbox('setValue','------');
 		$("#addfm").form('load',row);
-		url = webRoot + "label/update?id=" + row.id;
+		url = webRoot + "admin/user/update?id=" + row.id;
 	} else {
 		$.messager.alert('提示信息','请选择要修改的列!');
 	}
 }
 
-//保存标签
-function saveLabel(){
+//保存账户
+function saveUser(){
 	//验证数据是否合法
 	if(!$("#addfm").form('validate')){
 		return false;
@@ -72,7 +76,7 @@ function saveLabel(){
 		dataType: 'json',
 		success: function(data){
 			if(data.code == 0){
-				$('#addLabel').dialog('close'); // 关闭窗口
+				$('#addUser').dialog('close'); // 关闭窗口
                 $('#dg').datagrid('reload');    // 刷新datagrid
                 $.messager.show({
                     title: '提示信息',
@@ -85,8 +89,8 @@ function saveLabel(){
 	});
 }
 
-//删除标签
-function deleteLabel(){
+//删除账户
+function deleteUser(){
 	var row = $("#dg").datagrid('getSelected');
 	if(!row){
 		$.messager.alert('提示信息','请选择要删除的列!');
@@ -95,7 +99,7 @@ function deleteLabel(){
 	$.messager.confirm('提示信息','确定要删除该条数据吗?',function(result){
 		if(result){
 			$.post(
-				webRoot + 'label/delete',
+				webRoot + 'admin/user/delete',
 				{'id':row.id},
 				function(data){
 					if(data.code == 0){

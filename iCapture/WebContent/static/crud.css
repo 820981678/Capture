@@ -12,6 +12,8 @@
 }
 .fitem{
     margin-bottom:5px;
+    height: 26px;
+    line-height: 26px;
 }
 .fitem label{
     display:inline-block;

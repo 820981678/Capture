@@ -8,7 +8,7 @@ $('#dg').datagrid({
     pagination: true, //设置分页
     rownumbers: true, //显示行号
     singleSelect: true,//设置为单选行
-    border: false, //设置没有边框
+    border: true, //设置有边框
     
     toolbar:"#toolbar",
     
@@ -71,7 +71,19 @@ $("#groupid").combobox({
 });
 
 //加载权重
-$("#site_rate").combobox({
+$("#site_rate_select").combobox({
+	url: webRoot + 'keyword/querySiteRate',
+	valueField: 'key',
+	textField: 'name',
+	loadFilter: function(data){
+		if(data.code == 0){
+			return data.data;
+		} else {
+			$.messager.alert('error','加载权重异常');
+		}
+	}
+});
+$("#site_rate_form").combobox({
 	url: webRoot + 'keyword/querySiteRate',
 	valueField: 'key',
 	textField: 'name',
@@ -114,7 +126,7 @@ function saveKeyword(){
                     msg: '保存成功!',
                 });
 			} else {
-				$.messager.alert('error',code.message);
+				$.messager.alert('error',data.message);
 			}
 		}
 	});

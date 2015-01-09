@@ -14,7 +14,7 @@
 </head>
 <body>
 	<font style="font-size:30px; line-height:48px;">
-		重庆市民政舆情管理系统
+		
 	</font>
 </body>
 </html>

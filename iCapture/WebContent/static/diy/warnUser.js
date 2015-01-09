@@ -71,7 +71,7 @@ function saveWarn(){
                     msg: '保存成功!',
                 });
 			} else {
-				$.messager.alert('error',code.message);
+				$.messager.alert('error',data.message);
 			}
 		}
 	});
@@ -97,7 +97,7 @@ function deleteWarn(){
 		                    msg: '删除成功!',
 		                });
 					} else {
-						$.messager.alert('error',code.message);
+						$.messager.alert('error',data.message);
 					}
 				}
 			);

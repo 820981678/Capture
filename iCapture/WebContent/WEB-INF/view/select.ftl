@@ -66,7 +66,7 @@
     <div style="width:100%; height:10px;"></div>
     
     <!-- 查询结果 -->
-    <div id="centerTab" class="easyui-tabs" style="height:340px;">
+    <div id="centerTab" class="easyui-tabs" style="height:auto;">
 	    
 	</div>
 	

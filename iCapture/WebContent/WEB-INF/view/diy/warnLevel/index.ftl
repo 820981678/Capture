@@ -17,8 +17,47 @@
 	
 </head>
 <body class="easyui-layout" >
-
-    <table id="dg"></table>
+	
+	<div data-options="region:'north'" style="height:150px; padding:10px; border:none;" >
+		<div id="p" class="easyui-panel" title="填写您的筛选条件" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
+	    	<form class="fm" method="post" novalidate>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>舆情级别:</label>
+	                <input name="name" class="easyui-textbox">
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>权重下线:</label>
+	                <input name="min_rate" class="easyui-textbox">
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>权重上线:</label>
+	                <input name="max_rate" class="easyui-textbox">
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>人工处理:</label>
+	                <select class="easyui-combobox" name="need_handle" style="width:165px;">
+	                	<option value="1" selected>处理</option>
+	                	<option value="0">不处理</option>
+	                </select>
+	            </div>
+	            <div class="fitem" style="width:300px; float:left;">
+	                <label>发送信息:</label>
+	                <select class="easyui-combobox" name="send_msg" style="width:165px;">
+	                	<option value="1" selected>发送</option>
+	                	<option value="0">不发送</option>
+	                </select>
+	            </div>
+	        </form>
+	        <div class="fitem" style="width:300px; float:left;">
+	        	<a id="select" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+	        </div>
+	    </div>
+	</div>
+	
+	<div data-options="region:'center',split:true" style="height:auto; border:none; padding:10px;">
+   		<table id="dg"></table>
+	</div>
+	
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addWarn()">添加</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editWarn()">修改</a>
@@ -26,7 +65,7 @@
     </div>
     
     <!-- 弹出窗口 -->
-    <div id="addWarn" class="easyui-dialog" style="width:400px;height:350px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+    <div id="addWarn" class="easyui-dialog" style="width:400px;height:380px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
         <div class="ftitle">添加</div>
         <form id="addfm" class="fm" method="post" novalidate>
             <div class="fitem">
