@@ -159,7 +159,7 @@ public class CommonPageServiceImpl implements CommonPageService {
 				sql.append(" )");
 			}
 			if(groupId != null){
-				sql.append(" and group_groupid=?");
+				sql.append(" and catalog_id=?");
 				params.add(groupId);
 			}
 		sql.append(" order by id desc ) as t, topic_lists as t1 where t.topicid=t1.id");

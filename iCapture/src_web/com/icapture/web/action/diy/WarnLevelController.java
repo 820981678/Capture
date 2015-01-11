@@ -1,6 +1,7 @@
 package com.icapture.web.action.diy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -75,6 +76,28 @@ public class WarnLevelController extends BaseController{
 		}
 		return result;
 	}
+	
+	/**
+	 * 查询全部
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/queryAll")
+	@ResponseBody
+	public Map<String, Object> queryAll(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<WarnLevel> list = warnLevelService.queryAll();
+			map.put("code", 0);
+			map.put("data", list);
+		} catch (DBException e) {
+			map.put("code", 1);
+		} finally {
+			DBHandle.release();
+		}
+		return map;
+	}
+	
 	
 	/**
 	 * 添加舆情级别

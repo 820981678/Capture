@@ -1,11 +1,14 @@
 package com.icapture.service.user.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.db.DBHandle.Base;
 import com.connection.page.Page;
+import com.icapture.entity.diy.WarnLevel;
 import com.icapture.entity.user.User;
 import com.icapture.service.user.UserService;
 import com.util.StringUtil;
@@ -117,6 +120,47 @@ public class UserServiceImpl implements UserService {
 			user.getId()
 		};
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
+	}
+
+	/**
+	 * 根据舆情级别id查询对应的用户
+	 * 
+	 * @param warnLevelId
+	 * @return
+	 */
+	@Override
+	public Page<User> queryByWarnLevelId(Page<User> page,Integer warnLevelId)
+			throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select * from ").append(User.DB_NAME).append(" where 1=1");
+		sql.append(" and id in (");
+		sql.append(" select user_id from ").append(WarnLevel.TO);
+		sql.append("  where warn_level_id = ?)");
+		Object[] params = new Object[]{
+			warnLevelId
+		};
+		return DBHandle.query(sql.toString(), params, page, Base.Mysql);
+	}
+
+	/**
+	 * 根据舆情级别id查询，不属于该舆情级别下的全部用户
+	 * 
+	 * @param warnLevelId
+	 * @return
+	 * @throws DBException
+	 */
+	@Override
+	public List<User> queryAddWarnByWarnLevelId(Integer warnLevelId)
+			throws DBException {
+		//select * from tbl_user where id not in(select user_id from tbl_user_and_level where warn_level_id = 1)
+		StringBuffer sql = new StringBuffer();
+		sql.append("select * from ").append(User.DB_NAME);
+		sql.append(" where id not in(");
+		sql.append(" select user_id from ").append(WarnLevel.TO).append(" where warn_level_id = ?)");
+		Object[] params = new Object[]{
+			warnLevelId
+		};
+		return DBHandle.query(sql.toString(), params, User.class);
 	}
 
 }

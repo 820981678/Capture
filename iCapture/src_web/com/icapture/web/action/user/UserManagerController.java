@@ -1,6 +1,7 @@
 package com.icapture.web.action.user;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -145,6 +146,58 @@ public class UserManagerController extends BaseController{
 		} catch (DBException e) {
 			map.put("code", 1);
 			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		return map;
+	}
+	
+	/**
+	 * 分页查询，根据舆情级别id查询关联的全部用户
+	 * 
+	 * @param warnLevelId 舆情级别id
+	 * @param page
+	 * @param rows
+	 * @param sort
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping("/queryByWarnLevelId")
+	@ResponseBody
+	public Map<String, Object> queryByWarnLevelId(Integer warnLevelId,Integer page,Integer rows,String sort,String order){
+		if(page == null || rows == null){
+			page = 1;
+			rows = 20;
+		}
+		Page<User> p = new Page<User>(page, rows, sort, order);
+		Map<String, Object> result = null;
+		try {
+			Page<User> data = userService.queryByWarnLevelId(p,warnLevelId);
+			result =  pageToEasyUi(data,0);
+		} catch (DBException e) {
+			result =  pageToEasyUi(1);
+		} finally {
+			DBHandle.release();
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据舆情级别id查询，不属于该舆情级别下的全部用户
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/queryAddWarnByWarnLevelId")
+	@ResponseBody
+	public Map<String, Object> queryAddWarnByWarnLevelId(Integer warnLevelId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<User> l = userService.queryAddWarnByWarnLevelId(warnLevelId);
+			map.put("code", 0);
+			map.put("rows", l);
+			map.put("total", l.size());
+		} catch (DBException e) {
+			map = mapError();
 		} finally {
 			DBHandle.release();
 		}

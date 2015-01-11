@@ -1,5 +1,7 @@
 package com.icapture.service.user;
 
+import java.util.List;
+
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.user.User;
@@ -57,5 +59,22 @@ public interface UserService {
 	 * @throws DBException
 	 */
 	boolean delete(User user) throws DBException;
+	
+	/**
+	 * 根据舆情级别id查询对应的用户
+	 * 
+	 * @param warnLevelId
+	 * @return
+	 */
+	Page<User> queryByWarnLevelId(Page<User> page,Integer warnLevelId) throws DBException;
+	
+	/**
+	 * 根据舆情级别id查询，不属于该舆情级别下的全部用户
+	 * 
+	 * @param warnLevelId
+	 * @return
+	 * @throws DBException
+	 */
+	List<User> queryAddWarnByWarnLevelId(Integer warnLevelId) throws DBException;
 	
 }

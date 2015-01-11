@@ -1,5 +1,7 @@
 package com.icapture.web.action.diy;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
-import com.connection.page.Page;
 import com.icapture.entity.diy.WarnUser;
 import com.icapture.service.diy.WarnUserService;
 import com.icapture.web.action.BaseController;
@@ -46,32 +47,64 @@ public class WarnUserController extends BaseController {
 	}
 	
 	/**
-	 * 分页查询
+	 * 添加舆情处理人
 	 * 
-	 * @param page
-	 * @param rows
-	 * @param sort
-	 * @param order
+	 * @param warn_level_id 舆情级别id
+	 * @param user_ids 处理人id 拼接字符串
 	 * @return
 	 */
-	@RequestMapping("/query")
+	@RequestMapping("/add")
 	@ResponseBody
-	public Map<String, Object> query(Integer page,Integer rows,String sort,String order){
-		if(page == null || rows == null){
-			page = 1;
-			rows = 20;
+	public Map<String, Object> add(Integer warn_level_id,String user_ids){
+		Map<String, Object> map;
+		String[] users = user_ids.split(",");
+		List<WarnUser> warnUserList = new ArrayList<WarnUser>();
+		for (String id : users) {
+			WarnUser u = new WarnUser();
+			u.setUser_id(Integer.valueOf(id));
+			u.setWarn_level_id(warn_level_id);
+			warnUserList.add(u);
 		}
-		Page<WarnUser> p = new Page<WarnUser>(page, rows, sort, order);
-		Map<String, Object> result = null;
 		try {
-			Page<WarnUser> data = warnUserService.queryByPage(p);
-			result =  pageToEasyUi(data,0);
+			DBHandle.beginTransation();
+			for (WarnUser warnuser : warnUserList) {
+				warnUserService.add(warnuser);
+			}
+			DBHandle.commit();
+			map = mapSuccess();
 		} catch (DBException e) {
-			result =  pageToEasyUi(1);
+			map = mapError();
+			try {
+				DBHandle.rollback();
+			} catch (DBException e1) {
+				e1.printStackTrace();
+			}
 		} finally {
 			DBHandle.release();
 		}
-		return result;
+		return map;
+	}
+	
+	/**
+	 * 删除舆情处理人
+	 * 
+	 * @param warn
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Map<String, Object> delete(WarnUser warn){
+		Map<String, Object> map = null;
+		try {
+			if(warnUserService.delete(warn)){
+				map = mapSuccess();
+			}
+		} catch (DBException e) {
+			map = mapError();
+		} finally {
+			DBHandle.release();
+		}
+		return map;
 	}
 	
 }

@@ -12,6 +12,11 @@ public class WarnLevel {
 	 * 对应数据库名称
 	 */
 	public static final String DB_NAME = "tbl_warn_level";
+	
+	/**
+	 * 舆情级别与关联人员的中间表
+	 */
+	public static final String TO = "tbl_user_and_level";
 
 	private Integer id;
 	
@@ -54,6 +59,11 @@ public class WarnLevel {
 	 * 排序
 	 */
 	private Integer sortflag;
+	
+	/**
+	 * 临时字段，记录该条舆情级别下 对应的处理人数
+	 */
+	private Integer warn_user_sum;
 
 	public Integer getId() {
 		return id;
@@ -125,6 +135,14 @@ public class WarnLevel {
 
 	public void setSortflag(Integer sortflag) {
 		this.sortflag = sortflag;
+	}
+
+	public Integer getWarn_user_sum() {
+		return warn_user_sum;
+	}
+
+	public void setWarn_user_sum(Integer warn_user_sum) {
+		this.warn_user_sum = warn_user_sum;
 	}
 	
 }

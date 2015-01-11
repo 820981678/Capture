@@ -29,16 +29,6 @@ public class WarnUser {
 	
 	private Integer status;
 	
-	/**
-	 * 临时字段,保存查询结果中的处理人名称
-	 */
-	private String user_name;
-	
-	/**
-	 * 临时字段,保存查询结果中的级别名称
-	 */
-	private String warn_name;
-
 	public Integer getId() {
 		return id;
 	}
@@ -61,22 +51,6 @@ public class WarnUser {
 
 	public void setWarn_level_id(Integer warn_level_id) {
 		this.warn_level_id = warn_level_id;
-	}
-
-	public String getUser_name() {
-		return user_name;
-	}
-
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
-
-	public String getWarn_name() {
-		return warn_name;
-	}
-
-	public void setWarn_name(String warn_name) {
-		this.warn_name = warn_name;
 	}
 
 	public Integer getSortflag() {

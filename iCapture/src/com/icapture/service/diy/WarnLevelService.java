@@ -1,5 +1,7 @@
 package com.icapture.service.diy;
 
+import java.util.List;
+
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.diy.WarnLevel;
@@ -20,6 +22,14 @@ public interface WarnLevelService {
 	 * @throws DBException
 	 */
 	Page<WarnLevel> queryByPage(Page<WarnLevel> page) throws DBException;
+	
+	/**
+	 * 查询全部
+	 * 
+	 * @return
+	 * @throws DBException
+	 */
+	List<WarnLevel> queryAll() throws DBException;
 	
 	/**
 	 * 添加舆情级别

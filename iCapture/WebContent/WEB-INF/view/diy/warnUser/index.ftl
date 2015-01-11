@@ -15,34 +15,49 @@
 	
 	<script type="text/javascript"> var webRoot = ${webRoot}; </script>
 	
+	<style>
+		ul{
+			list-style:none; margin:0px; padding:0px;
+		}
+		li{
+			width:100%; height:30px; padding:0px; margin:0px; border-bottom:1px solid #E0ECFF;
+		}
+		li .d1{
+			width:230px; height:30px; line-height:30px; float:left; padding-left:10px;
+		}
+		li .d2{
+			height:30px; line-height:30px; float:left;
+		}
+	</style>
+	
 </head>
-<body class="easyui-layout" >
+<body class="easyui-layout">
 
-    <table id="dg"></table>
+	<div data-options="region:'west',split:false" style="width:300px; height:100%; padding:10px;" border="false"> 
+		<div class="easyui-panel" title="全部舆情级别" data-options="collapsible:false" style="width:100%;height:100%;padding:0px;float:left;">
+			<ul id="warnLevel_sum">
+			</ul>
+		</div>
+    </div>
+	 <div data-options="region:'center'" border="false" style=" padding:10px;">
+	 	<div class="easyui-panel" title="舆情处理人" data-options="collapsible:false" style="width:100%;height:100%;float:left;">
+			<table id="dg"></table>
+		</div>
+	</div>
+
     <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="addWarn()">添加</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editWarn()">修改</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteWarn()">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="openAddWarnUser()">配置处理人</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteWarnUser()">删除处理人</a>
     </div>
     
-    <!-- 弹出窗口 -->
-    <div id="addWarn" class="easyui-dialog" style="width:400px;height:340px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
-        <div class="ftitle">添加</div>
-        <form id="addfm" class="fm" method="post" novalidate>
-            <div class="fitem">
-                <label>舆情级别:</label>
-                <input name="name" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem">
-                <label>权重下线:</label>
-                <input name="min_rate" class="easyui-textbox" required="true">
-            </div>
-        </form>
-    </div>
-    <div id="dlg-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveWarn()" style="width:90px">保存</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#addWarn').dialog('close')" style="width:90px">取消</a>
-    </div>
+    <!-- 配置处理人窗口 -->
+	<div id="warnUserWindow" class="easyui-dialog" style="width:500px;height:300px;" closed="true" buttons="#dlg-buttons" data-options="modal:true">
+	    <table id="warnUserTab" border="false"></table>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveWarnUser()" style="width:90px">保存</a>
+	    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#warnUserWindow').dialog('close')" style="width:90px">取消</a>
+	</div>
     
 </body>
     <script type="text/javascript" src="${webRoot}static/diy/warnUser.js"></script>

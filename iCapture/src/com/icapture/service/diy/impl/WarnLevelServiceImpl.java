@@ -1,5 +1,7 @@
 package com.icapture.service.diy.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.connection.db.DBException;
@@ -32,6 +34,18 @@ public class WarnLevelServiceImpl implements WarnLevelService {
 	    sql.append(" where 1=1 order by id");
 	    return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
     }
+	
+	/**
+	 * 查询全部舆情级别，附带该级别对应的处理人数
+	 */
+	@Override
+	public List<WarnLevel> queryAll() throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("select a.*,count(b.id) as warn_user_sum from ").append(WarnLevel.DB_NAME).append(" a");
+		sql.append(" left join ").append(WarnLevel.TO).append(" b");
+		sql.append(" on a.id = b.warn_level_id group by a.id");
+		return DBHandle.query(sql.toString(), new Object[0], WarnLevel.class);
+	}
 
 	/**
 	 * 添加舆情级别
