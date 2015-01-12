@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
@@ -17,7 +16,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.Keyword;
 import com.icapture.entity.enu.SiteRate;
 import com.icapture.service.diy.KeywordService;
-import com.icapture.web.action.BaseController;
+import com.icapture.web.action.CrudController;
 
 /**
  * 关键字管理控制器
@@ -27,7 +26,11 @@ import com.icapture.web.action.BaseController;
  */
 @Controller
 @RequestMapping("keyword")
-public class KeywordController extends BaseController {
+public class KeywordController extends CrudController {
+	
+	public KeywordController(){
+		super.viewName = "/diy/keyword/index";
+	}
 	
 	/**
 	 * 数据库服务
@@ -35,19 +38,6 @@ public class KeywordController extends BaseController {
 	@Resource
 	private KeywordService keywordService;
 
-	/**
-	 * 跳转到关键字管理页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/index")
-	public ModelAndView index(){
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("/diy/keyword/index");
-		return model;
-	}
-	
 	/**
 	 * 查询全部关键字 返回easyui json
 	 * 
@@ -82,16 +72,7 @@ public class KeywordController extends BaseController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(Keyword keyword){
-		try {
-			if(keywordService.add(keyword)){
-				return mapSuccess();
-			}
-		} catch (DBException e) {
-			return mapError();
-		} finally {
-			DBHandle.release();
-		}
-		return mapError();
+		return _add(keyword);
 	}
 	
 	/**

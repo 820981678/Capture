@@ -1,12 +1,14 @@
 package com.icapture.entity.diy;
 
+import com.icapture.web.action.CrudEntity;
+
 /**
  * 关键字实体
  * 
  * @author huxiaohuan
  *
  */
-public class Keyword {
+public class Keyword implements CrudEntity {
 	
 	/**
 	 * 对应数据库

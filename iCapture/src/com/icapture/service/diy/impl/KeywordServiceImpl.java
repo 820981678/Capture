@@ -9,6 +9,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.Group;
 import com.icapture.entity.diy.Keyword;
 import com.icapture.service.diy.KeywordService;
+import com.icapture.web.action.CrudEntity;
 import com.util.DateUtil;
 
 /**
@@ -43,7 +44,9 @@ public class KeywordServiceImpl implements KeywordService {
 	 * @return
 	 */
 	@Override
-	public boolean add(Keyword keyword) throws DBException {
+	public boolean add(CrudEntity crud) throws DBException {
+		Keyword keyword = (Keyword) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("insert into ").append(Keyword.DB_NAME);
 		sql.append(" (name,wtype,stype,catalog_id,idate,status,site_rate) values(?,?,?,?,?,?,?)");
@@ -53,5 +56,17 @@ public class KeywordServiceImpl implements KeywordService {
 		};
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
+
+	@Override
+    public boolean update(CrudEntity crud) throws DBException {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public boolean delete(CrudEntity crud) throws DBException {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
 
 }
