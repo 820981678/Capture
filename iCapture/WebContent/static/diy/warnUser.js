@@ -6,23 +6,27 @@
 var warnLevelId;
 
 //加载全部舆情级别
-$.ajax({
-	url: webRoot + 'warnLevel/queryAll',
-	type: 'post',
-	dataType: 'json',
-	success: function(data){
-		if(data.code != 0){
-			$.messager.alert('error',"加载舆级别异常!");
-			return false;
+function init(){
+	$("#warnLevel_sum").html("");
+	$.ajax({
+		url: webRoot + 'warnLevel/queryAll',
+		type: 'post',
+		dataType: 'json',
+		success: function(data){
+			if(data.code != 0){
+				$.messager.alert('error',"加载舆级别异常!");
+				return false;
+			}
+			var sum = data.data.length;
+			for(var i = 0; i < sum; i++){
+				$("#warnLevel_sum").append('<li onclick="queryWarnUser(' + data.data[i].id + ')"><div class="d1">' + data.data[i].name + '</div><div class="d2">' + data.data[i].warn_user_sum + '人</div></li>');
+			}
+			//ul添加特效
+			
 		}
-		var sum = data.data.length;
-		for(var i = 0; i < sum; i++){
-			$("#warnLevel_sum").append('<li onclick="queryWarnUser(' + data.data[i].id + ')"><div class="d1">' + data.data[i].name + '</div><div class="d2">' + data.data[i].warn_user_sum + '人</div></li>');
-		}
-		//ul添加特效
-		
-	}
-});
+	});
+}
+init();
 
 /**
  * 舆情级别点击事件，查询所属的全部处理人员
@@ -131,8 +135,9 @@ function saveWarnUser(){
 			if(data.code == 0){
 				// 关闭窗口
 				$('#warnUserWindow').dialog('close');
+				init();
 				//刷新舆情处理人
-				$('#warnUserTab').datagrid('reload');
+				$('#dg').datagrid('reload');
 				$.messager.show({
 				    title: '提示信息',
 				    msg: '操作成功!',
@@ -160,6 +165,7 @@ function deleteWarnUser(){
 				{'user_id':row.id,'warn_level_id':warnLevelId},
 				function(data){
 					if(data.code == 0){
+						init();
 		                $('#dg').datagrid('reload');    // 刷新datagrid
 		                $.messager.show({
 		                    title: '提示信息',
