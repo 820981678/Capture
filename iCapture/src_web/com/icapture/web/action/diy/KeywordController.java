@@ -9,14 +9,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Keyword;
 import com.icapture.entity.enu.SiteRate;
+import com.icapture.init.cache.GlobalCache;
 import com.icapture.service.diy.KeywordService;
-import com.icapture.web.action.CrudController;
+import com.icapture.web.action.BaseController;
 
 /**
  * 关键字管理控制器
@@ -26,17 +28,20 @@ import com.icapture.web.action.CrudController;
  */
 @Controller
 @RequestMapping("keyword")
-public class KeywordController extends CrudController {
-	
-	public KeywordController(){
-		super.viewName = "/diy/keyword/index";
-	}
+public class KeywordController extends BaseController {
 	
 	/**
 	 * 数据库服务
 	 */
 	@Resource
 	private KeywordService keywordService;
+	
+	@RequestMapping("/index")
+	public ModelAndView index(){
+		ModelAndView model =  new ModelAndView();
+		model.setViewName("/diy/keyword/index");
+		return model;
+	}
 
 	/**
 	 * 查询全部关键字 返回easyui json
@@ -72,7 +77,19 @@ public class KeywordController extends CrudController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(Keyword keyword){
-		return _add(keyword);
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			if(keywordService.add(keyword)){
+				map.put("code", 0);
+			}
+			GlobalCache.init(GlobalCache.getLabel());
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		return map;
 	}
 	
 	/**

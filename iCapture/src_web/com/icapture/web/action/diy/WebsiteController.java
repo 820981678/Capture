@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,12 +25,13 @@ import com.icapture.web.action.CrudController;
  * @author hxh
  *
  */
+@Lazy
 @Controller
 @RequestMapping("website")
 public class WebsiteController extends CrudController {
 	
 	public WebsiteController() {
-	    super.viewName = "diy/website/index";
+	    super.viewName = "/diy/website/index";
     }
 
 	/**

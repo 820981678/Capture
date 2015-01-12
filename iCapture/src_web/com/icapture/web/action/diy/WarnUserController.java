@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,7 @@ import com.icapture.web.action.BaseController;
  * @author huxiaohuan
  *
  */
+@Lazy
 @Controller
 @RequestMapping("warnUser")
 public class WarnUserController extends BaseController {

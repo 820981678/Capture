@@ -71,7 +71,9 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean add(User user) throws DBException {
+	public boolean add(User crud) throws DBException {
+		User user = (User) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("insert into ").append(User.DB_NAME);
 		sql.append(" (name,user_title,user_password,phone,warn_phone,status)");
@@ -91,7 +93,9 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean update(User user) throws DBException {
+	public boolean update(User crud) throws DBException {
+		User user = (User) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("update ").append(User.DB_NAME);
 		sql.append(" set name=?,user_title=?,phone=?,warn_phone=?,status=?");
@@ -112,7 +116,9 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean delete(User user) throws DBException {
+	public boolean delete(User crud) throws DBException {
+		User user = (User) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete from ").append(User.DB_NAME);
 		sql.append(" where 1=1 and id=?");

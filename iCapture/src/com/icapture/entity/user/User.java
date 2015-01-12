@@ -1,6 +1,7 @@
 package com.icapture.entity.user;
 
 import com.icapture.entity.menu.Jurisdiction;
+import com.icapture.web.action.CrudEntity;
 
 /**
  * 用户实体类
@@ -8,7 +9,7 @@ import com.icapture.entity.menu.Jurisdiction;
  * @author huxiaohuan
  *
  */
-public class User implements Jurisdiction {
+public class User implements Jurisdiction, CrudEntity {
 	
 	/**
 	 * 对应的数据库表名

@@ -3,7 +3,6 @@ package com.icapture.service.diy;
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Keyword;
-import com.icapture.web.action.CrudInterface;
 
 /**
  * 关键字数据库服务接口
@@ -11,7 +10,7 @@ import com.icapture.web.action.CrudInterface;
  * @author huxiaohuan
  *
  */
-public interface KeywordService extends CrudInterface {
+public interface KeywordService {
 	
 	/**
 	 * 分页查询全部关键字
@@ -20,5 +19,13 @@ public interface KeywordService extends CrudInterface {
 	 * @throws DBException
 	 */
 	Page<Keyword> queryPageAll(Page<Keyword> page) throws DBException;
+	
+	/**
+	 * 添加关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	boolean add(Keyword keyword) throws DBException;
 
 }

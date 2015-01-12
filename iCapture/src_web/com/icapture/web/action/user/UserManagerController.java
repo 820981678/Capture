@@ -27,27 +27,21 @@ import com.icapture.web.action.BaseController;
  */
 @Controller
 @RequestMapping("admin/user")
-public class UserManagerController extends BaseController{
+public class UserManagerController extends BaseController {
 	
 	/**
 	 * 数据库服务
 	 */
 	@Resource
 	private UserService userService;
-
-	/**
-	 * 跳转到用户管理页面
-	 * 
-	 * @return
-	 */
+	
 	@RequestMapping("/index")
 	public ModelAndView index(){
-		ModelAndView model = new ModelAndView();
-		
+		ModelAndView model =  new ModelAndView();
 		model.setViewName("/user/manager/index");
 		return model;
 	}
-	
+
 	/**
 	 * 分页查询全部账户
 	 * 
@@ -87,7 +81,6 @@ public class UserManagerController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> add(User user){
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		try {
 			if(userService.add(user)){
 				map.put("code", 0);
@@ -112,7 +105,6 @@ public class UserManagerController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> update(User user){
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		try {
 			if(userService.update(user)){
 				map.put("code", 0);
@@ -137,7 +129,6 @@ public class UserManagerController extends BaseController{
 	@ResponseBody
 	public Map<String, Object> delete(User user){
 		Map<String, Object> map = new HashMap<String, Object>();
-		
 		try {
 			if(userService.delete(user)){
 				map.put("code", 0);
