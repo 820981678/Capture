@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
-import com.icapture.entity.classify.Classify;
+import com.icapture.entity.diy.WebSite;
 import com.icapture.service.jobManager.classify.ClassifyService;
 import com.icapture.web.action.BaseController;
 
@@ -57,7 +57,7 @@ public class ClassifyController extends BaseController {
 	public Map<String, Object> query(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			List<Classify> data = classifyService.queryAll();
+			List<WebSite> data = classifyService.queryAll();
 			map.put("code", 0);
 			map.put("rows", data);
 			map.put("total", data.size());

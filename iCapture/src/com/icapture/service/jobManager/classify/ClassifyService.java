@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.connection.db.DBException;
-import com.icapture.entity.classify.Classify;
+import com.icapture.entity.diy.WebSite;
 
 /**
  * 任务分类服务接口
@@ -19,7 +19,7 @@ public interface ClassifyService {
 	 * 
 	 * @return
 	 */
-	List<Classify> queryAll() throws DBException;
+	List<WebSite> queryAll() throws DBException;
 
 	/**
 	 * 查询全部网站的未读新闻条数

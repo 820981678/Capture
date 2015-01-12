@@ -3,7 +3,7 @@ package com.icapture.service.jobManager.tblkey;
 import java.util.List;
 
 import com.connection.db.DBException;
-import com.icapture.entity.tblkey.TblKey;
+import com.icapture.entity.diy.Keyword;
 
 /**
  * 关键字数据库服务接口
@@ -19,6 +19,6 @@ public interface TblKeyService {
 	 * @return
 	 * @throws DBException
 	 */
-	List<TblKey> queryAll() throws DBException;
+	List<Keyword> queryAll() throws DBException;
 	
 }

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
-import com.icapture.entity.tblkey.TblKey;
+import com.icapture.entity.diy.Keyword;
 import com.icapture.service.jobManager.tblkey.TblKeyService;
 import com.icapture.web.action.BaseController;
 
@@ -37,7 +37,7 @@ public class TblKeyController extends BaseController {
 		ModelAndView model = new ModelAndView();
 		
 		try {
-			List<TblKey> list = TblKeyService.queryAll();
+			List<Keyword> list = TblKeyService.queryAll();
 			model.addObject("data", list);
 		} catch (DBException e) {
 			// TODO 完成异常处理

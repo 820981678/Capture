@@ -6,33 +6,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 关键字权重枚举
+ * 网站权重枚举
+ * 
  * @author huxiaohuan
  *
  */
-public enum SiteRate {
+public enum WebsiteRate {
 
-	FCMG(10,"非常敏感"),
+	QGMH(10,"全国门户"),
 	
-	HMG(8,"很敏感"),
+	QGZY(9,"全国专业网站"),
 	
-	YBGZ(6,"一般关注"),
+	DFMH(8,"地方门户"),
 	
-	YB(4,"一般"),
+	DFZY(8,"地方专业网站"),
 	
-	QT(0,"其它");
+	QT(5,"其他");
 	
-	private int key;
+	private Integer key;
 	
 	private String name;
 	
-	/**
-	* 构造方法
-	*
-	* @param key
-	* @param name
-	*/
-	private SiteRate(int key,String name){
+	private WebsiteRate(Integer key,String name){
 		this.key = key;
 		this.name = name;
 	}
@@ -50,10 +45,10 @@ public enum SiteRate {
 	*
 	* @return
 	*/
-	public static List<SiteRate> toList(){
-		List<SiteRate> list = new ArrayList<SiteRate>();
-		SiteRate[] s = SiteRate.values();
-		for (SiteRate sit : s) {
+	public static List<WebsiteRate> toList(){
+		List<WebsiteRate> list = new ArrayList<WebsiteRate>();
+		WebsiteRate[] s = WebsiteRate.values();
+		for (WebsiteRate sit : s) {
             list.add(sit);
         }
 		return list;
@@ -66,7 +61,7 @@ public enum SiteRate {
 	*/
 	public static List<Map<String, Object>> toMap(){
 		List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-		for (SiteRate _s : SiteRate.toList()) {
+		for (WebsiteRate _s : WebsiteRate.toList()) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("key", _s.getKey());
             map.put("name", _s.getName());
@@ -74,5 +69,4 @@ public enum SiteRate {
         }
 		return list;
 	}
-	
 }

@@ -52,10 +52,10 @@
 
     <form id="login_form" method="post" class="am-form">
       <label for="email">账号:</label>
-      <input type="text" name="name" id="name" value="">
+      <input type="text" name="name" id="name" value="admin">
       <br>
       <label for="password">密码:</label>
-      <input type="password" name="user_password" id="password" value="">
+      <input type="password" name="user_password" id="password" value="admin">
       <br>
       <label for="remember-me">
         <input id="remember-me" type="checkbox">

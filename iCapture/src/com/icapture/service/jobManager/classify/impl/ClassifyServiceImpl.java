@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
-import com.icapture.entity.classify.Classify;
 import com.icapture.entity.classify.CommonPage;
+import com.icapture.entity.diy.WebSite;
 import com.icapture.service.jobManager.classify.ClassifyService;
 
 @Component
@@ -20,16 +20,16 @@ public class ClassifyServiceImpl implements ClassifyService {
 	 * @return
 	 */
 	@Override
-	public List<Classify> queryAll() throws DBException {
+	public List<WebSite> queryAll() throws DBException {
 		//SELECT COUNT(b.groupid),a.* from ( SELECT * from common_pages where to_days(item2) = to_days(now()) ) as b RIGHT JOIN topic_groups a ON b.groupid = a.id GROUP BY a.id;
 		StringBuffer sql = new StringBuffer();
 		sql.append("select count(b.groupid) as todaycount,a.* from ( select * from ").append(CommonPage.DB_NAME);
 		sql.append(" where to_days(item2)=to_days(now()) )as b");
-		sql.append(" right join ").append(Classify.DB_NAME).append(" as a");
+		sql.append(" right join ").append(WebSite.DB_NAME).append(" as a");
 		sql.append(" on b.groupid=a.id");
 		sql.append(" group by a.id");
 		
-		List<Classify> result = DBHandle.query(sql.toString(), new Object[0], Classify.class);
+		List<WebSite> result = DBHandle.query(sql.toString(), new Object[0], WebSite.class);
 		return result;
 	}
 	

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
-import com.icapture.entity.tblkey.TblKey;
+import com.icapture.entity.diy.Keyword;
 import com.icapture.service.jobManager.tblkey.TblKeyService;
 
 /**
@@ -25,10 +25,10 @@ public class TblKeyServiceImpl implements TblKeyService {
 	 * @throws DBException
 	 */
 	@Override
-	public List<TblKey> queryAll() throws DBException {
-		String sql = "SELECT * FROM " + TblKey.DB_NAME;
+	public List<Keyword> queryAll() throws DBException {
+		String sql = "SELECT * FROM " + Keyword.DB_NAME;
 		
-		List<TblKey> result = DBHandle.query(sql, new Object[0], TblKey.class);
+		List<Keyword> result = DBHandle.query(sql, new Object[0], Keyword.class);
 		
 		return result;
 	}
