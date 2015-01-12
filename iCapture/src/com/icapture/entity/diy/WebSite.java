@@ -2,13 +2,15 @@ package com.icapture.entity.diy;
 
 import java.util.Date;
 
+import com.icapture.web.action.CrudEntity;
+
 /**
  * 门户网站实体
  * 
  * @author huxiaohuan
  *
  */
-public class WebSite {
+public class WebSite implements CrudEntity {
 
 	public static final String DB_NAME = "topic_groups";
 	

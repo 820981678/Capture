@@ -4,8 +4,8 @@
 
 //加载数据表格
 $('#dg').datagrid({
-    url: webRoot + 'warnLevel/query',
-    
+    url: webRoot + 'website/query',
+    //fitColumns: true, //设置自适应宽度
     fit: true, //设置自适应高度
     sortName: 'id',
     sortOrder: 'desc',
@@ -18,29 +18,24 @@ $('#dg').datagrid({
     
     columns:[[
     	{field:'id',title:'ID',hidden: true},
-        {field:'name',title:'分级名称'},
-        {field:'min_rate',title:'权重下限'},
-        {field:'max_rate',title:'权重上线'},
-        {field:'description',title:'处理描述'},
-        {field:'send_msg',title:'发送短信',
-        	formatter: function(value,row,index){
-        		if(value == 0){
-        			return '不需要';
+        {field:'name',title:'网站名称'},
+        {field:'url',title:'网站地址'},
+        {field:'site_rate',title:'权重',width:50,
+        	formatter: function(val,row){
+        		if(val == 10){
+        			return "全国门户";
+        		} else if(val == 9){
+        			return "全国专业网站";
+        		} else if(val == 8){
+        			return "地方门户";
+        		} else if(val == 6){
+        			return "地方专业网站";
         		} else {
-        			return '需要';
+        			return "其他";
         		}
         	}
         },
-        {field:'need_handle',title:'人工处理',
-        	formatter: function(value,row,index){
-        		if(value == 0){
-        			return '不需要';
-        		} else {
-        			return '需要';
-        		}
-        	}
-        },
-        {field:'msg_tpl',title:'短信模板'}
+        {field:'max_resource',title:'最大抓取数',width:50}
     ]],
     
     loadFilter: function(data){
@@ -49,31 +44,57 @@ $('#dg').datagrid({
     
 });
 
+//加载权重
+$("#site_rate_select").combobox({
+	url: webRoot + 'website/queryWebSiteRate',
+	valueField: 'key',
+	textField: 'name',
+	loadFilter: function(data){
+		if(data.code == 0){
+			return data.data;
+		} else {
+			$.messager.alert('error','加载权重异常');
+		}
+	}
+});
+$("#site_rate_form").combobox({
+	url: webRoot + 'website/queryWebSiteRate',
+	valueField: 'key',
+	textField: 'name',
+	loadFilter: function(data){
+		if(data.code == 0){
+			return data.data;
+		} else {
+			$.message.alert('error','加载权重异常');
+		}
+	}
+});
+
 //以下为弹出窗口操作//
 
 var url;
 
-//添加预警级别
-function addWarn(){
-	$("#addWarn").dialog('open').dialog('setTitle','添加舆情级别');
+//添加门户网站
+function addWebsite(){
+	$("#addWebsite").dialog('open').dialog('setTitle','添加舆情级别');
 	$("#addfm").form('clear');
-	url = webRoot + 'warnLevel/add';
+	url = webRoot + 'website/add';
 }
 
-//修改预警级别
-function editWarn(){
+//修改门户网站
+function editWebsite(){
 	var row = $("#dg").datagrid('getSelected');
 	if(row){
-		$("#addWarn").dialog('open').dialog('setTitle','修改舆情级别');
+		$("#addWebsite").dialog('open').dialog('setTitle','修改舆情级别');
 		$("#addfm").form('load',row);
-		url = webRoot + "warnLevel/update?id=" + row.id;
+		url = webRoot + "website/update?id=" + row.id;
 	} else {
 		$.messager.alert('提示信息','请选择要修改的列!');
 	}
 }
 
-//保存预警级别
-function saveWarn(){
+//保存门户网站
+function saveWebsite(){
 	//验证数据是否合法
 	if(!$("#addfm").form('validate')){
 		return false;
@@ -85,7 +106,7 @@ function saveWarn(){
 		dataType: 'json',
 		success: function(data){
 			if(data.code == 0){
-				$('#addWarn').dialog('close'); // 关闭窗口
+				$('#addWebsite').dialog('close'); // 关闭窗口
                 $('#dg').datagrid('reload');    // 刷新datagrid
                 $.messager.show({
                     title: '提示信息',
@@ -98,8 +119,8 @@ function saveWarn(){
 	});
 }
 
-//删除预警级别
-function deleteWarn(){
+//删除门户网站
+function deleteWebsite(){
 	var row = $("#dg").datagrid('getSelected');
 	if(!row){
 		$.messager.alert('提示信息','请选择要删除的列!');
@@ -108,7 +129,7 @@ function deleteWarn(){
 	$.messager.confirm('提示信息','确定要删除该条数据吗?',function(result){
 		if(result){
 			$.post(
-				webRoot + 'warnLevel/delete',
+				webRoot + 'website/delete',
 				{'id':row.id},
 				function(data){
 					if(data.code == 0){
