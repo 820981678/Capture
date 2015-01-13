@@ -3,8 +3,6 @@ package com.icapture.web.action;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,9 +17,6 @@ public class CrudController extends BaseController {
 	 */
 	protected String viewName;
 	
-	@Resource
-	private CrudInterface crud;
-	
 	@RequestMapping("/index")
 	public ModelAndView index(){
 		ModelAndView model =  new ModelAndView();
@@ -29,7 +24,7 @@ public class CrudController extends BaseController {
 		return model;
 	}
 
-	public Map<String, Object> _add(CrudEntity obj){
+	public Map<String, Object> _add(CrudInterface crud,CrudEntity obj){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			if(crud.add(obj)){
@@ -45,7 +40,7 @@ public class CrudController extends BaseController {
 		return map;
 	}
 	
-	public Map<String, Object> _update(CrudEntity obj){
+	public Map<String, Object> _update(CrudInterface crud,CrudEntity obj){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			if(crud.update(obj)){
@@ -61,7 +56,7 @@ public class CrudController extends BaseController {
 		return map;
 	}
 	
-	public Map<String, Object> _delete(CrudEntity obj){
+	public Map<String, Object> _delete(CrudInterface crud,CrudEntity obj){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			if(crud.delete(obj)){

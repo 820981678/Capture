@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +24,6 @@ import com.icapture.web.action.CrudController;
  * @author hxh
  *
  */
-@Lazy
 @Controller
 @RequestMapping("website")
 public class WebsiteController extends CrudController {
@@ -88,19 +86,19 @@ public class WebsiteController extends CrudController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(WebSite website){
-		return super._add(website);
+		return super._add(webSiteService,website);
 	}
 	
 	@RequestMapping("/update")
 	@ResponseBody
 	public Map<String, Object> update(WebSite website){
-		return super._update(website);
+		return super._update(webSiteService,website);
 	}
 	
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Map<String, Object> delete(WebSite website){
-		return super._delete(website);
+		return super._delete(webSiteService,website);
 	}
 	
 }
