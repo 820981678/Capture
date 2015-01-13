@@ -32,34 +32,7 @@ public interface UserService extends CrudInterface {
 	 * @return
 	 * @throws DBException
 	 */
-	Page<User> queryByPage(Page<User> page) throws DBException;
-	
-//	/**
-//	 * 添加一个用户
-//	 * 
-//	 * @param user
-//	 * @return
-//	 * @throws DBException
-//	 */
-//	boolean add(User user) throws DBException;
-//	
-//	/**
-//	 * 修改用户
-//	 * 
-//	 * @param user
-//	 * @return
-//	 * @throws DBException
-//	 */
-//	boolean update(User user) throws DBException;
-//	
-//	/**
-//	 * 删除用户
-//	 * 
-//	 * @param user
-//	 * @return
-//	 * @throws DBException
-//	 */
-//	boolean delete(User user) throws DBException;
+	Page<User> queryByPage(Page<User> page,User select) throws DBException;
 	
 	/**
 	 * 根据舆情级别id查询对应的用户

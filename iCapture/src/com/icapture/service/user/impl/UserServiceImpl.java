@@ -1,5 +1,6 @@
 package com.icapture.service.user.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -56,12 +57,16 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public Page<User> queryByPage(Page<User> page) throws DBException {
+	public Page<User> queryByPage(Page<User> page,User select) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select id,name,user_title,phone,warn_phone,status from ").append(User.DB_NAME).append(" where 1=1 ");
-		sql.append("order by id desc");
+		sql.append("select id,name,user_title,phone,warn_phone,status from ").append(User.DB_NAME).append(" where 1=1");
 		
-		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
+		List<Object> params = new ArrayList<Object>();
+		addSelect(sql, params, select);
+		
+		sql.append(" order by id desc");
+		
+		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
 	}
 
 	/**
@@ -177,6 +182,24 @@ public class UserServiceImpl implements UserService {
 			warnLevelId
 		};
 		return DBHandle.query(sql.toString(), params, User.class);
+	}
+	
+	private void addSelect(StringBuffer sql,List<Object> params,User select){
+		if(select == null){
+			return;
+		}
+		if(!StringUtil.isBlank(select.getName())){
+			sql.append(" and name like ?");
+			params.add("%" + select.getName() + "%");
+		}
+		if(!StringUtil.isBlank(select.getUser_title())){
+			sql.append(" and user_title like ?");
+			params.add("%" + select.getUser_title() + "%");
+		}
+		if(select.getStatus() != null && select.getStatus() != -1){
+			sql.append(" and status=? ");
+			params.add(select.getStatus());
+		}
 	}
 
 }

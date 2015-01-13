@@ -48,7 +48,7 @@ public class UserManagerController extends CrudController {
 	 */
 	@RequestMapping("/query")
 	@ResponseBody
-	public Map<String, Object> query(Integer page,Integer rows,String sort,String order){
+	public Map<String, Object> query(Integer page,Integer rows,String sort,String order,User select){
 		if(page == null || rows == null){
 			page = 1;
 			rows = 20;
@@ -56,7 +56,7 @@ public class UserManagerController extends CrudController {
 		Page<User> p = new Page<User>(page, rows, sort, order);
 		Map<String, Object> result = null;
 		try {
-			Page<User> data = userService.queryByPage(p);
+			Page<User> data = userService.queryByPage(p,select);
 			result =  pageToEasyUi(data,0);
 		} catch (DBException e) {
 			result =  pageToEasyUi(1);
