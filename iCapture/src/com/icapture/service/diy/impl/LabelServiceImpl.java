@@ -10,6 +10,7 @@ import com.connection.db.DBHandle.Base;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
 import com.icapture.service.diy.LabelService;
+import com.icapture.web.action.CrudEntity;
 
 /**
  * 标签表数据库服务实现
@@ -59,7 +60,12 @@ public class LabelServiceImpl implements LabelService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean add(Label label) throws DBException {
+	public boolean add(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Label)){
+			throw new DBException();
+		}
+		Label label = (Label) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("insert into ").append(Label.DB_NAME);
 		sql.append(" (name) ");
@@ -80,7 +86,12 @@ public class LabelServiceImpl implements LabelService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean update(Label label) throws DBException {
+	public boolean update(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Label)){
+			throw new DBException();
+		}
+		Label label = (Label) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("update ").append(Label.DB_NAME).append(" set");
 		sql.append(" name=?");
@@ -102,7 +113,12 @@ public class LabelServiceImpl implements LabelService {
 	 * @return
 	 */
 	@Override
-	public boolean delete(Label label) throws DBException {
+	public boolean delete(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Label)){
+			throw new DBException();
+		}
+		Label label = (Label) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("delete from ").append(Label.DB_NAME).append(" where 1=1");
 		sql.append(" and id=?");

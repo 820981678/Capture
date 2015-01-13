@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
@@ -17,7 +16,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
 import com.icapture.init.cache.GlobalCache;
 import com.icapture.service.diy.LabelService;
-import com.icapture.web.action.BaseController;
+import com.icapture.web.action.CrudController;
 
 /**
  * 标签管理控制器
@@ -27,7 +26,11 @@ import com.icapture.web.action.BaseController;
  */
 @RequestMapping("label")
 @Controller
-public class LabelController extends BaseController {
+public class LabelController extends CrudController {
+	
+	public LabelController(){
+		super.viewName = "/diy/label/index";
+	}
 	
 	/**
 	 * 数据库服务
@@ -35,19 +38,6 @@ public class LabelController extends BaseController {
 	@Resource
 	private LabelService labelService;
 
-	/**
-	 * 跳转到标签管理页
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/index")
-	public ModelAndView index(){
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("/diy/label/index");
-		return model;
-	}
-	
 	/**
 	 * 分页查询全部标签
 	 * 
@@ -83,18 +73,21 @@ public class LabelController extends BaseController {
 	public Map<String, Object> queryAll(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		try {
-//			List<Label> result = labelService.queryAll();
-			List<Label> result = GlobalCache.getCache(GlobalCache.getLabel(), Label.class);
-			map.put("code", 0);
-			map.put("total", result.size());
-			map.put("rows", result);
-//		} catch (DBException e) {
-//			map.put("code", 1);
-//			map.put("message", "服务器异常!");
-//		} finally {
-//			DBHandle.release();
-//		}
+		List<Label> result = GlobalCache.getCache(GlobalCache.getLabel(), Label.class);
+		map.put("code", 0);
+		map.put("total", result.size());
+		map.put("rows", result);
+		/*
+		try {
+			List<Label> result = labelService.queryAll();
+			
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		*/
 		return map;
 	}
 	
@@ -107,18 +100,9 @@ public class LabelController extends BaseController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(Label label){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(labelService.add(label)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _add(labelService, label);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
 		return map;
 	}
@@ -132,18 +116,9 @@ public class LabelController extends BaseController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public Map<String, Object> update(Label label){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(labelService.update(label)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _update(labelService, label);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
 		return map;
 	}
@@ -157,18 +132,9 @@ public class LabelController extends BaseController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Map<String, Object> delete(Label label){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(labelService.delete(label)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _delete(labelService, label);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
 		return map;
 	}

@@ -1,12 +1,14 @@
 package com.icapture.entity.diy;
 
+import com.icapture.web.action.CrudEntity;
+
 /**
  * 用户自定义分组实体
  * 
  * @author huxiaohuan
  *
  */
-public class Group {
+public class Group implements CrudEntity {
 
 	/**
 	 * 对应数据库

@@ -5,6 +5,7 @@ import java.util.List;
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
+import com.icapture.web.action.CrudInterface;
 
 /**
  * label标签表数据库服务接口
@@ -12,7 +13,7 @@ import com.icapture.entity.diy.Label;
  * @author huxiaohuan
  *
  */
-public interface LabelService {
+public interface LabelService extends CrudInterface {
 	
 	/**
 	 * 分页查询
@@ -30,33 +31,6 @@ public interface LabelService {
 	 * @throws DBException
 	 */
 	List<Label> queryAll() throws DBException;
-	
-	/**
-	 * 添加
-	 * 
-	 * @param label
-	 * @return
-	 * @throws DBException
-	 */
-	boolean add(Label label) throws DBException;
-	
-	/**
-	 * 修改
-	 * 
-	 * @param label
-	 * @return
-	 * @throws DBException
-	 */
-	boolean update(Label label) throws DBException;
-	
-	/**
-	 * 删除标签
-	 * 级联删除common——label中的相关数据
-	 * 
-	 * @param label
-	 * @return
-	 */
-	boolean delete(Label label) throws DBException;
 	
 	/**
 	 * 根据commonPage的id查询出对应的标签集合

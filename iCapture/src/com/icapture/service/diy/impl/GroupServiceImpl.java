@@ -11,6 +11,7 @@ import com.connection.page.Page;
 import com.icapture.entity.classify.CommonPage;
 import com.icapture.entity.diy.Group;
 import com.icapture.service.diy.GroupService;
+import com.icapture.web.action.CrudEntity;
 
 /**
  * 分组数据库服务实现
@@ -60,7 +61,12 @@ public class GroupServiceImpl implements GroupService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean add(Group group) throws DBException {
+	public boolean add(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Group)){
+			throw new DBException();
+		}
+		Group group = (Group) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO ").append(Group.DB_NAME);
 		sql.append(" (NAME) ");
@@ -81,7 +87,12 @@ public class GroupServiceImpl implements GroupService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean update(Group group) throws DBException {
+	public boolean update(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Group)){
+			throw new DBException();
+		}
+		Group group = (Group) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE ").append(Group.DB_NAME).append(" SET");
 		sql.append(" NAME=?");
@@ -102,7 +113,13 @@ public class GroupServiceImpl implements GroupService {
 	 * @return
 	 * @throws DBException
 	 */
-	public boolean delete(Group group) throws DBException {
+	@Override
+	public boolean delete(CrudEntity crud) throws DBException {
+		if(!(crud instanceof Group)){
+			throw new DBException();
+		}
+		Group group = (Group) crud;
+		
 		StringBuffer sql = new StringBuffer();
 		sql.append("DELETE FROM ").append(Group.DB_NAME).append(" WHERE 1=1");
 		sql.append(" AND ID=?");
@@ -111,7 +128,7 @@ public class GroupServiceImpl implements GroupService {
 		//将common_page表中的所有该分组的数据分组修改为null
 		StringBuffer sql_common = new StringBuffer();
 		sql_common.append("UPDATE ").append(CommonPage.DB_NAME).append(" SET");
-		sql_common.append(" group_groupid=NULL").append(" WHERE group_groupid=?");
+		sql_common.append(" catalog_id=NULL").append(" WHERE catalog_id=?");
 		Object[] params_common = { group.getId()};
 		
 		try {

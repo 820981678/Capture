@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
@@ -17,7 +16,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.Group;
 import com.icapture.init.cache.GlobalCache;
 import com.icapture.service.diy.GroupService;
-import com.icapture.web.action.BaseController;
+import com.icapture.web.action.CrudController;
 
 /**
  * 分组管理控制器
@@ -27,7 +26,11 @@ import com.icapture.web.action.BaseController;
  */
 @RequestMapping("group")
 @Controller
-public class GroupController extends BaseController {
+public class GroupController extends CrudController {
+	
+	public GroupController(){
+		super.viewName = "/diy/group/index";
+	}
 	
 	/**
 	 * 数据库服务
@@ -35,19 +38,6 @@ public class GroupController extends BaseController {
 	@Resource
 	private GroupService groupService;
 
-	/**
-	 * 跳转到分组管理页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/index")
-	public ModelAndView index(){
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("/diy/group/index");
-		return model;
-	}
-	
 	/**
 	 * 分页查询全部分组
 	 * 
@@ -83,18 +73,20 @@ public class GroupController extends BaseController {
 	public Map<String, Object> queryAll(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		try {
-//			List<Group> result = groupService.queryAll();
-			List<Group> result = GlobalCache.getCache(GlobalCache.getGroup(), Group.class);
-			map.put("code", 0);
-			map.put("total", result.size());
-			map.put("rows", result);
-//		} catch (DBException e) {
-//			map.put("code", 1);
-//			map.put("message", "服务器异常!");
-//		} finally {
-//			DBHandle.release();
-//		}
+		List<Group> result = GlobalCache.getCache(GlobalCache.getGroup(), Group.class);
+		map.put("code", 0);
+		map.put("total", result.size());
+		map.put("rows", result);
+		/*
+		try {
+			List<Group> result = groupService.queryAll();
+		} catch (DBException e) {
+			map.put("code", 1);
+			map.put("message", "服务器异常!");
+		} finally {
+			DBHandle.release();
+		}
+		*/
 		return map;
 	}
 	
@@ -107,18 +99,9 @@ public class GroupController extends BaseController {
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(Group group){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(groupService.add(group)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _add(groupService, group);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getGroup());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
 		return map;
 	}
@@ -132,18 +115,9 @@ public class GroupController extends BaseController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public Map<String, Object> update(Group group){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(groupService.update(group)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _update(groupService, group);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getGroup());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
 		return map;
 	}
@@ -157,19 +131,10 @@ public class GroupController extends BaseController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Map<String, Object> delete(Group group){
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
-			if(groupService.delete(group)){
-				map.put("code", 0);
-			}
+		Map<String, Object> map = _delete(groupService, group);
+		if((Integer)map.get("code") == 0){
 			GlobalCache.init(GlobalCache.getGroup());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
 		}
-		
 		return map;
 	}
 	

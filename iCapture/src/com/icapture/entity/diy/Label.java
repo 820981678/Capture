@@ -1,12 +1,14 @@
 package com.icapture.entity.diy;
 
+import com.icapture.web.action.CrudEntity;
+
 /**
  * 标签实体
  * 
  * @author huxiaohuan
  *
  */
-public class Label {
+public class Label implements CrudEntity {
 	
 	/**
 	 * 实体对应数据库
