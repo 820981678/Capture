@@ -22,7 +22,7 @@ public interface GroupService extends CrudInterface {
 	 * @return
 	 * @throws DBException
 	 */
-	Page<Group> queryByPage(Page<Group> page) throws DBException;
+	Page<Group> queryByPage(Page<Group> page,Group group) throws DBException;
 	
 	/**
 	 * 查询全部

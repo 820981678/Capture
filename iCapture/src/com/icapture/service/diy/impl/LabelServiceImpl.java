@@ -1,5 +1,6 @@
 package com.icapture.service.diy.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.Label;
 import com.icapture.service.diy.LabelService;
 import com.icapture.web.action.CrudEntity;
+import com.util.StringUtil;
 
 /**
  * 标签表数据库服务实现
@@ -29,12 +31,16 @@ public class LabelServiceImpl implements LabelService {
 	 * @throws DBException
 	 */
 	@Override
-	public Page<Label> queryByPage(Page<Label> page) throws DBException {
+	public Page<Label> queryByPage(Page<Label> page,Label select) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select * from ").append(Label.DB_NAME).append(" where 1=1 ");
-		sql.append("order by id desc");
+		sql.append("select * from ").append(Label.DB_NAME).append(" where 1=1");
 		
-		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
+		List<Object> params = new ArrayList<Object>();
+		addSelect(sql,params,select);
+		
+		sql.append(" order by id desc");
+		
+		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
 	}
 	
 	/**
@@ -160,6 +166,16 @@ public class LabelServiceImpl implements LabelService {
 		Object[] params = {common_id};
 		
 		return DBHandle.query(sql.toString(), params, Label.class);
+	}
+	
+	private void addSelect(StringBuffer sql,List<Object> params,Label select){
+		if(select == null){
+			return;
+		}
+		if(!StringUtil.isBlank(select.getName())){
+			sql.append(" and name like ?");
+			params.add("%" + select.getName() + "%");
+		}
 	}
 
 }

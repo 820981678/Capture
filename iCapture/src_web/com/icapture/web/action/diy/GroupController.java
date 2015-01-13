@@ -45,7 +45,7 @@ public class GroupController extends CrudController {
 	 */
 	@RequestMapping("/query")
 	@ResponseBody
-	public Map<String, Object> query(Integer page,Integer rows,String sort,String order) throws DBException {
+	public Map<String, Object> query(Integer page,Integer rows,String sort,String order,Group select) throws DBException {
 		if(page == null || rows == null){
 			page = 1;
 			rows = 20;
@@ -53,7 +53,7 @@ public class GroupController extends CrudController {
 		Page<Group> p = new Page<Group>(page, rows, sort, order);
 		Map<String, Object> result = null;
 		try {
-			Page<Group> data = groupService.queryByPage(p);
+			Page<Group> data = groupService.queryByPage(p,select);
 			result =  pageToEasyUi(data,0);
 		} catch (DBException e) {
 			result =  pageToEasyUi(1);

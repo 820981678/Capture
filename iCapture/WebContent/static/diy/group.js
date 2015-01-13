@@ -1,3 +1,24 @@
+/**
+ * 分组管理页面js
+ */
+$(function(){
+	$("#select").click(function(){
+		$.ajax({
+			url: webRoot + 'group/query',
+			type: 'post',
+			data: $("#select_form").serialize(),
+			dataType: 'json',
+			success: function(data){
+				if(data.code == 0){
+					$("#dg").datagrid('loadData',data);
+				} else {
+					$.messager.alert('提示信息','服务器异常!');
+				}
+			}
+		});
+	});
+});
+
 //加载数据表格
 $('#dg').datagrid({
     url: webRoot + 'group/query',

@@ -1,5 +1,6 @@
 package com.icapture.service.diy.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import com.icapture.entity.classify.CommonPage;
 import com.icapture.entity.diy.Group;
 import com.icapture.service.diy.GroupService;
 import com.icapture.web.action.CrudEntity;
+import com.util.StringUtil;
 
 /**
  * 分组数据库服务实现
@@ -30,12 +32,16 @@ public class GroupServiceImpl implements GroupService {
 	 * @throws DBException
 	 */
 	@Override
-	public Page<Group> queryByPage(Page<Group> page) throws DBException {
+	public Page<Group> queryByPage(Page<Group> page,Group select) throws DBException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT * FROM ").append(Group.DB_NAME).append(" WHERE 1=1 ");
-		sql.append("ORDER BY ID DESC");
 		
-		return DBHandle.query(sql.toString(), new Object[0], page, Base.Mysql);
+		List<Object> params = new ArrayList<Object>();
+		addSelect(sql, params, select);
+		
+		sql.append(" ORDER BY ID DESC");
+		
+		return DBHandle.query(sql.toString(), params.toArray(), page, Base.Mysql);
 	}
 
 	/**
@@ -143,6 +149,16 @@ public class GroupServiceImpl implements GroupService {
 			throw e;
 		}
 		return true;
+	}
+	
+	private void addSelect(StringBuffer sql,List<Object> params,Group select){
+		if(select == null){
+			return;
+		}
+		if(!StringUtil.isBlank(select.getName())){
+			sql.append(" and name like ?");
+			params.add("%" + select.getName() + "%");
+		}
 	}
 	
 }

@@ -45,7 +45,7 @@ public class LabelController extends CrudController {
 	 */
 	@RequestMapping("/query")
 	@ResponseBody
-	public Map<String, Object> query(Integer page,Integer rows,String sort,String order){
+	public Map<String, Object> query(Integer page,Integer rows,String sort,String order,Label select){
 		if(page == null || rows == null){
 			page = 1;
 			rows = 20;
@@ -53,7 +53,7 @@ public class LabelController extends CrudController {
 		Page<Label> p = new Page<Label>(page, rows, sort, order);
 		Map<String, Object> result = null;
 		try {
-			Page<Label> data = labelService.queryByPage(p);
+			Page<Label> data = labelService.queryByPage(p,select);
 			result =  pageToEasyUi(data,0);
 		} catch (DBException e) {
 			result =  pageToEasyUi(1);

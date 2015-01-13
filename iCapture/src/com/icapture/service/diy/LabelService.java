@@ -22,7 +22,7 @@ public interface LabelService extends CrudInterface {
 	 * @return
 	 * @throws DBException
 	 */
-	Page<Label> queryByPage(Page<Label> page) throws DBException;
+	Page<Label> queryByPage(Page<Label> page,Label select) throws DBException;
 	
 	/**
 	 * 查询全部

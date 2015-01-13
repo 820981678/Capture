@@ -20,7 +20,7 @@
 
 	<div data-options="region:'north'" style="height:150px; padding:10px; border:none;" >
 		<div id="p" class="easyui-panel" title="填写您的筛选条件" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
-			<form class="fm" method="post" novalidate>
+			<form id="select_form" class="fm" method="post" novalidate>
 	            <div class="fitem" style="width:300px; float:left;">
 	                <label>关键字:</label>
 	                <input name="name" class="easyui-textbox">
