@@ -5,6 +5,7 @@ import java.util.List;
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.user.User;
+import com.icapture.web.action.CrudInterface;
 
 /**
  * 用户数据库服务接口
@@ -12,7 +13,7 @@ import com.icapture.entity.user.User;
  * @author huxiaohuan
  *
  */
-public interface UserService {
+public interface UserService extends CrudInterface {
 
 	/**
 	 * 根据用户名，密码获取用户
@@ -33,32 +34,32 @@ public interface UserService {
 	 */
 	Page<User> queryByPage(Page<User> page) throws DBException;
 	
-	/**
-	 * 添加一个用户
-	 * 
-	 * @param user
-	 * @return
-	 * @throws DBException
-	 */
-	boolean add(User user) throws DBException;
-	
-	/**
-	 * 修改用户
-	 * 
-	 * @param user
-	 * @return
-	 * @throws DBException
-	 */
-	boolean update(User user) throws DBException;
-	
-	/**
-	 * 删除用户
-	 * 
-	 * @param user
-	 * @return
-	 * @throws DBException
-	 */
-	boolean delete(User user) throws DBException;
+//	/**
+//	 * 添加一个用户
+//	 * 
+//	 * @param user
+//	 * @return
+//	 * @throws DBException
+//	 */
+//	boolean add(User user) throws DBException;
+//	
+//	/**
+//	 * 修改用户
+//	 * 
+//	 * @param user
+//	 * @return
+//	 * @throws DBException
+//	 */
+//	boolean update(User user) throws DBException;
+//	
+//	/**
+//	 * 删除用户
+//	 * 
+//	 * @param user
+//	 * @return
+//	 * @throws DBException
+//	 */
+//	boolean delete(User user) throws DBException;
 	
 	/**
 	 * 根据舆情级别id查询对应的用户

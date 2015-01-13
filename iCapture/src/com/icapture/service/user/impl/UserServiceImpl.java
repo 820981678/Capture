@@ -11,6 +11,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.WarnLevel;
 import com.icapture.entity.user.User;
 import com.icapture.service.user.UserService;
+import com.icapture.web.action.CrudEntity;
 import com.util.StringUtil;
 
 /**
@@ -71,7 +72,10 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean add(User crud) throws DBException {
+	public boolean add(CrudEntity crud) throws DBException {
+		if(!(crud instanceof User)){
+			throw new DBException();
+		}
 		User user = (User) crud;
 		
 		StringBuffer sql = new StringBuffer();
@@ -93,7 +97,10 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean update(User crud) throws DBException {
+	public boolean update(CrudEntity crud) throws DBException {
+		if(!(crud instanceof User)){
+			throw new DBException();
+		}
 		User user = (User) crud;
 		
 		StringBuffer sql = new StringBuffer();
@@ -116,7 +123,10 @@ public class UserServiceImpl implements UserService {
 	 * @throws DBException
 	 */
 	@Override
-	public boolean delete(User crud) throws DBException {
+	public boolean delete(CrudEntity crud) throws DBException {
+		if(!(crud instanceof User)){
+			throw new DBException();
+		}
 		User user = (User) crud;
 		
 		StringBuffer sql = new StringBuffer();
