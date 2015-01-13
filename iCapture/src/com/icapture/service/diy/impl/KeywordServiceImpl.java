@@ -60,16 +60,51 @@ public class KeywordServiceImpl implements KeywordService {
 		return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
 	}
 
+	/**
+	 * 修改关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
 	@Override
     public boolean update(CrudEntity crud) throws DBException {
-	    // TODO Auto-generated method stub
-	    return false;
+		if(!(crud instanceof Keyword)){
+			throw new DBException();
+		}
+		Keyword keyword = (Keyword) crud;
+		
+	    StringBuffer sql = new StringBuffer();
+	    sql.append("update ").append(Keyword.DB_NAME);
+	    sql.append(" set name=?,wtype=?,stype=?,catalog_id=?,idate=?,status=?,site_rate=?");
+	    sql.append(" where id=?");
+	    Object[] params = {
+    		keyword.getName(),keyword.getWtype(),keyword.getStype(),keyword.getCatalog_id(),
+			DateUtil.getDatetime(),keyword.getStatus(),keyword.getSite_rate(),
+			keyword.getId()
+	    };
+	    return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
     }
 
+	/**
+	 * 删除关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
 	@Override
     public boolean delete(CrudEntity crud) throws DBException {
-	    // TODO Auto-generated method stub
-	    return false;
+		if(!(crud instanceof Keyword)){
+			throw new DBException();
+		}
+		Keyword keyword = (Keyword) crud;
+		
+	    StringBuffer sql = new StringBuffer();
+	    sql.append("delete from ").append(Keyword.DB_NAME);
+	    sql.append(" where id=?");
+	    Object[] params = {
+    		keyword.getId()
+	    };
+	    return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
     }
 
 }

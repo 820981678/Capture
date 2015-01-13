@@ -76,6 +76,30 @@ public class KeywordController extends CrudController {
 	}
 	
 	/**
+	 * 修改关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	@RequestMapping("/update")
+	@ResponseBody
+	public Map<String, Object> update(Keyword keyword){
+		return _update(keywordService, keyword);
+	}
+	
+	/**
+	 * 删除关键字
+	 * 
+	 * @param keyword
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Map<String, Object> delete(Keyword keyword){
+		return _delete(keywordService, keyword);
+	}
+	
+	/**
 	 * 查询全部权重枚举
 	 * 
 	 * @return

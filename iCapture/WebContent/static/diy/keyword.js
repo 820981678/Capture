@@ -47,7 +47,29 @@ $('#dg').datagrid({
         	}
         },
         {field:'groupName',title:'默认分组'},
-        {field:'site_rate', title:'权重'}
+        {field:'site_rate', title:'权重',
+        	formatter: function(val,row){
+        		var text;
+        		switch(val){
+        		case 10:
+        			text = "非常敏感";
+        			break;
+        		case 8:
+        			text = "很敏感";
+        			break;
+        		case 6:
+        			text = "一般关注";
+        			break;
+        		case 4:
+        			text = "一般";
+        			break;
+        		case 0:
+        			text = "其他";
+        			break;
+        		}
+        		return text;
+        	}
+        }
     ]],
     
     loadFilter: function(data){
@@ -100,13 +122,25 @@ $("#site_rate_form").combobox({
 
 var url;
 
-//添加标签
+//添加关键字
 function addKeyword(){
 	$("#addKeyword").dialog('open').dialog('setTitle','添加关键字');
 	url = webRoot + 'keyword/add';
 }
 
-//保存标签
+//修改关键字
+function editKeyword(){
+	var row = $("#dg").datagrid('getSelected');
+	if(row){
+		$("#addKeyword").dialog('open').dialog('setTitle','修改标签');
+		$("#addfm").form('load',row);
+		url = webRoot + "keyword/update?id=" + row.id;
+	} else {
+		$.messager.alert('提示信息','请选择要修改的列!');
+	}
+}
+
+//保存关键字
 function saveKeyword(){
 	//验证数据是否合法
 	if(!$("#addfm").form('validate')){
@@ -128,6 +162,34 @@ function saveKeyword(){
 			} else {
 				$.messager.alert('error',data.message);
 			}
+		}
+	});
+}
+
+//删除关键字
+function deleteKeyword(){
+	var row = $("#dg").datagrid('getSelected');
+	if(!row){
+		$.messager.alert('提示信息','请选择要删除的列!');
+		return false;
+	}
+	$.messager.confirm('提示信息','确定要删除该条数据吗?',function(result){
+		if(result){
+			$.post(
+				webRoot + 'keyword/delete',
+				{'id':row.id},
+				function(data){
+					if(data.code == 0){
+		                $('#dg').datagrid('reload');    // 刷新datagrid
+		                $.messager.show({
+		                    title: '提示信息',
+		                    msg: '删除成功!',
+		                });
+					} else {
+						$.messager.alert('error',data.message);
+					}
+				}
+			);
 		}
 	});
 }
