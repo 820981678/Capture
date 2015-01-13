@@ -5,6 +5,7 @@ import java.util.List;
 import com.connection.db.DBException;
 import com.connection.page.Page;
 import com.icapture.entity.diy.WarnLevel;
+import com.icapture.web.action.CrudInterface;
 
 /**
  * 舆情级别数据库服务接口
@@ -12,7 +13,7 @@ import com.icapture.entity.diy.WarnLevel;
  * @author huxiaohuan
  *
  */
-public interface WarnLevelService {
+public interface WarnLevelService extends CrudInterface {
 	
 	/**
 	 * 分页查询
@@ -30,29 +31,5 @@ public interface WarnLevelService {
 	 * @throws DBException
 	 */
 	List<WarnLevel> queryAll() throws DBException;
-	
-	/**
-	 * 添加舆情级别
-	 * 
-	 * @param warn
-	 * @return
-	 */
-	boolean add(WarnLevel warn) throws DBException;
-	
-	/**
-	 * 修改舆情级别
-	 * 
-	 * @param warn
-	 * @return
-	 */
-	boolean update(WarnLevel warn) throws DBException;
-	
-	/**
-	 * 删除舆情级别
-	 * 
-	 * @param warn
-	 * @return
-	 */
-	boolean delete(WarnLevel warn) throws DBException;
 	
 }

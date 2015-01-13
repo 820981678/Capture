@@ -9,15 +9,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.icapture.entity.diy.WarnLevel;
-import com.icapture.init.cache.GlobalCache;
 import com.icapture.service.diy.WarnLevelService;
-import com.icapture.web.action.BaseController;
+import com.icapture.web.action.CrudController;
 
 /**
  * 舆情级别配置控制器
@@ -27,26 +25,17 @@ import com.icapture.web.action.BaseController;
  */
 @Controller
 @RequestMapping("warnLevel")
-public class WarnLevelController extends BaseController{
+public class WarnLevelController extends CrudController {
+	
+	public WarnLevelController(){
+		super.viewName = "/diy/warnLevel/index";
+	}
 	
 	/**
 	 * 数据库服务
 	 */
 	@Resource
 	private WarnLevelService warnLevelService;
-	
-	/**
-	 * 跳转到舆情配置页面
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/index")
-	public ModelAndView index(){
-		ModelAndView model = new ModelAndView();
-		
-		model.setViewName("/diy/warnLevel/index");
-		return model;
-	}
 	
 	/**
 	 * 分页查询舆情级别
@@ -108,20 +97,7 @@ public class WarnLevelController extends BaseController{
 	@RequestMapping("/add")
 	@ResponseBody
 	public Map<String, Object> add(WarnLevel warn){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(warnLevelService.add(warn)){
-				map.put("code", 0);
-			}
-			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
-		return map;
+		return _add(warnLevelService, warn);
 	}
 	
 	/**
@@ -133,20 +109,7 @@ public class WarnLevelController extends BaseController{
 	@RequestMapping("/update")
 	@ResponseBody
 	public Map<String, Object> update(WarnLevel warn){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(warnLevelService.update(warn)){
-				map.put("code", 0);
-			}
-			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
-		return map;
+		return _update(warnLevelService, warn);
 	}
 	
 	/**
@@ -158,19 +121,6 @@ public class WarnLevelController extends BaseController{
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Map<String, Object> delete(WarnLevel warn){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			if(warnLevelService.delete(warn)){
-				map.put("code", 0);
-			}
-			GlobalCache.init(GlobalCache.getLabel());
-		} catch (DBException e) {
-			map.put("code", 1);
-			map.put("message", "服务器异常!");
-		} finally {
-			DBHandle.release();
-		}
-		return map;
+		return _delete(warnLevelService, warn);
 	}
 }

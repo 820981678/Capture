@@ -1,12 +1,14 @@
 package com.icapture.entity.diy;
 
+import com.icapture.web.action.CrudEntity;
+
 /**
  * 舆情级别实体
  * 
  * @author huxiaohuan
  *
  */
-public class WarnLevel {
+public class WarnLevel implements CrudEntity {
 	
 	/**
 	 * 对应数据库名称
