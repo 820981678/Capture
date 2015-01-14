@@ -1,5 +1,8 @@
 package com.icapture.service.diy.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.connection.db.DBException;
@@ -9,6 +12,7 @@ import com.connection.page.Page;
 import com.icapture.entity.diy.WebSite;
 import com.icapture.service.diy.WebSiteService;
 import com.icapture.web.action.CrudEntity;
+import com.util.StringUtil;
 
 /**
  * 门户网站数据库服务实现
@@ -27,11 +31,15 @@ public class WebSiteServiceImpl implements WebSiteService {
 	 * @throws DBException
 	 */
 	@Override
-    public Page<WebSite> queryByPage(Page<WebSite> page) throws DBException {
+    public Page<WebSite> queryByPage(Page<WebSite> page,WebSite select) throws DBException {
 	    StringBuffer sql = new StringBuffer();
 	    sql.append("select * from ").append(WebSite.DB_NAME).append(" where 1=1");
+	    
+	    List<Object> params = new ArrayList<Object>();
+	    addSelect(sql, params, select);
+	    
 	    sql.append(" order by id");
-	    return DBHandle.query(sql.toString(), new Object[0], WebSite.class, page, Base.Mysql);
+	    return DBHandle.query(sql.toString(), params.toArray(), WebSite.class, page, Base.Mysql);
     }
 
 	/**
@@ -93,5 +101,19 @@ public class WebSiteServiceImpl implements WebSiteService {
 	    };
 	    return DBHandle.exceute(sql.toString(), params) > 0 ? true : false;
     }
+	
+	private void addSelect(StringBuffer sql,List<Object> params,WebSite select){
+		if(select == null){
+			return;
+		}
+		if(!StringUtil.isBlank(select.getName())){
+			sql.append(" and name like ?");
+			params.add("%" + select.getName() + "%");
+		}
+		if(select.getSite_rate() != null && select.getSite_rate() != -1){
+			sql.append(" and site_rate=?");
+			params.add(select.getSite_rate());
+		}
+	}
 
 }

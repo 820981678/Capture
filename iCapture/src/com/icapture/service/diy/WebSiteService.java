@@ -20,33 +20,6 @@ public interface WebSiteService extends CrudInterface {
 	 * @return
 	 * @throws DBException
 	 */
-	Page<WebSite> queryByPage(Page<WebSite> page) throws DBException;
-	
-//	/**
-//	 * 添加门户网站
-//	 * 
-//	 * @param website
-//	 * @return
-//	 * @throws DBException
-//	 */
-//    public boolean add(WebSite website) throws DBException;
-//	
-//	/**
-//	 * 修改门户网站
-//	 * 
-//	 * @param website
-//	 * @return
-//	 * @throws DBException
-//	 */
-//    public boolean update(WebSite website) throws DBException;
-//	
-//	/**
-//	 * 删除门户网站
-//	 * 
-//	 * @param website
-//	 * @return
-//	 * @throws DBException
-//	 */
-//    public boolean delete(WebSite website) throws DBException;
+	Page<WebSite> queryByPage(Page<WebSite> page,WebSite select) throws DBException;
 	
 }

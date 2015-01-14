@@ -20,7 +20,7 @@
 
 	<div data-options="region:'north'" style="height:110px; padding:10px; border:none;" >
 		<div id="p" class="easyui-panel" title="填写您的筛选条件" data-options="collapsible:false" style="width:100%;height:auto;padding:10px;float:left;">
-	    	<form class="fm" method="post" novalidate>
+	    	<form id="select_form" class="fm" method="post" novalidate>
 	            <div class="fitem" style="width:300px; float:left;">
 	                <label>网站名称:</label>
 	                <input name="name" class="easyui-textbox">
@@ -28,7 +28,7 @@
 	            <div class="fitem" style="width:300px; float:left;">
 	            	<label>权重:</label>
 	                <select id="site_rate_select" class="easyui-combobox" name="site_rate" style="width:165px;">
-            	</select>
+            		</select>
 	            </div>
 	            <div class="fitem" style="width:300px; float:left;">
 		        	<a id="select" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
